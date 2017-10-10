@@ -30,7 +30,7 @@
     $client->setScopes('email');
     $plus = new Google_Service_Plus($client);
     /*
-    * PROCESS
+    * PROCESS 
     *
     * A. Pre-check for logout
     * B. Authentication and Access token
