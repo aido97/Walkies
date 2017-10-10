@@ -157,9 +157,6 @@
             <div class="header-content-inner">
                 <h1 id="homeHeading">Walkies - Our Walkers Walk The Wildest</h1>
                 <hr>
-			
-               <!-- <p style="color:white; font-size: 150%">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
-                -->
                 <a href="#services" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
             </div>
 			<br><br>
