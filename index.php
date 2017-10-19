@@ -142,7 +142,7 @@
                             * else print the retieved data
                             */
                             if (isset($authUrl)) {
-                                echo "<a class='login' href='index.php'>Login</a>";
+                                echo "<a class='login' href='".$authUrl."'>Login</a>";
                             } else {
                                 print "<a class='page-scroll'>Welcome: {$name}</a>";
                                 
@@ -167,7 +167,7 @@
                             if (isset($authUrl)) {
                                 
                             } else {
-                                print "<a class='page-scroll'>Logout</a>";
+                                print "<a class='page-scroll' href='?logout'>Logout</a>";
                                 
                             }
                             ?>
