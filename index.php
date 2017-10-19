@@ -144,7 +144,7 @@
                             if (isset($authUrl)) {
                                 echo "<a class='login' href='index.php'>Login</a>";
                             } else {
-                                print "<a class='page-scroll'>Welcome: {$name} <br></a>";
+                                print "<a class='page-scroll'>Welcome: {$name}</a>";
                                 
                             }
                             ?>
@@ -158,6 +158,20 @@
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
+                    <li>
+                <?php
+                            /*
+                            * If login url is there then display login button
+                            * else print the retieved data
+                            */
+                            if (isset($authUrl)) {
+                                
+                            } else {
+                                print "<a class='page-scroll'>Logout</a>";
+                                
+                            }
+                            ?>
+                </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
