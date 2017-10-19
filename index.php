@@ -135,6 +135,20 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                <li>
+                <?php
+                            /*
+                            * If login url is there then display login button
+                            * else print the retieved data
+                            */
+                            if (isset($authUrl)) {
+                                echo "<a class='login' href='index.php'>Login</a>";
+                            } else {
+                                print "<a class='page-scroll'>Welcome: {$name} <br></a>";
+                                
+                            }
+                            ?>
+                </li>
                     <li>
                         <a class="page-scroll" href="#about">About</a>
                     </li>
