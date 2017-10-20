@@ -89,11 +89,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Walkies</title>
+    <title>Walkies - Login / Register</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	
+
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -106,10 +107,8 @@
     <link href="css/creative.min.css" rel="stylesheet">
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-	
-     <!-- Custom CSS -->
-     <link href="css/style.css" rel="stylesheet">
-
+	  <!-- Custom CSS -->
+      <link href="css/style.css" rel="stylesheet">
 
 	
 
@@ -125,7 +124,7 @@
 <body id="page-top">
 
     <!-- Navbar -->
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-notMain">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -142,7 +141,7 @@
                 <!-- If the user is logged in, display welcome message. If not, display login/register button link -->
                 <?php
                             if (isset($authUrl)) {
-                                echo "<a class='login' href='login.php'>Login/Register</a>";
+                                echo "<a class='login' href='".$authUrl."'>Login/Register</a>";
                             } else {
                                 print "<a class='page-scroll'>Welcome: {$name}</a>";
                                 
@@ -173,54 +172,53 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    
-    <!-- Header -->
-    <header id = "front">
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h1 id="homeHeading">Walkies - Our Walkers Walk The Wildest</h1>
-                <hr>
-                <a href="#services" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
-            </div>
-			<br><br>
-			<p style = "color:white; font-size: 5vmin; font-weight: bold;">50 DAYS WITHOUT A MAULING :)</p>
-        </div>
-    </header>
 
-    <section class="bg-primary" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">We've got what you need</h2>
-                    <hr class="light">
-                    <p>Dogs, Walking - We Have It All</p>
+    <div class = "container">
+  
+    <div class = "row">
+                
+                <div class="col-lg-3 col-md-2 text-center">
+                    
+                </div>
+                <div class="col-lg-6 col-md-8 text-center">
+                    
+    <div class="omb_login">
+    	<h3 class="omb_authTitle">Login or Sign up</h3>
+    		<div class="row omb_row-sm-offset-3 omb_socialButtons">
+			<div class="col-xs-12 col-sm-6">	
+                <?php
+			      echo "<a href='" . $authUrl ."' class='btn btn-lg btn-block omb_btn-google'>
+			        <i class='fa fa-google-plus visible-xs'></i>
+			        <span class='hidden-xs'>Google+</span>
+                </a>";
+                ?>
+			</div>
+    	</div>
+		
 
-                        <!-- Google Sign In Functionality -->
-                        <div>
-                            <?php
-                            /*
-                            * If login url is there then display login button
-                            * else print the retieved data
-                            */
-                            if (isset($authUrl)) {
-                                echo "<a class='login' href='" . $authUrl . "'><img src='gplus-lib/signin_button.png' height='50px'/></a>";
-                            } else {
-                                print "ID: {$id} <br>";
-                                print "Name: {$name} <br>";
-                                print "Email: {$email } <br>";
-                                print "Image : {$profile_image_url} <br>";
-                                print "Cover  :{$cover_image_url} <br>";
-                                print "Url: {$profile_url} <br><br>";
-                                echo "<a class='logout' href='?logout'><button>Logout</button></a>";
-                            }
-                            ?>
-                        </div>
+		<div class="row omb_row-sm-offset-3 omb_loginOr">
+			<div class="col-xs-12 col-sm-6">
+				<hr class="omb_hrOr">
+				<span class="omb_spanOr">or</span>
+			</div>
+		</div>
 
-                  
+		<div class="row omb_row-sm-offset-3 omb_socialButtons">
+			<div class="col-xs-12 col-sm-6">	
+			      <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
+			        <i class="fa fa-facebook visible-xs"></i>
+			        <span class="hidden-xs">Facebook</span>
+		        </a>
+			</div>
+    	</div>
+                </div>
+                <div class="col-lg-3 col-md-2 text-center">
+                 
                 </div>
             </div>
-        </div>
-    </section>
+
+                        </div>
+                
 	
 	<!-- Footer -->
 	<footer>
