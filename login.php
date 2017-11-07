@@ -173,7 +173,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <div class = "container">
+    <div class = "main">
   
     <div class = "row">
                 

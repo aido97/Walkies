@@ -70,6 +70,7 @@
         // Get User data
         $id = $me['id'];
         $name =  $me['displayName'];
+        $birthday = $me['birthday'];
         $email =  $me['emails'][0]['value'];
         $profile_image_url = $me['image']['url'];
         $cover_image_url = $me['cover']['coverPhoto']['url'];
@@ -125,7 +126,7 @@
 <body id="page-top">
 
     <!-- Navbar -->
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-notMain">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -173,35 +174,80 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    
-    <!-- Header -->
-    <header id = "front">
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h1 id="homeHeading">Walkies - Our Walkers Walk The Wildest</h1>
-                <hr>
-                <a href="#services" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
-            </div>
-			<br><br>
-			<p style = "color:white; font-size: 5vmin; font-weight: bold;">50 DAYS WITHOUT A MAULING :)</p>
-        </div>
-    </header>
 
-    <section class="bg-primary" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">We've got what you need</h2>
-                    <hr class="light">
-                    <p>Dogs, Walking - We Have It All</p>
+     <!-- Header -->
+    <?php
+            if (isset($authUrl)) {
 
-                        <!-- Google Sign In Functionality -->
-                        <div>
+                print "<header id = \"front\">\n";
+                print "        <div class=\"header-content\">\n";
+                print "            <div class=\"header-content-inner\">\n";
+                print "                <h1 id=\"homeHeading\">Walkies - Our Walkers Walk The Wildest</h1>\n";
+                print "                <hr>\n";
+                print "                <a href=\"#services\" class=\"btn btn-primary btn-xl page-scroll\">Find Out More</a>\n";
+                print "            </div>\n";
+                print "			<br><br>\n";
+                print "			<p style = \"color:white; font-size: 5vmin; font-weight: bold;\">50 DAYS WITHOUT A MAULING :)</p>\n";
+                print "        </div>\n";
+                print "    </header>";                
+
+            } else {
+                
+                print "<section>\n";
+                print "<div class=\"container\">\n";
+                print "    <div class=\"row\">\n";
+                print "    <div class=\"col-xs-0 col-sm-2 col-md-2\">\n";
+                print "        </div>\n";
+                print "        <div class=\"col-xs-12 col-sm-8 col-md-8\">\n";
+                print "            <div class=\"well well-sm\">\n";
+                print "                <div class=\"row\">\n";
+                print "                    <div class=\"col-sm-6 col-md-4\">\n";
+                echo '<img src="'.$profile_image_url.'" alt="Cover">';
+                print "                    </div>\n";
+                print "                    <div class=\"col-sm-6 col-md-8\">\n";
+                print "                        <h4>\n";
+                print "                           $name</h4>\n";
+                print "                        <small><cite title=\"Location\">Dublin, Ireland <i class=\"glyphicon glyphicon-map-marker\">\n";
+                print "                        </i></cite></small>\n";
+                print "                        <p>\n";
+                print "                            <i class=\"glyphicon glyphicon-envelope\"></i> $email\n";
+                print "                           \n";
+                print "                            <br />\n";
+                print "                            <i class=\"glyphicon glyphicon-gift\"></i> June 02, 1988</p>\n";
+                print "                        <!-- Split button -->\n";
+                print "                        <div class=\"btn-group\">\n";
+                print "                            <button type=\"button\" class=\"btn btn-primary\">\n";
+                print "                                Walks</button>\n";
+                print "                            <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">\n";
+                print "                                <span class=\"caret\"></span><span class=\"sr-only\">Walks</span>\n";
+                print "                            </button>\n";
+                print "                            <ul class=\"dropdown-menu\" role=\"menu\">\n";
+                print "                                <li><a href=\"#\">Schedule A Walk</a></li>\n";
+                print "                                <li><a href=\"#\">Contact A Walker</a></li>\n";
+                print "                                <li class=\"divider\"></li>\n";                
+                print "                                <li><a href=\"#\">Report A Walker</a></li>\n";
+                print "                            </ul>\n";
+                print "                        </div>\n";
+                print "                    </div>\n";
+                print "                </div>\n";
+                print "            </div>\n";
+                print "        </div>\n";
+                print "        <div class=\"col-xs-0 col-sm-2 col-md-2\">\n";
+                print "        </div>\n";
+                print "    </div>\n";
+                print "</div>\n";
+                print "        </section>";
+                
+               
+            }
+
+    ?>
+
                             <?php
                             /*
                             * If login url is there then display login button
                             * else print the retieved data
-                            */
+                            
                             if (isset($authUrl)) {
                                 echo "<a class='login' href='" . $authUrl . "'><img src='gplus-lib/signin_button.png' height='50px'/></a>";
                             } else {
@@ -213,14 +259,8 @@
                                 print "Url: {$profile_url} <br><br>";
                                 echo "<a class='logout' href='?logout'><button>Logout</button></a>";
                             }
-                            ?>
-                        </div>
-
-                  
-                </div>
-            </div>
-        </div>
-    </section>
+                            */?>
+          
 	
 	<!-- Footer -->
 	<footer>
