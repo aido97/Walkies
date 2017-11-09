@@ -111,6 +111,8 @@
      <!-- Custom CSS -->
      <link href="css/style.css" rel="stylesheet">
 
+     <link href="css/vanillacalendar.css" rel="stylesheet">
+    <script src="js/vanillacalendar.js"></script>
 
 	
 
@@ -201,7 +203,6 @@
                 print "        <div class=\"col-xs-12 col-sm-8 col-md-8\">\n";
                 print "            <div class=\"well well-sm\">\n";
                 print "                <div class=\"row\">\n";
-<<<<<<< HEAD
                 print "                    <div class=\"col-sm-2 col-md-3\">\n";
                 print "                <div class=\"row\">\n";
                  print "                <div class=\"col-xs-12\">\n";
@@ -225,13 +226,6 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
                 print "                </div>\n";
                 print "         </div>\n";
                 print "                    <div class=\"col-sm-8 col-md-6\">\n";
-=======
-                print "                    <div class=\"col-sm-2 col-md-2\">\n";
-                echo '<img src="'.$profile_image_url.'" alt="Cover">';
-                print "                <a href=\"#\" class=\"btn btn-primary \" style = \"padding: 3px;  width: 120%; font-size: 80%; text-align: center;\">Become a Walker</a>\n";                
-                print "                    </div>\n";
-                print "                    <div class=\"col-sm-8 col-md-8\">\n";
->>>>>>> 16b7ba943988673d51c7fde8757f0c73b53dab45
                 print "                        <h4>\n";
                 print "                           $name</h4>\n";
                 print "                        <small><cite title=\"Location\">Dublin, Ireland <i class=\"glyphicon glyphicon-map-marker\">\n";
@@ -241,29 +235,9 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
                 print "                           \n";
                 print "                            <br />\n";
                 print "                            <i class=\"glyphicon glyphicon-gift\"></i> June 02, 1988</p>\n";
-<<<<<<< HEAD
                 print "                    </div>\n";
                 print "                    <div class=\"col-sm-2 col-md-3\">\n";
     
-=======
-               
-                print "                    </div>\n";                                
-                print "                    <div class=\"col-sm-2 col-md-2\">\n";                
-                print "                        <!-- Split button -->\n";
-                print "                        <div class=\"btn-group\">\n";
-                print "                            <button type=\"button\" class=\"btn btn-primary\">\n";
-                print "                                Walks</button>\n";
-                print "                            <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">\n";
-                print "                                <span class=\"caret\"></span><span class=\"sr-only\">Walks</span>\n";
-                print "                            </button>\n";
-                print "                            <ul class=\"dropdown-menu\" role=\"menu\">\n";
-                print "                                <li><a href=\"#\">Schedule A Walk</a></li>\n";
-                print "                                <li><a href=\"#\">Contact A Walker</a></li>\n";
-                print "                                <li class=\"divider\"></li>\n";                
-                print "                                <li><a href=\"#\">Report A Walker</a></li>\n";
-                print "                            </ul>\n";
-                print "                        </div>\n";
->>>>>>> 16b7ba943988673d51c7fde8757f0c73b53dab45
                 print "                    </div>\n";
                 print "                </div>\n";
                 print "            </div>\n";
@@ -278,6 +252,21 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
             }
 
     ?>
+
+<div class="cal">
+			<div class="cal__header">
+				<button class="btn btn-action btn-link btn-lg" data-calendar-toggle="previous"><svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+				<path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg></button>
+				<div class="cal__header__label" data-calendar-label="month">
+					March 2017
+				</div><button class="btn btn-action btn-link btn-lg" data-calendar-toggle="next"> <svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+				<path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg></button>
+			</div>
+			<div class="cal__week">
+				<span>Mon</span> <span>Tue</span><span>Wed</span> <span>Thu</span> <span>Fri</span> <span>Sat</span> <span>Sun</span>
+			</div>
+			<div class="cal__body" data-calendar-area="month"></div>
+		</div>
 
                             <?php
                             /*
@@ -296,15 +285,8 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
                                 echo "<a class='logout' href='?logout'><button>Logout</button></a>";
                             }
                             */?>
-<<<<<<< HEAD
                             
                             
-=======
-          
-	<section>
-        
-     </section>
->>>>>>> 16b7ba943988673d51c7fde8757f0c73b53dab45
 	<!-- Footer -->
 	<footer>
             <div class="row">
@@ -316,6 +298,12 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
+
+    <script>
+		window.addEventListener('load', function () {
+		  vanillacalendar.init();
+		})
+	</script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
