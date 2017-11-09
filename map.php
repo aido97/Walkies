@@ -70,7 +70,6 @@
         // Get User data
         $id = $me['id'];
         $name =  $me['displayName'];
-        $birthday = $me['birthday'];
         $email =  $me['emails'][0]['value'];
         $profile_image_url = $me['image']['url'];
         $cover_image_url = $me['cover']['coverPhoto']['url'];
@@ -90,11 +89,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Walkies</title>
+    <title>Walkies - Login / Register</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	
+
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -107,10 +107,8 @@
     <link href="css/creative.min.css" rel="stylesheet">
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-	
-     <!-- Custom CSS -->
-     <link href="css/style.css" rel="stylesheet">
-
+	  <!-- Custom CSS -->
+      <link href="css/style.css" rel="stylesheet">
 
 	
 
@@ -143,7 +141,7 @@
                 <!-- If the user is logged in, display welcome message. If not, display login/register button link -->
                 <?php
                             if (isset($authUrl)) {
-                                echo "<a class='login' href='login.php'>Login/Register</a>";
+                                echo "<a class='login' href='".$authUrl."'>Login/Register</a>";
                             } else {
                                 print "<a class='page-scroll'>Welcome: {$name}</a>";
                                 
@@ -175,101 +173,16 @@
         <!-- /.container-fluid -->
     </nav>
 
-     <!-- Header -->
-    <?php
-            if (isset($authUrl)) {
 
-                print "<header id = \"front\">\n";
-                print "        <div class=\"header-content\">\n";
-                print "            <div class=\"header-content-inner\">\n";
-                print "                <h1 id=\"homeHeading\">Walkies - Our Walkers Walk The Wildest</h1>\n";
-                print "                <hr>\n";
-                print "                <a href=\"#services\" class=\"btn btn-primary btn-xl page-scroll\">Find Out More</a>\n";
-                print "            </div>\n";
-                print "			<br><br>\n";
-                print "			<p style = \"color:white; font-size: 5vmin; font-weight: bold;\">50 DAYS WITHOUT A MAULING :)</p>\n";
-                print "        </div>\n";
-                print "    </header>";                
 
-            } else {
-                
-                print "<section>\n";
-                print "<div class=\"container\">\n";
-                print "    <div class=\"row\">\n";
-                print "    <div class=\"col-xs-0 col-sm-2 col-md-2\">\n";
-                print "        </div>\n";
-                print "        <div class=\"col-xs-12 col-sm-8 col-md-8\">\n";
-                print "            <div class=\"well well-sm\">\n";
-                print "                <div class=\"row\">\n";
-                print "                    <div class=\"col-sm-2 col-md-3\">\n";
-                print "                <div class=\"row\">\n";
-                 print "                <div class=\"col-xs-12\">\n";
-                echo '<img src="'.$profile_image_url.'" alt="Cover">';
-                print "                            <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">\n";
-                print "                                <span class=\"caret\"></span><span class=\"sr-only\">Account Options</span>\n";
-                print "                            </button>\n";
-                print "                            <ul class=\"dropdown-menu\" role=\"menu\">\n";
-                print "                                <li><a href=\"#\">Upload Profile Picture</a></li>\n";
-                print "                                <li><a href=\"#\">Change Walk Schedule</a></li>\n";
-                print "                                <li class=\"divider\"></li>\n";                
-                print "                                <li><a href=\"#\">Account Settings</a></li>\n";
-                print "                            </ul>\n";
-                print "                </div>\n";
-                print "                </div>\n";
-                print "                <div class=\"row\">\n";
-                print "                <div class=\"col-xs-12\">\n";
-print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a Walker</button>";
-
-                print "                </div>\n";
-                print "                </div>\n";
-                print "         </div>\n";
-                print "                    <div class=\"col-sm-8 col-md-6\">\n";
-                print "                        <h4>\n";
-                print "                           $name</h4>\n";
-                print "                        <small><cite title=\"Location\">Dublin, Ireland <i class=\"glyphicon glyphicon-map-marker\">\n";
-                print "                        </i></cite></small>\n";
-                print "                        <p>\n";
-                print "                            <i class=\"glyphicon glyphicon-envelope\"></i> $email\n";
-                print "                           \n";
-                print "                            <br />\n";
-                print "                            <i class=\"glyphicon glyphicon-gift\"></i> June 02, 1988</p>\n";
-                print "                    </div>\n";
-                print "                    <div class=\"col-sm-2 col-md-3\">\n";
-    
-                print "                    </div>\n";
-                print "                </div>\n";
-                print "            </div>\n";
-                print "        </div>\n";
-                print "        <div class=\"col-xs-0 col-sm-2 col-md-2\">\n";
-                print "        </div>\n";
-                print "    </div>\n";
-                print "</div>\n";
-                print "        </section>";
-                
-               
-            }
-
-    ?>
-
-                            <?php
-                            /*
-                            * If login url is there then display login button
-                            * else print the retieved data
-                            
-                            if (isset($authUrl)) {
-                                echo "<a class='login' href='" . $authUrl . "'><img src='gplus-lib/signin_button.png' height='50px'/></a>";
-                            } else {
-                                print "ID: {$id} <br>";
-                                print "Name: {$name} <br>";
-                                print "Email: {$email } <br>";
-                                print "Image : {$profile_image_url} <br>";
-                                print "Cover  :{$cover_image_url} <br>";
-                                print "Url: {$profile_url} <br><br>";
-                                echo "<a class='logout' href='?logout'><button>Logout</button></a>";
-                            }
-                            */?>
-                            
-                            
+   <section>
+       
+       //  Insert map here
+       
+   </section>
+   
+   
+	
 	<!-- Footer -->
 	<footer>
             <div class="row">

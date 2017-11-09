@@ -5,6 +5,10 @@
     For .omb_spanOr use @body-bg instead of white.
 */
 
+.becWalkerBtn {
+    margin-top: 10px !important;
+}
+
 @media (min-width: 768px) {
     .omb_row-sm-offset-3 div:first-child[class*="col-"] {
         margin-left: 25%;
