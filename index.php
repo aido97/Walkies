@@ -111,9 +111,10 @@
      <!-- Custom CSS -->
      <link href="css/style.css" rel="stylesheet">
 
-     <link href="css/vanillacalendar.css" rel="stylesheet">
-    <script src="js/vanillacalendar.js"></script>
-
+     <link rel='stylesheet' href='css/fullcalendar.css' />
+<script src='lib/jquery.min.js'></script>
+<script src='lib/moment.min.js'></script>
+<script src='js/fullcalendar.js'></script>
 	
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -243,6 +244,7 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
                 print "            </div>\n";
                 print "        </div>\n";
                 print "        <div class=\"col-xs-0 col-sm-2 col-md-2\">\n";
+                print " <div id=\"calendar\"></div>                ";
                 print "        </div>\n";
                 print "    </div>\n";
                 print "</div>\n";
@@ -252,21 +254,7 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
             }
 
     ?>
-
-<div class="cal">
-			<div class="cal__header">
-				<button class="btn btn-action btn-link btn-lg" data-calendar-toggle="previous"><svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-				<path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg></button>
-				<div class="cal__header__label" data-calendar-label="month">
-					March 2017
-				</div><button class="btn btn-action btn-link btn-lg" data-calendar-toggle="next"> <svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-				<path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg></button>
-			</div>
-			<div class="cal__week">
-				<span>Mon</span> <span>Tue</span><span>Wed</span> <span>Thu</span> <span>Fri</span> <span>Sat</span> <span>Sun</span>
-			</div>
-			<div class="cal__body" data-calendar-area="month"></div>
-		</div>
+    
 
                             <?php
                             /*
@@ -299,11 +287,15 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
-    <script>
-		window.addEventListener('load', function () {
-		  vanillacalendar.init();
-		})
-	</script>
+    <script>$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+    })
+
+});</script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
