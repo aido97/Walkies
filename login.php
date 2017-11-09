@@ -13,7 +13,7 @@
     require_once __DIR__.'/gplus-lib/vendor/autoload.php';
     const CLIENT_ID = '816147898187-gkupsk1p28hk8346tkglf3d5qqohkp0o.apps.googleusercontent.com';
     const CLIENT_SECRET = 'adMd4PX4D6NMMLeZlGTmK-x-';
-    const REDIRECT_URI = 'http://currandesign.net/group';
+    const REDIRECT_URI = 'http://walkies-shaner125.c9users.io/';
     session_start();
     /* 
     * INITIALIZATION
