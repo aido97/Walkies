@@ -111,10 +111,7 @@
      <!-- Custom CSS -->
      <link href="css/style.css" rel="stylesheet">
 
-     <link rel='stylesheet' href='css/fullcalendar.css' />
-<script src='lib/jquery.min.js'></script>
-<script src='lib/moment.min.js'></script>
-<script src='js/fullcalendar.js'></script>
+     
 	
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -244,7 +241,6 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
                 print "            </div>\n";
                 print "        </div>\n";
                 print "        <div class=\"col-xs-0 col-sm-2 col-md-2\">\n";
-                print " <div id=\"calendar\"></div>                ";
                 print "        </div>\n";
                 print "    </div>\n";
                 print "</div>\n";
@@ -286,16 +282,6 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
-
-    <script>$(document).ready(function() {
-
-    // page is now ready, initialize the calendar...
-
-    $('#calendar').fullCalendar({
-        // put your options and callbacks here
-    })
-
-});</script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
