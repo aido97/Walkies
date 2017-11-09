@@ -27,7 +27,7 @@
     $client->setClientId(CLIENT_ID);
     $client->setClientSecret(CLIENT_SECRET);
     $client->setRedirectUri(REDIRECT_URI);
-    $client->setScopes('email');
+    $client->setScopes('profile');
     $plus = new Google_Service_Plus($client);
     /*
     * PROCESS 
@@ -201,6 +201,7 @@
                 print "        <div class=\"col-xs-12 col-sm-8 col-md-8\">\n";
                 print "            <div class=\"well well-sm\">\n";
                 print "                <div class=\"row\">\n";
+<<<<<<< HEAD
                 print "                    <div class=\"col-sm-2 col-md-3\">\n";
                 print "                <div class=\"row\">\n";
                  print "                <div class=\"col-xs-12\">\n";
@@ -224,6 +225,13 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
                 print "                </div>\n";
                 print "         </div>\n";
                 print "                    <div class=\"col-sm-8 col-md-6\">\n";
+=======
+                print "                    <div class=\"col-sm-2 col-md-2\">\n";
+                echo '<img src="'.$profile_image_url.'" alt="Cover">';
+                print "                <a href=\"#\" class=\"btn btn-primary \" style = \"padding: 3px;  width: 120%; font-size: 80%; text-align: center;\">Become a Walker</a>\n";                
+                print "                    </div>\n";
+                print "                    <div class=\"col-sm-8 col-md-8\">\n";
+>>>>>>> 16b7ba943988673d51c7fde8757f0c73b53dab45
                 print "                        <h4>\n";
                 print "                           $name</h4>\n";
                 print "                        <small><cite title=\"Location\">Dublin, Ireland <i class=\"glyphicon glyphicon-map-marker\">\n";
@@ -233,9 +241,29 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
                 print "                           \n";
                 print "                            <br />\n";
                 print "                            <i class=\"glyphicon glyphicon-gift\"></i> June 02, 1988</p>\n";
+<<<<<<< HEAD
                 print "                    </div>\n";
                 print "                    <div class=\"col-sm-2 col-md-3\">\n";
     
+=======
+               
+                print "                    </div>\n";                                
+                print "                    <div class=\"col-sm-2 col-md-2\">\n";                
+                print "                        <!-- Split button -->\n";
+                print "                        <div class=\"btn-group\">\n";
+                print "                            <button type=\"button\" class=\"btn btn-primary\">\n";
+                print "                                Walks</button>\n";
+                print "                            <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">\n";
+                print "                                <span class=\"caret\"></span><span class=\"sr-only\">Walks</span>\n";
+                print "                            </button>\n";
+                print "                            <ul class=\"dropdown-menu\" role=\"menu\">\n";
+                print "                                <li><a href=\"#\">Schedule A Walk</a></li>\n";
+                print "                                <li><a href=\"#\">Contact A Walker</a></li>\n";
+                print "                                <li class=\"divider\"></li>\n";                
+                print "                                <li><a href=\"#\">Report A Walker</a></li>\n";
+                print "                            </ul>\n";
+                print "                        </div>\n";
+>>>>>>> 16b7ba943988673d51c7fde8757f0c73b53dab45
                 print "                    </div>\n";
                 print "                </div>\n";
                 print "            </div>\n";
@@ -268,8 +296,15 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
                                 echo "<a class='logout' href='?logout'><button>Logout</button></a>";
                             }
                             */?>
+<<<<<<< HEAD
                             
                             
+=======
+          
+	<section>
+        
+     </section>
+>>>>>>> 16b7ba943988673d51c7fde8757f0c73b53dab45
 	<!-- Footer -->
 	<footer>
             <div class="row">
