@@ -17,7 +17,7 @@
 }
 	
 .omb_login .omb_socialButtons a {
-	color: white; // In yourUse @body-bg 
+	color: white; 
 	opacity:0.9;
 }
 .omb_login .omb_socialButtons a:hover {
@@ -90,3 +90,7 @@ display: block;
 line-height: 1.428571429;
 color: #999;
 }
+.yui3-button {
+    margin:10px 0px 10px 0px;
+    color: #fff;
+    background-color: #3476b7;}

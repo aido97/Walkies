@@ -27,7 +27,7 @@
     $client->setClientId(CLIENT_ID);
     $client->setClientSecret(CLIENT_SECRET);
     $client->setRedirectUri(REDIRECT_URI);
-    $client->setScopes('email');
+    $client->setScopes('profile');
     $plus = new Google_Service_Plus($client);
     /*
     * PROCESS 
@@ -201,10 +201,11 @@
                 print "        <div class=\"col-xs-12 col-sm-8 col-md-8\">\n";
                 print "            <div class=\"well well-sm\">\n";
                 print "                <div class=\"row\">\n";
-                print "                    <div class=\"col-sm-6 col-md-4\">\n";
+                print "                    <div class=\"col-sm-2 col-md-2\">\n";
                 echo '<img src="'.$profile_image_url.'" alt="Cover">';
+                print "                <a href=\"#\" class=\"btn btn-primary \" style = \"padding: 3px;  width: 120%; font-size: 80%; text-align: center;\">Become a Walker</a>\n";                
                 print "                    </div>\n";
-                print "                    <div class=\"col-sm-6 col-md-8\">\n";
+                print "                    <div class=\"col-sm-8 col-md-8\">\n";
                 print "                        <h4>\n";
                 print "                           $name</h4>\n";
                 print "                        <small><cite title=\"Location\">Dublin, Ireland <i class=\"glyphicon glyphicon-map-marker\">\n";
@@ -214,6 +215,9 @@
                 print "                           \n";
                 print "                            <br />\n";
                 print "                            <i class=\"glyphicon glyphicon-gift\"></i> June 02, 1988</p>\n";
+               
+                print "                    </div>\n";                                
+                print "                    <div class=\"col-sm-2 col-md-2\">\n";                
                 print "                        <!-- Split button -->\n";
                 print "                        <div class=\"btn-group\">\n";
                 print "                            <button type=\"button\" class=\"btn btn-primary\">\n";
@@ -261,7 +265,9 @@
                             }
                             */?>
           
-	
+	<section>
+        
+     </section>
 	<!-- Footer -->
 	<footer>
             <div class="row">
