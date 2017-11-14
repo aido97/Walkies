@@ -178,7 +178,7 @@
      <!-- Header -->
     <?php
             if (isset($authUrl)) {
-
+                print "<section>\n";                
                 print "<header id = \"front\">\n";
                 print "        <div class=\"header-content\">\n";
                 print "            <div class=\"header-content-inner\">\n";
@@ -189,33 +189,35 @@
                 print "			<br><br>\n";
                 print "			<p style = \"color:white; font-size: 5vmin; font-weight: bold;\">50 DAYS WITHOUT A MAULING :)</p>\n";
                 print "        </div>\n";
-                print "    </header>";                
+                print "    </header>";    
+                print "        </section>";
+                
 
             } else {
                 
                 print "<section>\n";
                 print "<div class=\"container\">\n";
                 print "    <div class=\"row\">\n";
-                print "    <div class=\"col-xs-0 col-sm-2 col-md-2\">\n";
+                print "    <div class=\"col-xs-0 col-sm-1 col-md-1\">\n";
                 print "        </div>\n";
-                print "        <div class=\"col-xs-12 col-sm-8 col-md-8\">\n";
+                print "      <div class=\"col-xs-12 col-sm-10 col-md-10\">\n";
                 print "            <div class=\"well well-sm\">\n";
                 print "                <div class=\"row\">\n";
                 print "                    <div class=\"col-sm-2 col-md-3\">\n";
-                print "                <div class=\"row\">\n";
-                 print "                <div class=\"col-xs-12\">\n";
-                echo '<img src="'.$profile_image_url.'" alt="Cover">';
-                print "                            <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">\n";
-                print "                                <span class=\"caret\"></span><span class=\"sr-only\">Account Options</span>\n";
-                print "                            </button>\n";
-                print "                            <ul class=\"dropdown-menu\" role=\"menu\">\n";
-                print "                                <li><a href=\"#\">Upload Profile Picture</a></li>\n";
-                print "                                <li><a href=\"#\">Change Walk Schedule</a></li>\n";
-                print "                                <li class=\"divider\"></li>\n";                
-                print "                                <li><a href=\"#\">Account Settings</a></li>\n";
-                print "                            </ul>\n";
-                print "                </div>\n";
-                print "                </div>\n";
+                        print "                <div class=\"row\">\n";
+                         print "                    <div class=\"col-xs-12\">\n";
+                        echo                            '<img src="'.$profile_image_url.'" alt="Cover">';
+                        print "                          <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">\n";
+                        print "                          <span class=\"caret\"></span><span class=\"sr-only\">Account Options</span>\n";
+                        print "                         </button>\n";
+                        print "                          <ul class=\"dropdown-menu\" role=\"menu\">\n";
+                        print "                             <li><a href=\"#\">Upload Profile Picture</a></li>\n";
+                        print "                             <li><a href=\"#\">Change Walk Schedule</a></li>\n";
+                        print "                             <li class=\"divider\"></li>\n";                
+                        print "                             <li><a href=\"#\">Account Settings</a></li>\n";
+                        print "                          </ul>\n";
+                        print "                      </div>\n";
+                        print "                </div>\n";
                 print "                <div class=\"row\">\n";
                 print "                <div class=\"col-xs-12\">\n";
 print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\">Become a Walker</button>";
@@ -223,7 +225,7 @@ print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\">Become a W
                 print "                </div>\n";
                 print "                </div>\n";
                 print "         </div>\n";
-                print "                    <div class=\"col-sm-8 col-md-6\">\n";
+                print "                    <div class=\"col-sm-6 col-md-6\">\n";
                 print "                        <h4>\n";
                 print "                           $name</h4>\n";
                 print "                        <small><cite title=\"Location\">Dublin, Ireland <i class=\"glyphicon glyphicon-map-marker\">\n";
@@ -240,7 +242,7 @@ print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\">Become a W
                 print "                </div>\n";
                 print "            </div>\n";
                 print "        </div>\n";
-                print "        <div class=\"col-xs-0 col-sm-2 col-md-2\">\n";
+                print "        <div class=\"col-xs-0 col-sm-1 col-md-1\">\n";
                 print "        </div>\n";
                 print "    </div>\n";
                 print "</div>\n";
@@ -252,6 +254,7 @@ print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\">Become a W
     ?>
     
 
+<<<<<<< HEAD
                             <?php
                             /*
                             * If login url is there then display login button
@@ -279,15 +282,15 @@ print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\">Become a W
                             
                             */?>
                             
+=======
+>>>>>>> 78fa6088359d402c442901fe06a7a1b4d4a628ef
                             
 	<!-- Footer -->
-	<footer>
-            <div class="row">
-                <div class="col-lg-12" id = "footID">
-                  RecApp Team
-                </div>
-            </div>
-        </footer>
+	<footer class="footer">
+    <div class="container">
+      <span class="text-muted">RecApp Team 2017</span>
+    </div>
+  </footer>
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
