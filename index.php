@@ -69,7 +69,8 @@
         $me = $plus->people->get('me');
         // Get User data
         $id = $me['id'];
-        $name =  $me['displayName'];
+        $firstname = $me['name']['givenName'];
+        $lastname = $me['name']['familyName'];
         $birthday = $me['birthday'];
         $email =  $me['emails'][0]['value'];
         $profile_image_url = $me['image']['url'];
@@ -119,6 +120,7 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <![endif]-->
 
 </head>
@@ -220,7 +222,66 @@
                         print "                </div>\n";
                 print "                <div class=\"row\">\n";
                 print "                <div class=\"col-xs-12\">\n";
-print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\">Become a Walker</button>";
+                // Collapsable become a walker form.
+                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo\">Become a Walker</button>\n";
+                print "             <div class=\"collapse\" id=\"demo\">\n";
+                print "  <div class=\"form-group\"> \n";
+                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">First name</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\" value=$firstname id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print" </div> \n";
+                print "  <div class=\"form-group\"> \n";
+                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Last name</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\" value=$lastname id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print" </div> \n";
+                print "  <div class=\"form-group\"> \n";
+                print" <label for=\"example-email-input\" class=\"col-2 col-form-label\">Email</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\" value=$email id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print" </div> \n";
+                print "  <div class=\"form-group\"> \n";
+                print" <label for=\"example-tel-input\" class=\"col-2 col-form-label\">Phone Number</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print" </div> \n";
+                print "  <div class=\"form-group\"> \n";
+                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Address Line 1</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print" </div> \n";
+                print "  <div class=\"form-group\"> \n";
+                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Address Line 2</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print" </div> \n";
+                print "  <div class=\"form-group\"> \n";
+                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Zip Code</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print" </div> \n";
+                print "     <div class=\"form-group\"> \n";
+                print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Date of Birth</label> \n";
+                print"      <div class=\"col-10\">\n";
+                print"      <input class=\"form-control\" type=\"date\" value=$birthday id=\"example-date-input\"> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print"    <div class=\"form-group\"> \n";
+                print"     <label for=\"exampleSelect1\">Gender</label> \n";
+                print"     <select class=\"form-control\" id=\"exampleSelect1\"> \n";
+                print"      <option>M</option> \n";
+                print"    <option>F</option> \n";
+                print"      </select> \n";
+                print"    </div> \n";
+                print" <button type=\"submit\" class=\"btn btn-primary\">Submit</button> \n";
+                print " </div>\n";
 
                 print "                </div>\n";
                 print "                </div>\n";
@@ -234,7 +295,7 @@ print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\">Become a W
                 print "                            <i class=\"glyphicon glyphicon-envelope\"></i> $email\n";
                 print "                           \n";
                 print "                            <br />\n";
-                print "                            <i class=\"glyphicon glyphicon-gift\"></i> June 02, 1988</p>\n";
+                print "                            <i class=\"glyphicon glyphicon-gift\"></i> $birthday</p>\n";
                 print "                    </div>\n";
                 print "                    <div class=\"col-sm-2 col-md-3\">\n";
     
