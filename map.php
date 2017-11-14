@@ -184,14 +184,12 @@
    
 	
 	<!-- Footer -->
-	<footer>
-            <div class="row">
-                <div class="col-lg-12" id = "footID">
-                  RecApp Team
-                </div>
-            </div>
-        </footer>
-
+    <footer class="footer">
+    <div class="container">
+      <span class="text-muted">RecApp Team 2017</span>
+    </div>
+  </footer>
+  
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
