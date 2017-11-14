@@ -218,7 +218,7 @@
                 print "                </div>\n";
                 print "                <div class=\"row\">\n";
                 print "                <div class=\"col-xs-12\">\n";
-print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a Walker</button>";
+print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\">Become a Walker</button>";
 
                 print "                </div>\n";
                 print "                </div>\n";
@@ -268,6 +268,15 @@ print "<button type=\"button\"  class=\"btn btn-primary becWalkerBtn\">Become a 
                                 print "Url: {$profile_url} <br><br>";
                                 echo "<a class='logout' href='?logout'><button>Logout</button></a>";
                             }
+                            
+                            if($_POST){
+
+                            $mysqli = new mysqli("localhost", "shaner125", "", "db/walkies_TP.sql");
+                            $mysqli->query("INSERT INTO table users (user_email, first_name) VALUES ('$email','$name');
+                           
+
+                            }
+                            
                             */?>
                             
                             
