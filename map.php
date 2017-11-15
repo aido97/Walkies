@@ -109,6 +109,120 @@
 
 	  <!-- Custom CSS -->
       <link href="css/style.css" rel="stylesheet">
+      
+      <!-- Map Shit Below-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+        
+        <script type="text/javascript">
+			var geocoder;
+			var map;
+			// Create a custom marker
+		var markerIcon = {
+				url: "./dogmarker.png", // url
+				scaledSize: new google.maps.Size(50, 50) // scaled size
+			};
+            // When the window has finished loading create our google map below
+            google.maps.event.addDomListener(window, 'load', init);
+        
+            function init() {
+			
+                // Basic options for a simple Google Map
+                var mapOptions = {
+				
+                    // How zoomed in you want the map to start at 
+                    zoom: 16,
+
+                    // The latitude and longitude to center the map 
+                    center: new google.maps.LatLng(53.349363, -6.244872), // IFSC
+
+                    //  style the map. 																																																																																																																																																																																																																							                                 		// Main color															
+                      // styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#1ee7e4"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#595fdc"}]},{"featureType":"landscape","elementType":"labels.text.fill","stylers":[{"color":"#fbf6f6"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#084a69"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}]
+                };
+
+                // Get the HTML DOM element that will contain your map 
+                // We are using a div with id="map" seen below in the <body>
+                var mapElement = document.getElementById('map');
+
+                // Create the Google Map using our element and options defined above
+                var map = new google.maps.Map(mapElement, mapOptions);
+
+
+                var marker1 = new google.maps.Marker({
+                    position: new google.maps.LatLng(53.349552, -6.248309),  // First marker 
+                    map: map,
+					title: "start",
+					draggable: true,
+					animation: google.maps.Animation.BOUNCE,
+					icon: markerIcon
+                });
+				
+				 var marker2 = new google.maps.Marker({
+                    position: new google.maps.LatLng(53.349103, -6.240992),  // Second Marker
+                    map: map,
+					title: "end",
+					draggable: true,
+					animation: google.maps.Animation.BOUNCE,
+					icon: markerIcon
+                });
+				
+			    var marker3 = new google.maps.Marker({
+                    position: new google.maps.LatLng(53.347803, -6.243706),  // Third Marker
+                    map: map,
+					title: "third",
+					draggable: true,
+					animation: google.maps.Animation.BOUNCE,
+					icon: markerIcon
+                });
+				
+
+				
+			 var contentString = '<div id="content">'+             // Content in InfoWindow
+					'<div id="siteNotice">'+
+					'</div>'+
+					'<h1 id="firstHeading" class="firstHeading">Nic Cage</h1>'+
+					'<img  id="nic" src="nicolas-cage.png" alt="Smiley face" height="100" width="100"> '+					
+					'<div id="bodyContent">'+
+					'<p><b>Rating</b>   5 star ' +
+					'<p><b>Located</b>   IFSC ' +
+					'<p><b>Going Rate p/h</b>   €10 ' +
+					'<p><b><a href="https://www.walkies.com/html/">Read My Reviews</a></b> ' +
+					'</div>'+
+					'</div>';
+
+			var infowindow = new google.maps.InfoWindow({      // Create Info Window
+			  content: contentString,
+			  maxWidth: 200
+			});
+
+
+				marker1.addListener('click', function() {
+				  infowindow.open(map, marker1);
+				});
+				
+					// Polyline
+				
+					  var walkies = [
+        new google.maps.LatLng(53.349552, -6.248309),
+        new google.maps.LatLng(53.349103, -6.240992),
+	    new google.maps.LatLng(53.347803, -6.243706)
+		];
+			
+			var walkiesPath = new google.maps.Polyline({
+				path: eiffellouvre,
+				strokeColor: 'blue',
+				strokeOpacity: .8,
+				strokeWeight: 4
+			});
+			walkiesPath.setMap(map);
+	  }
+        </script>
+      
+      <!-- Map Shit Above-->
 
 	
 
@@ -118,6 +232,66 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <!--Styling for the Table Data -->
+    <style type="text/css">    
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-mb3i{background-color:#D2E4FC;text-align:right;vertical-align:top}
+.tg .tg-lqy6{text-align:right;vertical-align:top}
+.tg .tg-6k2t{background-color:#D2E4FC;vertical-align:top}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+<!-- More Styling -->
+<style>
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+	background-color: #E0E0E0;
+}
+/* Create two equal columns that floats next to each other */
+.column {
+	background-color:  #E0E0E0;
+ //   border-radius: 25px;
+    float: left;
+    width: 50%;
+    padding: 10px;
+	border: 1px solid white;
+    height: 500px; /* Should be removed. Only for demonstration */
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+#logo{
+	padding: 20px;
+	border: none;
+}
+table{
+	width:100%;
+	border-radius:6px;
+	-moz-border-radius:6px;
+	border-collapse:separate;
+}
+#tabledata{
+	text-align: center;
+}
+#content{
+	overflow: auto;
+}
+#profile{
+	border-radius: 50%;
+}
+img{
+	border: 2px solid #595fdc;
+}
+</style>
 
 </head>
 
@@ -176,7 +350,122 @@
 
 
    <section>
-       <h1>Graemp</h1>
+       
+       //  Insert map here      Insert map here      Insert map here      Insert map here
+       
+       <div class="row">
+  <div class="column" id="content" >                                                 <!-- Left Col -->
+
+															<!-- Table 1-->
+<table class="tg" style="text-align: center" align="center">
+  <tr>
+    <th class="tg-baqh" colspan="8"></th>
+  </tr>
+  <tr>
+    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="nicolas-cage.png" alt="Walkies" style="width:150px;height:150px;" id="profile" > </td>
+    <td class="tg-6k2t">Name:</td>
+    <td class="tg-6k2t" colspan="4" id="tabledata">Nicolas Cage </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Age:  </td>
+    <td class="tg-lqy6" colspan="4" id="tabledata">55</td>
+  </tr>
+  <tr>
+    <td class="tg-6k2t">Located:  </td>
+    <td class="tg-mb3i" colspan="4" id="tabledata">Ringsend </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Rating:  </td>
+    <td class="tg-lqy6" colspan="4" id="tabledata">5 STAR</td>
+  </tr>
+</table>
+
+						<!--End of table -->
+						
+																	<!-- Table 1-->
+<table class="tg" style="text-align: center" align="center">
+  <tr>
+    <th class="tg-baqh" colspan="8"></th>
+  </tr>
+  <tr>
+    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="homer.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
+    <td class="tg-6k2t">Name:</td>
+    <td class="tg-6k2t" colspan="4" id="tabledata">Homer J Simpson</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Age:  </td>
+    <td class="tg-lqy6" colspan="4" id="tabledata">40</td>
+  </tr>
+  <tr>
+    <td class="tg-6k2t">Located:  </td>
+    <td class="tg-mb3i" colspan="4" id="tabledata">Springfield</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Rating:  </td>
+    <td class="tg-lqy6" colspan="4" id="tabledata">4 STAR</td>
+  </tr>
+</table>
+						<!--End of table -->
+						
+																	<!-- Table 1-->
+<table class="tg" style="text-align: center" align="center">
+  <tr>
+    <th class="tg-baqh" colspan="8"></th>
+  </tr>
+  <tr>
+    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="ted.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
+    <td class="tg-6k2t">Name:</td>
+    <td class="tg-6k2t" colspan="4" id="tabledata">Father Ted</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Age:  </td>
+    <td class="tg-lqy6" colspan="4" id="tabledata">40</td>
+  </tr>
+  <tr>
+    <td class="tg-6k2t">Located:  </td>
+    <td class="tg-mb3i" colspan="4" id="tabledata">Springfield</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Rating:  </td>
+    <td class="tg-lqy6" colspan="4" id="tabledata">4 STAR</td>
+  </tr>
+</table>
+						<!--End of table -->
+						
+																	<!-- Table 1-->
+<table class="tg" style="text-align: center" align="center">
+  <tr>
+    <th class="tg-baqh" colspan="8"></th>
+  </tr>
+  <tr>
+    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="bear.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
+    <td class="tg-6k2t">Name:</td>
+    <td class="tg-6k2t" colspan="4" id="tabledata">Homer J Simpson</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Age:  </td>
+    <td class="tg-lqy6" colspan="4" id="tabledata">40</td>
+  </tr>
+  <tr>
+    <td class="tg-6k2t">Located:  </td>
+    <td class="tg-mb3i" colspan="4" id="tabledata">Springfield</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Rating:  </td>
+    <td class="tg-lqy6" colspan="4" id="tabledata">4 STAR</td>
+  </tr>
+</table>
+						<!--End of table -->
+						
+
+						
+						
+
+  </div>
+  
+  <div class="column" id="map">  </div>     <!-- map         Right Col-->
+</div>
+       
        
        //  Insert map here      Insert map here      Insert map here      Insert map here
        

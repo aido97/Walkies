@@ -297,6 +297,16 @@
                 print "                </div>\n";
                 print "         </div>\n";
                 print "                    <div class=\"col-sm-12 col-md-6\">\n";
+                print "                    <div class=\"row\">\n";
+                print "                    <div class=\"col-sm-6\">\n";
+                print "     <div class=\"form-group\"> \n";
+                print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Walk Date</label> \n";
+                print"      <div class=\"col-10\">\n";
+                print"      <input class=\"form-control\" type=\"date\" value=$birthday id=\"example-date-input\"> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print"      </div> \n";
                 print "                    </div>\n";
                 print "                </div>\n";
                 print "            </div>\n";
