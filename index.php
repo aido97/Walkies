@@ -222,6 +222,16 @@
                         print "                </div>\n";
                 print "                <div class=\"row\">\n";
                 print "                <div class=\"col-xs-12\">\n";
+                print "                        <h4>\n";
+                print "                           $firstname $lastname</h4>\n";
+                print "                        <small><cite title=\"Location\">Dublin, Ireland <i class=\"glyphicon glyphicon-map-marker\">\n";
+                print "                        </i></cite></small>\n";
+                print "                        <p>\n";
+                print "                            <i class=\"glyphicon glyphicon-envelope\"></i> $email\n";
+                print "                           \n";
+                print "                            <br />\n";
+                print "                            <i class=\"glyphicon glyphicon-gift\"></i> $birthday</p>\n";
+                
                 // Collapsable become a walker form.
                 print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo\">Become a Walker</button>\n";
                 print "             <div class=\"collapse\" id=\"demo\">\n";
@@ -287,15 +297,6 @@
                 print "                </div>\n";
                 print "         </div>\n";
                 print "                    <div class=\"col-sm-12 col-md-6\">\n";
-                print "                        <h4>\n";
-                print "                           $firstname $lastname</h4>\n";
-                print "                        <small><cite title=\"Location\">Dublin, Ireland <i class=\"glyphicon glyphicon-map-marker\">\n";
-                print "                        </i></cite></small>\n";
-                print "                        <p>\n";
-                print "                            <i class=\"glyphicon glyphicon-envelope\"></i> $email\n";
-                print "                           \n";
-                print "                            <br />\n";
-                print "                            <i class=\"glyphicon glyphicon-gift\"></i> $birthday</p>\n";
                 print "                    </div>\n";
                 print "                </div>\n";
                 print "            </div>\n";
