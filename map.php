@@ -123,7 +123,7 @@
 			var map;
 			// Create a custom marker
 		var markerIcon = {
-				url: "./dogmarker.png", // url
+				url: ".img/dogmarker.png", // url
 				scaledSize: new google.maps.Size(50, 50) // scaled size
 			};
             // When the window has finished loading create our google map below
@@ -351,7 +351,7 @@ img{
 
    <section>
        
-       //  Insert map here      Insert map here      Insert map here      Insert map here
+       <!--  Insert map here      Insert map here      Insert map here      Insert map here -->
        
        <div class="row">
   <div class="column" id="content" >                                                 <!-- Left Col -->
@@ -362,7 +362,7 @@ img{
     <th class="tg-baqh" colspan="8"></th>
   </tr>
   <tr>
-    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="nicolas-cage.png" alt="Walkies" style="width:150px;height:150px;" id="profile" > </td>
+    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="img/nicolas-cage.png" alt="Walkies" style="width:150px;height:150px;" id="profile" > </td>
     <td class="tg-6k2t">Name:</td>
     <td class="tg-6k2t" colspan="4" id="tabledata">Nicolas Cage </td>
   </tr>
@@ -388,7 +388,7 @@ img{
     <th class="tg-baqh" colspan="8"></th>
   </tr>
   <tr>
-    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="homer.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
+    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="img/homer.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
     <td class="tg-6k2t">Name:</td>
     <td class="tg-6k2t" colspan="4" id="tabledata">Homer J Simpson</td>
   </tr>
@@ -413,7 +413,7 @@ img{
     <th class="tg-baqh" colspan="8"></th>
   </tr>
   <tr>
-    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="ted.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
+    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="img/ted.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
     <td class="tg-6k2t">Name:</td>
     <td class="tg-6k2t" colspan="4" id="tabledata">Father Ted</td>
   </tr>
@@ -438,7 +438,7 @@ img{
     <th class="tg-baqh" colspan="8"></th>
   </tr>
   <tr>
-    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="bear.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
+    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="img/bear.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
     <td class="tg-6k2t">Name:</td>
     <td class="tg-6k2t" colspan="4" id="tabledata">Homer J Simpson</td>
   </tr>
@@ -467,7 +467,7 @@ img{
 </div>
        
        
-       //  Insert map here      Insert map here      Insert map here      Insert map here
+    <!--   //  Insert map here      Insert map here      Insert map here      Insert map here -->
        
    </section>
    

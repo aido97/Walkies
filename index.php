@@ -109,7 +109,7 @@
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 
 	
-     <!-- Custom CSS -->
+     <!-- Custom CSS  -->
      <link href="css/style.css" rel="stylesheet">
 
      
@@ -152,6 +152,9 @@
                             }
                             ?>
                 </li>
+                   <li>
+                        <a class="page-scroll" href="map.php">Map</a>
+                    </li>
                     <li>
                         <a class="page-scroll" href="#about">About</a>
                     </li>
@@ -299,11 +302,39 @@
                 print "                    <div class=\"col-sm-12 col-md-6\">\n";
                 print "                    <div class=\"row\">\n";
                 print "                    <div class=\"col-sm-6\">\n";
+                print "      <div class=\"form-group\"> \n";
+                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Walk Location</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\" value='e.g. Dublin 4' id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print "                    <div class=\"col-sm-6\">\n";
                 print "     <div class=\"form-group\"> \n";
                 print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Walk Date</label> \n";
                 print"      <div class=\"col-10\">\n";
-                print"      <input class=\"form-control\" type=\"date\" value=$birthday id=\"example-date-input\"> \n";
+                print"      <input class=\"form-control\" type=\"date\" value=$birthday > \n";
                 print"      </div> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print "                    <div class=\"row\">\n";
+                print "                    <div class=\"col-sm-6\">\n";
+                print "      <div class=\"form-group\"> \n";
+                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">From</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\"  id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print "                    <div class=\"col-sm-6\">\n";
+                print "     <div class=\"form-group\"> \n";
+                print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Until</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\"  id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print" <br /> <br /><button type=\"submit\" class=\"btn btn-primary\">Find a Walker</button> \n";
+
                 print"      </div> \n";
                 print"      </div> \n";
                 print"      </div> \n";
