@@ -312,6 +312,7 @@
     ?>
     
 
+
                             
 	<!-- Footer -->
 	<footer class="footer">
