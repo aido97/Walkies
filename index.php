@@ -205,7 +205,7 @@
                 print "      <div class=\"col-xs-12 col-sm-10 col-md-10\">\n";
                 print "            <div class=\"well well-sm\">\n";
                 print "                <div class=\"row\">\n";
-                print "                    <div class=\"col-sm-2 col-md-3\">\n";
+                print "                    <div class=\"col-sm-12 col-md-6\">\n";
                         print "                <div class=\"row\">\n";
                          print "                    <div class=\"col-xs-12\">\n";
                         echo                            '<img src="'.$profile_image_url.'" alt="Cover">';
@@ -286,7 +286,7 @@
                 print "                </div>\n";
                 print "                </div>\n";
                 print "         </div>\n";
-                print "                    <div class=\"col-sm-6 col-md-6\">\n";
+                print "                    <div class=\"col-sm-12 col-md-6\">\n";
                 print "                        <h4>\n";
                 print "                           $firstname $lastname</h4>\n";
                 print "                        <small><cite title=\"Location\">Dublin, Ireland <i class=\"glyphicon glyphicon-map-marker\">\n";
@@ -296,9 +296,6 @@
                 print "                           \n";
                 print "                            <br />\n";
                 print "                            <i class=\"glyphicon glyphicon-gift\"></i> $birthday</p>\n";
-                print "                    </div>\n";
-                print "                    <div class=\"col-sm-2 col-md-3\">\n";
-    
                 print "                    </div>\n";
                 print "                </div>\n";
                 print "            </div>\n";
