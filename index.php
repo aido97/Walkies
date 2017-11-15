@@ -288,7 +288,7 @@
                 print "         </div>\n";
                 print "                    <div class=\"col-sm-6 col-md-6\">\n";
                 print "                        <h4>\n";
-                print "                           $name</h4>\n";
+                print "                           $firstname $lastname</h4>\n";
                 print "                        <small><cite title=\"Location\">Dublin, Ireland <i class=\"glyphicon glyphicon-map-marker\">\n";
                 print "                        </i></cite></small>\n";
                 print "                        <p>\n";
