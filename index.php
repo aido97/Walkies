@@ -259,25 +259,25 @@
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-tel-input\" class=\"col-2 col-form-label\">Phone Number</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"phone_no\"> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Address Line 1</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"addr1\"> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Address Line 2</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"addr2\"> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Zip Code</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"zip\"> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "     <div class=\"form-group\"> \n";
@@ -288,7 +288,7 @@
                 print"      </div> \n";
                 print"    <div class=\"form-group\"> \n";
                 print"     <label for=\"exampleSelect1\">Gender</label> \n";
-                print"     <select class=\"form-control\" id=\"exampleSelect1\"> \n";
+                print"     <select class=\"form-control\" id=\"exampleSelect1\" name=\"gender\"> \n";
                 print"      <option>M</option> \n";
                 print"    <option>F</option> \n";
                 print"      </select> \n";
@@ -376,7 +376,6 @@
 
     <!-- Theme JavaScript -->
     <script src="js/creative.min.js"></script>
-
 </body>
 
 </html>

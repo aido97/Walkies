@@ -90,16 +90,19 @@
     <meta name="author" content="">
 
     <title>Walkies - Map</title>
-
+  
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	
-
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-ZP4p890L8n7KAYavEwylBzyQIBVDLzw&callback=initMap">
+    </script>
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
@@ -111,20 +114,20 @@
       <link href="css/style.css" rel="stylesheet">
       
       <!-- Map Shit Below-->
-       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+      
         <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
        
         
         <script type="text/javascript">
+     
 			var geocoder;
 			var map;
 			// Create a custom marker
 		var markerIcon = {
-				url: ".img/dogmarker.png", // url
+				url: "img/dogmarker.png", // url
 				scaledSize: new google.maps.Size(50, 50) // scaled size
 			};
             // When the window has finished loading create our google map below
@@ -494,7 +497,7 @@ img{
 
     <!-- Theme JavaScript -->
     <script src="js/creative.min.js"></script>
-
+    
 </body>
 
 </html>
