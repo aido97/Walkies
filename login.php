@@ -143,7 +143,7 @@
                             if (isset($authUrl)) {
                                 echo "<a class='login' href='".$authUrl."'>Login/Register</a>";
                             } else {
-                                print "<a class='page-scroll'>Welcome: {$name}</a>";
+                                print "<a class='page-scroll' href='index.php'>Welcome: {$name}</a>";
                                 
                             }
                             ?>

@@ -76,6 +76,7 @@
         $profile_image_url = $me['image']['url'];
         $cover_image_url = $me['cover']['coverPhoto']['url'];
         $profile_url = $me['url'];
+        $profile_image_url = substr($profile_image_url, 0, -5) . "sz=175";
     } else {
         // get the login url   
         $authUrl = $client->createAuthUrl();
@@ -147,7 +148,7 @@
                             if (isset($authUrl)) {
                                 echo "<a class='login' href='login.php'>Login/Register</a>";
                             } else {
-                                print "<a class='page-scroll'>Welcome: {$firstname}</a>";
+                                print "<a class='page-scroll' href='index.php'>Welcome: {$firstname}</a>";
                                 
                             }
                             ?>
@@ -352,6 +353,16 @@
                 print "</div>\n";
                 print "        </section>";
                 
+               
+                               if(isset($_POST['submit_Btn']))
+                  {
+                	$course_code=$_POST['module_code'];
+                    $_SESSION["module"]=$course_code;
+                
+                    echo "<SCRIPT LANGUAGE='javascript'>myAjax();</SCRIPT>\n";
+                   
+                
+                  }
                
             }
 
