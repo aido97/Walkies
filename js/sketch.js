@@ -1,5 +1,5 @@
 var dogs = [];
-var totalDogs = 8;
+var totalDogs = 6;
 var recordDistance;
 var bestEver;
 var order = [];

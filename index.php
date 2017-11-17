@@ -210,20 +210,22 @@
                 print "            <div class=\"well well-sm\">\n";
                 print "                <div class=\"row\">\n";
                 print "                    <div class=\"col-sm-12 col-md-6\">\n";
-                        print "                <div class=\"row\">\n";
-                         print "                    <div class=\"col-xs-12\">\n";
-                        echo                            '<img src="'.$profile_image_url.'" alt="Cover">';
-                        print "                          <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">\n";
-                        print "                          <span class=\"caret\"></span><span class=\"sr-only\">Account Options</span>\n";
-                        print "                         </button>\n";
-                        print "                          <ul class=\"dropdown-menu\" role=\"menu\">\n";
-                        print "                             <li><a href=\"#\">Upload Profile Picture</a></li>\n";
-                        print "                             <li><a href=\"#\">Change Walk Schedule</a></li>\n";
-                        print "                             <li class=\"divider\"></li>\n";                
-                        print "                             <li><a href=\"#\">Account Settings</a></li>\n";
-                        print "                          </ul>\n";
-                        print "                      </div>\n";
-                        print "                </div>\n";
+                print "                <div class=\"row\">\n";
+                print "                    <div class=\"col-xs-12\">\n";
+                echo                            '<img src="'.$profile_image_url.'" alt="Cover">';
+                print "                            <br />\n";
+
+                print "                          <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">\n";
+                print "                          <span class=\"caret\"></span><span class=\"sr-only\">Account Options</span>\n";
+                print "                         </button>\n";
+                print "                          <ul class=\"dropdown-menu\" role=\"menu\">\n";
+                print "                             <li><a href=\"#\">Upload Profile Picture</a></li>\n";
+                print "                             <li><a href=\"#\">Change Walk Schedule</a></li>\n";
+                print "                             <li class=\"divider\"></li>\n";                
+                print "                             <li><a href=\"#\">Account Settings</a></li>\n";
+                print "                          </ul>\n";
+                print "                      </div>\n";
+                print "                </div>\n";
                 print "                <div class=\"row\">\n";
                 print "                <div class=\"col-xs-12\">\n";
                 print "                        <h4>\n";
@@ -239,6 +241,7 @@
                 // Collapsable become a walker form.
                 print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo\">Become a Walker</button>\n";
                 print "             <div class=\"collapse\" id=\"demo\">\n";
+                print "<form name=\"walker_form\" method=\"POST\">";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">First name</label> \n";
                 print" <div class=\"col-10\">\n";
@@ -299,6 +302,7 @@
                 print"      </select> \n";
                 print"    </div> \n";
                 print" <button type=\"submit\" class=\"btn btn-primary\">Submit</button> \n";
+                print" </form>";
                 print " </div>\n";
 
                 print "                </div>\n";
