@@ -76,7 +76,7 @@
         $profile_image_url = $me['image']['url'];
         $cover_image_url = $me['cover']['coverPhoto']['url'];
         $profile_url = $me['url'];
-        $profile_image_url = substr($profile_image_url, 0, -5) . "sz=175";
+        $profile_image_url = substr($profile_image_url, 0, -5) . "sz=175" ;
     } else {
         // get the login url   
         $authUrl = $client->createAuthUrl();
