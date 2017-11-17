@@ -214,7 +214,6 @@
                 print "                    <div class=\"col-xs-12\">\n";
                 echo                            '<img src="'.$profile_image_url.'" alt="Cover">';
                 print "                            <br />\n";
-
                 print "                          <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">\n";
                 print "                          <span class=\"caret\"></span><span class=\"sr-only\">Account Options</span>\n";
                 print "                         </button>\n";
@@ -246,28 +245,28 @@
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">First name</label> \n";
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\" value=$firstname id=\"example-text-input\"> \n";
-                $_SESSION['fname'] = $firstname;
+                
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Last name</label> \n";
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\" value=$lastname id=\"example-text-input\"> \n";
-                $_SESSION['lname'] = $lastname;
+                
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-email-input\" class=\"col-2 col-form-label\">Email</label> \n";
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\" value=$email id=\"example-text-input\"> \n";
-                $_SESSION['email'] = $email;
+                
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-tel-input\" class=\"col-2 col-form-label\">Phone Number</label> \n";
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"phone_no\"> \n";
-                $_SESSION['phone'] = 'phone_no';
+                
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
@@ -301,7 +300,7 @@
                 print"    <option>F</option> \n";
                 print"      </select> \n";
                 print"    </div> \n";
-                print" <button type=\"submit\" class=\"btn btn-primary\">Submit</button> \n";
+                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn\">Submit</button> \n";
                 print" </form>";
                 print " </div>\n";
 
@@ -343,9 +342,32 @@
                 print" <input class=\"form-control\" type=\"text\"  id=\"example-text-input\"> \n";
                 print" </div> \n";
                 print" <br /> <br /><button type=\"submit\" class=\"btn btn-primary\">Find a Walker</button> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print "                    <div class=\"row\">\n";
+                print "                    <div class=\"col-sm-11\">\n";
+                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo1\">Schedule Regular Walks</button>\n";
+                print "             <div class=\"collapse\" id=\"demo1\">\n";
+                print "<form name=\"walker_form\" method=\"POST\">";
+                print "  <div class=\"form-group\"> \n";
+                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">First name</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\" value=$firstname id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print" </div> \n";
+                print "     <div class=\"form-group\"> \n";
+                print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Date of Birth</label> \n";
+                print"      <div class=\"col-10\">\n";
+                print"      <input class=\"form-control\" type=\"date\" value=$birthday id=\"example-date-input\"> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn\">Submit</button> \n";
+                print" </form>";
+                print " </div>\n";
+                print"      </div> \n";
+                print"      </div> \n";
 
-                print"      </div> \n";
-                print"      </div> \n";
+
                 print"      </div> \n";
                 print "                    </div>\n";
                 print "                </div>\n";
@@ -360,8 +382,11 @@
                
                                if(isset($_POST['submit_Btn']))
                   {
-                	$course_code=$_POST['module_code'];
-                    $_SESSION["module"]=$course_code;
+                	$_SESSION['fname'] = $_POST[$firstname];
+                    $_SESSION['lname'] = $_POST[$lastname];
+                    $_SESSION['email'] = $_POST[$email];
+                    $_SESSION['phone'] = $_POST['phone_no'];
+                    $_SESSION['gender'] = $_POST['gender'];
                 
                     echo "<SCRIPT LANGUAGE='javascript'>myAjax();</SCRIPT>\n";
                    

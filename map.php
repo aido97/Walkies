@@ -386,7 +386,6 @@ padding-top: 150%;
     <!--   //  Insert map here      Insert map here      Insert map here      Insert map here -->
        
    </section>
-   init()
    
 	
 	<!-- Footer -->
