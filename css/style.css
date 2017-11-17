@@ -94,10 +94,7 @@ display: block;
 line-height: 1.428571429;
 color: #999;
 }
-<<<<<<< HEAD
-=======
-.yui3-button {
-    margin:10px 0px 10px 0px;
-    color: #fff;
-    background-color: #3476b7;}
->>>>>>> 16b7ba943988673d51c7fde8757f0c73b53dab45
+
+#dashboard{
+	margin-top: 100px;
+}

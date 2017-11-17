@@ -201,7 +201,7 @@
             } else {
                 
                 print "<section>\n";
-                print "<div class=\"container\">\n";
+                print "<div class=\"container\" id = \"dashboard\">\n";
                 print "    <div class=\"row\">\n";
                 print "    <div class=\"col-xs-0 col-sm-1 col-md-1\">\n";
                 print "        </div>\n";
@@ -242,24 +242,28 @@
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">First name</label> \n";
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\" value=$firstname id=\"example-text-input\"> \n";
+                $_SESSION['fname'] = $firstname;
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Last name</label> \n";
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\" value=$lastname id=\"example-text-input\"> \n";
+                $_SESSION['lname'] = $lastname;
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-email-input\" class=\"col-2 col-form-label\">Email</label> \n";
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\" value=$email id=\"example-text-input\"> \n";
+                $_SESSION['email'] = $email;
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-tel-input\" class=\"col-2 col-form-label\">Phone Number</label> \n";
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"phone_no\"> \n";
+                $_SESSION['phone'] = 'phone_no';
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";

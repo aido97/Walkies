@@ -295,6 +295,20 @@ table{
 img{
 	border: 2px solid #595fdc;
 }
+@media (max-width: 70em) {
+#content , #nav{
+display: none;
+}
+}
+
+@media (max-width: 70em) {
+#map{
+width:100%;
+height: 100%;
+margin: 0;
+padding-top: 150%;
+}
+}
 </style>
 
 </head>
