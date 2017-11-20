@@ -16,7 +16,7 @@ CREATE TABLE users (
     addr1 VARCHAR(40),
     addr2 VARCHAR(40),
     zip VARCHAR(40),
-    phone_number VARCHAR(15)
+    phone_number VARCHAR(15),
     
     PRIMARY KEY (user_id)
     

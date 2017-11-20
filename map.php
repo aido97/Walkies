@@ -270,7 +270,7 @@ padding-top: 150%;
        <!--  Insert map here      Insert map here      Insert map here      Insert map here -->
        
        <div class="row">
-  <div class="column" id="content" >                                                 <!-- Left Col -->
+  <div class="col-md-6">                                             <!-- Left Col -->
 
 															<!-- Table 1-->
 <table class="tg" style="text-align: center" align="center">
@@ -379,7 +379,7 @@ padding-top: 150%;
 
   </div>
   
-  <div class="column" id="map">  </div>     <!-- map         Right Col-->
+  <div class="col-md-6" id="map">  </div>     <!-- map         Right Col-->
 </div>
        
        
