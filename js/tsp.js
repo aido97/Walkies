@@ -1,4 +1,4 @@
-var dogLocations = [[53.341542, -6.230918], [53.342000, -6.234987], [53.342420, -6.238535], [53.342048, -6.241282]];
+var dogLocations = [[53.3418617, -6.2277884], [53.3391460, -6.2231033], [53.3418617, -6.2277884], [53.3358086, -6.2218854]];
 var dogDist = [];
 var distance = [];
 var order = [];
@@ -19,7 +19,7 @@ function initialSetup(){
     
 }
 
-
+//Temporary function to populate the distances between each dog and every other (inclusive of itself) this will be removed for final version as these values will simply be passed in
 function findWalkingDistance(){
     //Temporary loop just to get the distance between each   
     for(var i = 0; i < dogLocations.length; i++){
