@@ -1,10 +1,10 @@
-var dogLocations = [[53.342420, -6.238535], [53.342000, -6.234987], [53.341542, -6.230918], [53.342048, -6.241282]];
+var dogLocations = [[53.341542, -6.230918], [53.342000, -6.234987], [53.342420, -6.238535], [53.342048, -6.241282]];
 var dogDist = [];
 var distance = [];
 var order = [];
 var factorialNum;
 var bestOrder = [];
-var record = -1;
+var record = 99999999;
 var sum = 0;
 
 
@@ -35,9 +35,9 @@ function findBestDistance(){
     //Finds the factorial value of the amount of dogs and iterates through each possible route
     factorialNum = getFactorial(dogLocations.length);
     for(var i = 0; i < factorialNum; i++){
-        var current = findTotalDistance(dogLocations, order);
+        var current = findTotalDistance(dogDist, order);
         //If the current distance is less than the previous record best, set the record to the current value and the best order to the current order
-        if (current < record || record < 0){
+        if (current < record || record == 99999999){
             record = current;
             bestOrder = order.slice();
         }
@@ -45,29 +45,33 @@ function findBestDistance(){
     }
 }
 
-// //Finds the total distance of a given order
-// function findTotalDistance(points, order){
-//     var sum = 0;
-//     //Linearly add the distances of every element in this order and return the value
-//     for (var i = 0; i < order.length - 2; i++){
-//         var distance = points[i][i+1] + points[i+1][i+2];
-//         sum = sum + distance;
-//     }
-//     return sum;
-// }
-
 //Finds the total distance of a given order
 function findTotalDistance(points, order){
     var sum = 0;
     //Linearly add the distances of every element in this order and return the value
     for (var i = 0; i < order.length - 1; i++){
-        var dogAIndex = order[i];
-        var dogBIndex = order[i+1];
-        var distance = latDist(points[dogAIndex][0], points[dogAIndex][1], points[dogBIndex][0], points[dogBIndex][1]);
+        var dogIndexA = order[i];
+        var dogIndexB = order[i+1];
+        dogLocationA = Number(points[dogIndexA][dogIndexA]);
+        dogLocationB = Number(points[dogIndexB][dogIndexA]);
+        var distance = dogLocationA + dogLocationB;
         sum = sum + distance;
     }
     return sum;
 }
+
+// //Finds the total distance of a given order
+// function findTotalDistance(points, order){
+//     var sum = 0;
+//     //Linearly add the distances of every element in this order and return the value
+//     for (var i = 0; i < order.length - 1; i++){
+//         var dogAIndex = order[i];
+//         var dogBIndex = order[i+1];
+//         var distance = latDist(points[dogAIndex][0], points[dogAIndex][1], points[dogBIndex][0], points[dogBIndex][1]);
+//         sum = sum + distance;
+//     }
+//     return sum;
+// }
 
 //Credit to http://www.movable-type.co.uk/scripts/latlong.html for the algorithm, slightly modified to fit our purposes
 //Find the distance between two points given their lognitudinal and latitudinal coordinates
