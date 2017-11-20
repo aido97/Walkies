@@ -28,6 +28,9 @@ function getShortestRoute(dogs){
    getFitness();
    normalizeFitness();
    nextGeneration(); 
+
+   return(bestOrder);
+   console.log(bestOrder);
 }
 
 //Function to create a 2d array, each array element representing a dog's location and this distance between itself and every dog in the order, inclusively.
