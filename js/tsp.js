@@ -1,26 +1,35 @@
-var dogLocations = [[53.3418617, -6.2277884], [53.3391460, -6.2231033], [53.3418617, -6.2277884], [53.3358086, -6.2218854]];
+var dogLocations =[[53.341665, -6.229011],[53.341865, -6.234095],[53.342455, -6.238445],[53.342769, -6.241259],[53.343419, -6.245457],[53.343975, -6.248218],[53.344692, -6.251832],[53.345019, -6.253731],[53.345332, -6.255222]];
 var dogDist = [];
 var distance = [];
-var order = [];
-var factorialNum;
 var bestOrder = [];
 var record = 99999999;
 var sum = 0;
+var population = [];
+var populationDensity = 300;
+var fitness = [];
+
 
 
 function initialSetup(){
     //Sets the initial order
+    var order = [];
     for(var i = 0; i < dogLocations.length; i++){
         order[i] = i;
-    }    
-   findWalkingDistance();
-   findBestDistance();
-    //console.log(findTotalDistance(dogDist, order));
-    
+    }
+   createDogs();
+   for (var i = 0; i < populationDensity; i++){
+       population [i] = order.slice();
+       sufflePop(population[i], 100);
+   }
+
+   //Algorithm functions
+   getFitness();
+   normalizeFitness();
+   nextGeneration(); 
 }
 
-//Temporary function to populate the distances between each dog and every other (inclusive of itself) this will be removed for final version as these values will simply be passed in
-function findWalkingDistance(){
+//Function to create a 2d array, each array element representing a dog's location and this distance between itself and every dog in the order, inclusively.
+function createDogs(){
     //Temporary loop just to get the distance between each   
     for(var i = 0; i < dogLocations.length; i++){
        dogDist[i] = []        
@@ -30,20 +39,6 @@ function findWalkingDistance(){
     }
 }
 
-//Finds the best distance from all possible orders
-function findBestDistance(){
-    //Finds the factorial value of the amount of dogs and iterates through each possible route
-    factorialNum = getFactorial(dogLocations.length);
-    for(var i = 0; i < factorialNum; i++){
-        var current = findTotalDistance(dogDist, order);
-        //If the current distance is less than the previous record best, set the record to the current value and the best order to the current order
-        if (current < record || record == 99999999){
-            record = current;
-            bestOrder = order.slice();
-        }
-        nextOrder();
-    }
-}
 
 //Finds the total distance of a given order
 function findTotalDistance(points, order){
@@ -59,19 +54,6 @@ function findTotalDistance(points, order){
     }
     return sum;
 }
-
-// //Finds the total distance of a given order
-// function findTotalDistance(points, order){
-//     var sum = 0;
-//     //Linearly add the distances of every element in this order and return the value
-//     for (var i = 0; i < order.length - 1; i++){
-//         var dogAIndex = order[i];
-//         var dogBIndex = order[i+1];
-//         var distance = latDist(points[dogAIndex][0], points[dogAIndex][1], points[dogBIndex][0], points[dogBIndex][1]);
-//         sum = sum + distance;
-//     }
-//     return sum;
-// }
 
 //Credit to http://www.movable-type.co.uk/scripts/latlong.html for the algorithm, slightly modified to fit our purposes
 //Find the distance between two points given their lognitudinal and latitudinal coordinates
@@ -94,46 +76,18 @@ function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
 
-//Credit to https://github.com/CodingTrain/Rainbow-Code/blob/master/CodingChallenges/CC_35_TSP/CC_35.3_TSP_Lexical/sketch.js for the algorithm
-//Lexical order function
-function nextOrder(){
-    //Step 1 - find the largest item in the array that is less than the number to the right of it.
-    var largestI = -1;
-    for (var i = 0; i < order.length - 1; i++) {
-    if (order[i] < order[i + 1]) {
-        largestI = i;
-    }
-    }
-    if (largestI == -1) {
-    console.log('finished');
-    }
-    // STEP 2 - find item the biggest item larger than j
-    var largestJ = -1;
-    for (var j = 0; j < order.length; j++) {
-    if (order[largestI] < order[j]) {
-        largestJ = j;
-    }
-    }
-    // STEP 3 - swaps the two found items in the array
-    swap(order, largestI, largestJ);
-    // STEP 4: reverse from largestI + 1 to the end
-    var endArray = order.splice(largestI + 1);
-    endArray.reverse();
-    order = order.concat(endArray);
+//Simple shuffle function to mix around the population
+function sufflePop(pop, num) {
+  for (var i = 0; i < num; i++) {
+    var indexA = Math.floor(Math.random() * pop.length);
+    var indexB = Math.floor(Math.random() * pop.length);
+    swap(pop, indexA, indexB);
+  }
 }
 
-//Simple swap method
-function swap(a, i, j){
-    var tempVar = a[i]
+//Simple swap function
+function swap (a, i, j){
+    var temp = a[i];
     a[i] = a[j];
-    a[j] = tempVar;
-    }
-
-//Simple recursive factorial method
-function getFactorial(n){
-    if(n == 0 || n == 1){
-        return n;
-    } else {
-        return n * getFactorial(n - 1);
-    }
+    a[j] = temp;
 }
