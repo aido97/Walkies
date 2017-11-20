@@ -86,6 +86,23 @@
 
 <head>
 
+
+<script type = "text/javascript">
+function send_data() {
+/* global $ */$.ajax( { type : 'POST',
+          data : { },
+          url  : 'data_connect.php',              // <=== CALL THE PHP FUNCTION HERE (data_connect.php)
+          success: function ( data ) {
+                           
+          },
+          error: function ( xhr ) {
+            
+          }
+        });
+}
+
+    </script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -300,7 +317,7 @@
                 print"    <option>F</option> \n";
                 print"      </select> \n";
                 print"    </div> \n";
-                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn\">Submit</button> \n";
+                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn\"  onclick=\"send_data()\">Submit</button> \n";
                 print" </form>";
                 print " </div>\n";
 
@@ -382,13 +399,17 @@
                
                                if(isset($_POST['submit_Btn']))
                   {
-                	$_SESSION['fname'] = $_POST[$firstname];
-                    $_SESSION['lname'] = $_POST[$lastname];
-                    $_SESSION['email'] = $_POST[$email];
+                	$_SESSION['fname'] = $firstname;
+                    $_SESSION['lname'] = $lastname;
+                    $_SESSION['email'] = $email;
                     $_SESSION['phone'] = $_POST['phone_no'];
                     $_SESSION['gender'] = $_POST['gender'];
+                    $_SESSION['dob'] = $birthday;
+					$_SESSION['addr1'] = $_POST['addr1'];
+					$_SESSION['addr2'] = $_POST['addr2'];
+					$_SESSION['zip'] = $_POST['zip'];
                 
-                    echo "<SCRIPT LANGUAGE='javascript'>myAjax();</SCRIPT>\n";
+                    echo "<SCRIPT LANGUAGE='javascript'>send_data();</SCRIPT>\n";
                    
                 
                   }
@@ -420,6 +441,9 @@
 
     <!-- Theme JavaScript -->
     <script src="js/creative.min.js"></script>
+	<!-- AJAX Scripts -->
+	<script src="js/Ajax.js"></script>
+
 </body>
 
 </html>
