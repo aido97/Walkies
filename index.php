@@ -387,8 +387,11 @@
                     $_SESSION['email'] = $_POST[$email];
                     $_SESSION['phone'] = $_POST['phone_no'];
                     $_SESSION['gender'] = $_POST['gender'];
+					$_SESSION['addr1'] = $_POST['addr1'];
+					$_SESSION['addr2'] = $_POST['addr2'];
+					$_SESSION['zip'] = $_POST['zip'];
                 
-                    echo "<SCRIPT LANGUAGE='javascript'>myAjax();</SCRIPT>\n";
+                    echo "<SCRIPT LANGUAGE='javascript'>send_data();</SCRIPT>\n";
                    
                 
                   }
@@ -420,6 +423,9 @@
 
     <!-- Theme JavaScript -->
     <script src="js/creative.min.js"></script>
+	<!-- AJAX Scripts -->
+	<script src="js/Ajax.js"></script>
+
 </body>
 
 </html>
