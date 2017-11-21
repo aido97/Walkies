@@ -77,6 +77,34 @@
         $cover_image_url = $me['cover']['coverPhoto']['url'];
         $profile_url = $me['url'];
         $profile_image_url = substr($profile_image_url, 0, -5) . "sz=175" ;
+        
+     /*   
+        $dbhost = 'localhost:3036';
+        $dbuser = 'root';
+        $dbpass = '';
+   
+        $conn = mysql_connect($dbhost, $dbuser, $dbpass);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysql_error());
+   }
+   
+   $sql = 'SELECT gender, addr1, addr2, zip, phone_number FROM walkies_web.users where user_email = $email;
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not get data: ' . mysql_error());
+   }
+   
+   $_SESSION['gender'] = $row['gender'];
+   $_SESSION['addr1'] = $row['addr1'];
+   $_SESSION['addr2'] = $row['addr2'];
+   $_SESSION['zip'] = $row['zip'];
+   $_SESSION['phone_number'] = $row['phone_number'];
+   
+   mysql_close($conn);
+        
+    */    
     } else {
         // get the login url   
         $authUrl = $client->createAuthUrl();
@@ -87,9 +115,14 @@
 <head>
 
 
+
+}
 <script type = "text/javascript">
 function send_data() {
-/* global $ */$.ajax( { type : 'POST',
+   
+/* global $ */$.ajax( { 
+    
+            type : 'POST',
           data : { },
           url  : 'data_connect.php',              // <=== CALL THE PHP FUNCTION HERE (data_connect.php)
           success: function ( data ) {
@@ -98,7 +131,7 @@ function send_data() {
           error: function ( xhr ) {
             
           }
-        });
+        })
 }
 
     </script>
@@ -403,16 +436,12 @@ function send_data() {
                     $_SESSION['lname'] = $lastname;
                     $_SESSION['email'] = $email;
                     $_SESSION['phone'] = $_POST['phone_no'];
-                    $_SESSION['gender'] = $_POST['gender'];
                     $_SESSION['dob'] = $birthday;
 					$_SESSION['addr1'] = $_POST['addr1'];
 					$_SESSION['addr2'] = $_POST['addr2'];
 					$_SESSION['zip'] = $_POST['zip'];
-                
-                    echo "<SCRIPT LANGUAGE='javascript'>send_data();</SCRIPT>\n";
-                   
-                
-                  }
+					$_SESSION['gender'] = $_POST['gender'];
+                   }
                
             }
 
@@ -442,7 +471,7 @@ function send_data() {
     <!-- Theme JavaScript -->
     <script src="js/creative.min.js"></script>
 	<!-- AJAX Scripts -->
-	<script src="js/Ajax.js"></script>
+	<script src="Ajax.js"></script>
 
 </body>
 
