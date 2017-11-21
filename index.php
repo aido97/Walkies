@@ -10,6 +10,7 @@
     * define the constants client id,secret and redirect url
     * start the session
     */
+    require_once('data_config.php'); 
     require_once __DIR__.'/gplus-lib/vendor/autoload.php';
     const CLIENT_ID = '816147898187-gkupsk1p28hk8346tkglf3d5qqohkp0o.apps.googleusercontent.com';
     const CLIENT_SECRET = 'adMd4PX4D6NMMLeZlGTmK-x-';
@@ -79,30 +80,8 @@
         $profile_image_url = substr($profile_image_url, 0, -5) . "sz=175" ;
         
         
-        $dbhost = 'localhost:8889';
-        $dbuser = 'root';
-        $dbpass = '';
-   
-        $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-   
-   if(! $conn ) {
-      die('Could not connect: ' . mysql_error());
-   }
-   
-   /* $sql = "SELECT gender, addr1, addr2, zip, phone_number FROM walkies_web.users WHERE user_email = '". mysql_real_escape_string( $email ) ."'";
-   $retval = mysql_query( $sql, $conn );
-   
-   if(! $retval ) {
-      die('Could not get data: ' . mysql_error());
-   }
-   */
-   
-   /*$handle = mysql_query("SELECT gender, addr1, addr2, zip, phone_number FROM walkies_web.users WHERE user_email = '$email'");
-   $row = mysql_fetch_row($handle);
-   */
    
     $result = mysqli_query($conn, "SELECT gender, addr1, addr2, zip, phone_number FROM walkies_web.users WHERE user_email = '$email'");
-
     $row = mysqli_fetch_assoc($result);
    
    
@@ -117,7 +96,7 @@
    $_SESSION['phone_number'] = $row['phone_number'];
    $phone = $_SESSION['phone_number'];
    
-   mysql_close($conn);
+   mysqli_close($conn);
         
        
     } else {
@@ -128,28 +107,6 @@
 
 
 <head>
-
-
-
-}
-<script type = "text/javascript">
-function send_data() {
-   
-/* global $ */$.ajax( { 
-    
-            type : 'POST',
-          data : { },
-          url  : 'data_connect.php',              // <=== CALL THE PHP FUNCTION HERE (data_connect.php)
-          success: function ( data ) {
-                           
-          },
-          error: function ( xhr ) {
-            
-          }
-        })
-}
-
-    </script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -188,6 +145,7 @@ function send_data() {
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <![endif]-->
+
 
 </head>
 
@@ -305,67 +263,67 @@ function send_data() {
                 // Collapsable become a walker form.
                 print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo\">Become a Walker</button>\n";
                 print "             <div class=\"collapse\" id=\"demo\">\n";
-                print "<form name=\"walker_form\" method=\"POST\">";
+                print "<form id=\"walker_form\" method=\"POST\">";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">First name</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=$firstname id=\"example-text-input\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$firstname\" id=\"example-text-input\"> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Last name</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=$lastname id=\"example-text-input\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$lastname\" id=\"example-text-input\"> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-email-input\" class=\"col-2 col-form-label\">Email</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=$email id=\"example-text-input\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$email\" id=\"example-text-input\"> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-tel-input\" class=\"col-2 col-form-label\">Phone Number</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value= $phone id=\"example-text-input\" name=\"phone_no\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value= \"$phone\" id=\"example-text-input\" name=\"phone_no\"> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Address Line 1</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=addr1 id=\"example-text-input\" name=\"addr1\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$addr1\" id=\"example-text-input\" name=\"addr1\"> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Address Line 2</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=$addr2 id=\"example-text-input\" name=\"addr2\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$addr2\" id=\"example-text-input\" name=\"addr2\"> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Zip Code</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=$zip id=\"example-text-input\" name=\"zip\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$zip\" id=\"example-text-input\" name=\"zip\"> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "     <div class=\"form-group\"> \n";
                 print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Date of Birth</label> \n";
                 print"      <div class=\"col-10\">\n";
-                print"      <input class=\"form-control\" type=\"date\" value=$birthday id=\"example-date-input\"> \n";
+                print"      <input class=\"form-control\" type=\"date\" value=\"$birthday\" id=\"example-date-input\"> \n";
                 print"      </div> \n";
                 print"      </div> \n";
                 print"    <div class=\"form-group\"> \n";
                 print"     <label for=\"exampleSelect1\">Gender</label> \n";
-                print"     <select class=\"form-control\" id=\"exampleSelect1\" name=\"gender\"> \n";
+                print"     <select class=\"form-control\" id=\"exampleSelect1\" name=\"gender\" value=\"$gender\"> \n";
                 print"      <option>M</option> \n";
                 print"    <option>F</option> \n";
                 print"      </select> \n";
                 print"    </div> \n";
-                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn1\">Submit</button> \n";
+                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn\">Submit</button> \n";
                 print" </form>";
                 print " </div>\n";
 
@@ -426,7 +384,7 @@ function send_data() {
                 print"      <input class=\"form-control\" type=\"date\" value=$birthday id=\"example-date-input\"> \n";
                 print"      </div> \n";
                 print"      </div> \n";
-                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn\">Submit</button> \n";
+                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn1\">Submit</button> \n";
                 print" </form>";
                 print " </div>\n";
                 print"      </div> \n";
@@ -456,7 +414,22 @@ function send_data() {
 					$_SESSION['addr2'] = $_POST['addr2'];
 					$_SESSION['zip'] = $_POST['zip'];
 					$_SESSION['gender'] = $_POST['gender'];
-					echo "<SCRIPT LANGUAGE='javascript'>send_data();</SCRIPT>\n";
+				
+                   
+                    $sql = "INSERT INTO walkies_web.users (user_email, first_name, last_name, gender, date_of_birth, addr1, addr2, zip, phone_number)
+                    VALUES ('{$_SESSION['email']}', '{$_SESSION['fname']}', '{$_SESSION['lname']}', '{$_SESSION['gender']}','{$_SESSION['dob']}', '{$_SESSION['addr1']}','{$_SESSION['addr2']}', '{$_SESSION['zip']}','{$_SESSION['phone']}' )";
+                    
+                    if ($conn->query($sql) === TRUE) {
+                       
+                    } else {
+                        echo "Error: Technical Difficulties!! " . $sql . "<br>" . $conn->error;
+                    }
+                   
+
+                   
+                   mysqli_close($conn);
+					
+					
                    }
                
             }

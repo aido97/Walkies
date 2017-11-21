@@ -92,9 +92,10 @@
    }
 echo "Connected successfully";
 
-$walkerName = mysql_query('SELECT first_name FROM walkies_web.users WHERE first_name = "Shane"');
+$walkerName = mysql_query('SELECT first_name FROM walkies_web.users');
 $walkerAge = mysql_query("SELECT age FROM walkies_web.users");
 $location = mysql_query("SELECT location FROM walkies_web.users");
+$people = mysql_query("SELECT first_name, age, location FROM walkies_web.users");
 $test_variable = "Billy The Kid";
 ?>
 
@@ -296,7 +297,7 @@ map{
 							</div>
 							<div class="col-sm-4">   <!-- Column Three -->
 							    <hr><h6 name="walkerName"><?php echo $test_variable; ?></h6><hr>	
-										<h6 name="walkerAge"><?php echo $walkerName ?></h6><hr>
+										<h6 name="walkerAge"><?php echo $walkerName; ?></h6><hr>
 										<h6 name="walkerLocation">Insert Location</h6><hr>
 							</div>
 					  </div>		
@@ -308,6 +309,7 @@ map{
 </div>  
        
          <script>
+    
 		function addTable(){          <!-- Function to create virtual DOM objects as required -->
 			var table = '';
 
@@ -319,9 +321,9 @@ map{
 								    '<h6>Location:</h6><hr>' +
 							'</div>' +
 							'<div class="col-sm-4"> ' + 
-							'<hr><h6>     #   #   # </h6><hr>' +	
-								    '<h6>   #   #   #   </h6><hr>' +
-								    '<h6>    #    #    #   </h6><hr>' +
+							'<hr><h6> ####</h6><hr>' +	
+								    '<h6>####</h6><hr>' +
+								    '<h6>####</h6><hr>' +
 							'</div>' +
 					  '</div>';
 
@@ -346,6 +348,20 @@ map{
   
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
+    <script>
+        
+    
+    $(document).ready(function(){
+        var people = $people;
+        for (var person in people){
+            for (var key in person){
+                if (person.hasOwnProperty(key)) {
+                     alert("Key is " + key + ", value is" + person[key]);
+                }
+            }
+        }
+    });
+    </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
