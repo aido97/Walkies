@@ -79,28 +79,43 @@
         $profile_image_url = substr($profile_image_url, 0, -5) . "sz=175" ;
         
         
-        $dbhost = 'localhost:3036';
+        $dbhost = 'localhost:8889';
         $dbuser = 'root';
         $dbpass = '';
    
-        $conn = mysql_connect($dbhost, $dbuser, $dbpass);
+        $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
    
    if(! $conn ) {
       die('Could not connect: ' . mysql_error());
    }
    
-   $sql = "SELECT gender, addr1, addr2, zip, phone_number FROM walkies_web.users WHERE user_email '. mysql_real_escape_string( $email ) .'";
+   /* $sql = "SELECT gender, addr1, addr2, zip, phone_number FROM walkies_web.users WHERE user_email = '". mysql_real_escape_string( $email ) ."'";
    $retval = mysql_query( $sql, $conn );
    
    if(! $retval ) {
       die('Could not get data: ' . mysql_error());
    }
+   */
+   
+   /*$handle = mysql_query("SELECT gender, addr1, addr2, zip, phone_number FROM walkies_web.users WHERE user_email = '$email'");
+   $row = mysql_fetch_row($handle);
+   */
+   
+    $result = mysqli_query($conn, "SELECT gender, addr1, addr2, zip, phone_number FROM walkies_web.users WHERE user_email = '$email'");
+
+    $row = mysqli_fetch_assoc($result);
+   
    
    $_SESSION['gender'] = $row['gender'];
+   $gender = $_SESSION['gender'];
    $_SESSION['addr1'] = $row['addr1'];
+   $addr1 = $_SESSION['addr1'];
    $_SESSION['addr2'] = $row['addr2'];
+   $addr2 = $_SESSION['addr2'];
    $_SESSION['zip'] = $row['zip'];
-   $_SESSION['phone_number'] = $row['phone_number'];
+   $zip = $_SESSION['zip'];
+   $phone = $row["phone_number"];
+   $phone = $_SESSION['phone_number'];
    
    mysql_close($conn);
         
@@ -315,7 +330,7 @@ function send_data() {
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-tel-input\" class=\"col-2 col-form-label\">Phone Number</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"phone_no\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value= $addr2 id=\"example-text-input\" name=\"phone_no\"> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
