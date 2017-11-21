@@ -108,16 +108,16 @@
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="css/creative.min.css" rel="stylesheet">
+  <link href="css/creative.min.css" rel="stylesheet">
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 
 	  <!-- Custom CSS -->
-      <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
       
       <!-- Map Shit Below-->
       
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
        
@@ -135,71 +135,42 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <!--Styling for the Table Data -->
-    <style type="text/css">    
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-mb3i{background-color:#D2E4FC;text-align:right;vertical-align:top}
-.tg .tg-lqy6{text-align:right;vertical-align:top}
-.tg .tg-6k2t{background-color:#D2E4FC;vertical-align:top}
-.tg .tg-yw4l{vertical-align:top}
-</style>
+    
+
 <!-- More Styling -->
 <style>
 * {
     box-sizing: border-box;
 }
 body {
-    margin: 0;
-	background-color: #E0E0E0;
-}
-/* Create two equal columns that floats next to each other */
-.column {
-	background-color:  #E0E0E0;
- //   border-radius: 25px;
-    float: left;
-    width: 50%;
-    padding: 10px;
-	border: 1px solid white;
-    height: 500px; /* Should be removed. Only for demonstration */
-}
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
+    margin: 0;	
 }
 #logo{
 	padding: 20px;
 	border: none;
 }
-table{
-	width:100%;
-	border-radius:6px;
-	-moz-border-radius:6px;
-	border-collapse:separate;
-}
-#tabledata{
-	text-align: center;
-}
 #content{
-	overflow: auto;
+	overflow: auto;	
+	height:500px;
+	background-color: white;
+	display: inline;
 }
 #profile{
-	border-radius: 50%;
+	align:center;
+	margin:10%;	
+	padding-top:5%;	
+	border: 1px solid black;
 }
-img{
-	border: 2px solid #595fdc;
+#credentials{
+	overflow: hidden;
+	border: 1px solid white;
 }
-@media (max-width: 70em) {
+@media (max-width: 40em) {
 #content , #nav{
 display: none;
 }
 }
-
-@media (max-width: 70em) {
+@media (max-width: 40em) {
 #map{
 width:100%;
 height: 100%;
@@ -207,7 +178,24 @@ margin: 0;
 padding-top: 150%;
 }
 }
+#mainrow{
+	border-top: solid 1px grey;
+}
+#add-btn{
+	margin-top: 50px;
+}
+#lastElement{
+	border-bottom: solid 1px grey;
+}
+h6{
+	display:block;	
+	font-weight: bold;
+}
+map{
+	display: inline;
+}
 </style>
+
 
 </head>
 
@@ -221,7 +209,7 @@ padding-top: 150%;
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.php" style = "padding-top: 1px;"></a>
+                <a class="navbar-brand" href="index.php" style = "padding-top: 1px;"><img src="img/logo.png" height = "49px" width = "150px"/></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -269,120 +257,62 @@ padding-top: 150%;
        
        <!--  Insert map here      Insert map here      Insert map here      Insert map here -->
        
-       <div class="row">
-  <div class="col-md-6">                                             <!-- Left Col -->
-
-															<!-- Table 1-->
-<table class="tg" style="text-align: center" align="center">
-  <tr>
-    <th class="tg-baqh" colspan="8"></th>
-  </tr>
-  <tr>
-    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="img/nicolas-cage.png" alt="Walkies" style="width:150px;height:150px;" id="profile" > </td>
-    <td class="tg-6k2t">Name:</td>
-    <td class="tg-6k2t" colspan="4" id="tabledata">Nicolas Cage </td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Age:  </td>
-    <td class="tg-lqy6" colspan="4" id="tabledata">55</td>
-  </tr>
-  <tr>
-    <td class="tg-6k2t">Located:  </td>
-    <td class="tg-mb3i" colspan="4" id="tabledata">Ringsend </td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Rating:  </td>
-    <td class="tg-lqy6" colspan="4" id="tabledata">5 STAR</td>
-  </tr>
-</table>
-
-						<!--End of table -->
-						
-																	<!-- Table 1-->
-<table class="tg" style="text-align: center" align="center">
-  <tr>
-    <th class="tg-baqh" colspan="8"></th>
-  </tr>
-  <tr>
-    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="img/homer.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
-    <td class="tg-6k2t">Name:</td>
-    <td class="tg-6k2t" colspan="4" id="tabledata">Homer J Simpson</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Age:  </td>
-    <td class="tg-lqy6" colspan="4" id="tabledata">40</td>
-  </tr>
-  <tr>
-    <td class="tg-6k2t">Located:  </td>
-    <td class="tg-mb3i" colspan="4" id="tabledata">Springfield</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Rating:  </td>
-    <td class="tg-lqy6" colspan="4" id="tabledata">4 STAR</td>
-  </tr>
-</table>
-						<!--End of table -->
-						
-																	<!-- Table 1-->
-<table class="tg" style="text-align: center" align="center">
-  <tr>
-    <th class="tg-baqh" colspan="8"></th>
-  </tr>
-  <tr>
-    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="img/ted.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
-    <td class="tg-6k2t">Name:</td>
-    <td class="tg-6k2t" colspan="4" id="tabledata">Father Ted</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Age:  </td>
-    <td class="tg-lqy6" colspan="4" id="tabledata">40</td>
-  </tr>
-  <tr>
-    <td class="tg-6k2t">Located:  </td>
-    <td class="tg-mb3i" colspan="4" id="tabledata">Springfield</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Rating:  </td>
-    <td class="tg-lqy6" colspan="4" id="tabledata">4 STAR</td>
-  </tr>
-</table>
-						<!--End of table -->
-						
-																	<!-- Table 1-->
-<table class="tg" style="text-align: center" align="center">
-  <tr>
-    <th class="tg-baqh" colspan="8"></th>
-  </tr>
-  <tr>
-    <td class="tg-6k2t" rowspan="4" style="width:20%"><img src="img/bear.jpg" alt="Walkies" style="width:150px;height:150px;" id="profile" ></td>
-    <td class="tg-6k2t">Name:</td>
-    <td class="tg-6k2t" colspan="4" id="tabledata">Homer J Simpson</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Age:  </td>
-    <td class="tg-lqy6" colspan="4" id="tabledata">40</td>
-  </tr>
-  <tr>
-    <td class="tg-6k2t">Located:  </td>
-    <td class="tg-mb3i" colspan="4" id="tabledata">Springfield</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Rating:  </td>
-    <td class="tg-lqy6" colspan="4" id="tabledata">4 STAR</td>
-  </tr>
-</table>
-						<!--End of table -->
-						
-
-						
-						
-
-  </div>
-  
-  <div class="col-md-6" id="map">  </div>     <!-- map         Right Col-->
-</div>
+       <div class="container-fluid" style="text-align: center" id="main">
+     <div class="row" style="text-align: center" id="nav">
+        <div class="col-md-2" ></div>
+        <div class="col-md-10">	<button id="add-btn">TEST BUTTON FOR TESTING</button></div>
+      </div>
+	  
+	  
+	 <div class="row" style="text-align: center" id="mainrow">
+        <div class="col-md-6" id="content" >
+			<div class="container-fluid">
+			
+					  <div class="row" id="lastElement">
+							<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>  <!-- Profile Image-->
+							<div class="col-sm-4" >  <!--Column TWO -->
+							    <hr><h6><em>Name:<em></h6><hr>
+								        <h6>Age:</h6><hr>
+								        <h6>Location:</h6><hr>
+							</div>
+							<div class="col-sm-4">   <!-- Column Three -->
+							    <hr><h6 name="walkerName">Insert Name</h><hr>	
+										<h6 name="walkerAge">Insert Age</h6><hr>
+										<h6 name="walkerLocation">Insert Location</h6><hr>
+							</div>
+					  </div>		
+				</div>		
+		</div>
+		
+        <div class="col-md-6" id="map" style="height:500px;"></div>    <!-- The Map Div -->
+      </div>                                                                                                 <!-- End Of Main Row -->
+</div>  
        
-       
+         <script>
+		function addTable(){          <!-- Function to create virtual DOM objects as required -->
+			var table = '';
+
+			table +=  '<div class="row" id="credentials">' +
+							'<div class="col-sm-4" ><img src="generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>' +
+							'<div class="col-sm-4" >  ' +
+							'<hr><h6><em>Name:</h6><hr>' +
+								    '<h6>Age:</h6><hr>' +
+								    '<h6>Location:</h6><hr>' +
+							'</div>' +
+							'<div class="col-sm-4"> ' + 
+							'<hr><h6>     #   #   # </h6><hr>' +	
+								    '<h6>   #   #   #   </h6><hr>' +
+								    '<h6>    #    #    #   </h6><hr>' +
+							'</div>' +
+					  '</div>';
+
+			$('#lastElement').append(table);
+		}
+		$('#add-btn').on('click', function(e){
+			addTable();
+		})
+	</script>
+ 
     <!--   //  Insert map here      Insert map here      Insert map here      Insert map here -->
        
    </section>

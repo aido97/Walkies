@@ -78,7 +78,7 @@
         $profile_url = $me['url'];
         $profile_image_url = substr($profile_image_url, 0, -5) . "sz=175" ;
         
-     /*   
+        
         $dbhost = 'localhost:3036';
         $dbuser = 'root';
         $dbpass = '';
@@ -89,7 +89,7 @@
       die('Could not connect: ' . mysql_error());
    }
    
-   $sql = 'SELECT gender, addr1, addr2, zip, phone_number FROM walkies_web.users where user_email = $email;
+   $sql = "SELECT gender, addr1, addr2, zip, phone_number FROM walkies_web.users WHERE user_email '. mysql_real_escape_string( $email ) .'";
    $retval = mysql_query( $sql, $conn );
    
    if(! $retval ) {
@@ -104,7 +104,7 @@
    
    mysql_close($conn);
         
-    */    
+       
     } else {
         // get the login url   
         $authUrl = $client->createAuthUrl();
