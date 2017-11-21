@@ -114,7 +114,7 @@
    $addr2 = $_SESSION['addr2'];
    $_SESSION['zip'] = $row['zip'];
    $zip = $_SESSION['zip'];
-   $phone = $row["phone_number"];
+   $_SESSION['phone_number'] = $row['phone_number'];
    $phone = $_SESSION['phone_number'];
    
    mysql_close($conn);
@@ -330,26 +330,26 @@ function send_data() {
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-tel-input\" class=\"col-2 col-form-label\">Phone Number</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value= $addr2 id=\"example-text-input\" name=\"phone_no\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value= $phone id=\"example-text-input\" name=\"phone_no\"> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Address Line 1</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"addr1\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=addr1 id=\"example-text-input\" name=\"addr1\"> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Address Line 2</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"addr2\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=$addr2 id=\"example-text-input\" name=\"addr2\"> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Zip Code</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"zip\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=$zip id=\"example-text-input\" name=\"zip\"> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "     <div class=\"form-group\"> \n";
@@ -365,7 +365,7 @@ function send_data() {
                 print"    <option>F</option> \n";
                 print"      </select> \n";
                 print"    </div> \n";
-                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn\"  onclick=\"send_data()\">Submit</button> \n";
+                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn1\">Submit</button> \n";
                 print" </form>";
                 print " </div>\n";
 
@@ -456,6 +456,7 @@ function send_data() {
 					$_SESSION['addr2'] = $_POST['addr2'];
 					$_SESSION['zip'] = $_POST['zip'];
 					$_SESSION['gender'] = $_POST['gender'];
+					echo "<SCRIPT LANGUAGE='javascript'>send_data();</SCRIPT>\n";
                    }
                
             }
