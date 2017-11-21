@@ -1,20 +1,36 @@
 var dogDist = [];
+var dogLocations = [[53.341665, -6.229011],[53.341865, -6.234095],[53.342455, -6.238445],[53.342769, -6.241259],[53.343419, -6.245457],[53.343975, -6.248218],[53.344692, -6.251832],[53.345019, -6.253731],[53.345332, -6.255222]];
 var distance = [];
 var bestOrder = [];
 var record = 99999999;
 var sum = 0;
+var totalDogs;
 var population = [];
-var populationDensity = 300;
+var populationDensity = 99999;
 var fitness = [];
 
 
 
 function getShortestRoute(dogs){
     //Sets the initial order
-    var order = [];
     dogDist = dogs;
+    totalDogs = dogDist[0].length;
     
+    temp();
+   
+  //Algorithm functions
+   getFitness();
+   normalizeFitness();
+   nextGeneration(); 
+   
 
+   return(bestOrder);
+   console.log(bestOrder);
+}
+
+function temp (){
+    var order = [];
+    
     for(var i = 0; i < dogDist.length; i++){
         order[i] = i;
     }
@@ -22,21 +38,14 @@ function getShortestRoute(dogs){
    for (var i = 0; i < populationDensity; i++){
        population [i] = order.slice();
        sufflePop(population[i], 100);
+
    }
-
-   //Algorithm functions
-   getFitness();
-   normalizeFitness();
-   nextGeneration(); 
-
-   return(bestOrder);
-   console.log(bestOrder);
 }
 
 //Function to create a 2d array, each array element representing a dog's location and this distance between itself and every dog in the order, inclusively.
 function createDogs(){
     //Temporary loop just to get the distance between each   
-    for(var i = 0; i < dogDist.length; i++){
+    for(var i = 0; i < dogLocations.length; i++){
        dogDist[i] = []        
         for(var j = 0; j < dogLocations.length; j++){
             dogDist[i][j] = latDist(dogLocations[i][0], dogLocations[i][1], dogLocations[j][0], dogLocations[j][1])
