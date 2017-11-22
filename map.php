@@ -88,23 +88,28 @@ echo "Connected successfully";
 $persons = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users;");
 $result = mysqli_query($conn, $persons);
 $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-    foreach($row as $r){
+   
             $table = '';
-			$table +=  '<div class="row" id="credentials">' +
-							'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>' +
-							'<div class="col-sm-4" >  ' +
-							'<hr><h6><em>Name:</h6><hr>' +
-								    '<h6>Age:</h6><hr>' +
-								    '<h6>Location:</h6><hr>' +
-							'</div>' +
-							'<div class="col-sm-4"> ' + 
-							'<hr><h6><?php echo $row[first_name] ?></h6><hr>' +	
-								    '<h6><?php echo $row[phone_number] ?></h6><hr>' +
-								    '<h6><?php echo $row[addr2] ?></h6><hr>' +
-							'</div>' +
-					  '</div>';
-    }
-
+		 $line1 ='<h1>hello<h1>';
+		 $line2 = '<h1>There</h1>';
+		 
+		 	
+		 	
+		 	            $line1 =    '<div class="row" id="credentials">' ;
+						$line2 =	'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
+						$line3 =    '<div class="col-sm-4" >  ' ;
+						$line4 =	'<hr><h6><em>Name:</h6><hr>' ;
+						$line5 =    '<h6>Age:</h6><hr>' ;
+						$line6 =	'<h6>Location:</h6><hr>' ;
+						$line7 =	'</div>' ;
+						$line8 =	'<div class="col-sm-4"> ' ;
+						$line9 =	'<hr><h6><?php echo $row[first_name] ?></h6><hr>' ;
+						$line10 =	'<h6><?php echo $row[phone_number] ?></h6><hr>' ;
+						$line11 =   '<h6><?php echo $row[addr2] ?></h6><hr>' ;
+						$line12 =	'</div>' ;
+					    $line13 =   '</div>';
+    
+$table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
 ?>
 
 
@@ -309,7 +314,10 @@ map{
 										<h6><?php echo $row[addr2] ?></h6><hr>
 							</div>
 					  </div>		
-				</div>		
+				</div>	
+				
+				<?php echo $table ?>
+				
 		</div>
 		
         <div class="col-md-6" id="map" style="height:500px;"></div>    <!-- The Map Div -->

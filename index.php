@@ -261,11 +261,95 @@
                 print "                            <i class=\"glyphicon glyphicon-gift\"></i> $birthday</p>\n";
                 
                 // Collapsable become a walker form.
-                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo\">Become a Walker</button>\n";
+                if ($phone == "") {
+                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo\">Complete Your Profile</button>\n";
+                }
+                else {
+                echo '<div class="onoffswitch">';
+                echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" unchecked>';
+                echo '<label class="onoffswitch-label" for="myonoffswitch"></label>';
+                echo '</div>';
+                }
+                
+                print "                </div>\n";
+                print "                </div>\n";
+                print "         </div>\n";
+                print "                    <div class=\"col-sm-12 col-md-6\">\n";
+                print "                    <div class=\"row\">\n";
+                print "                    <div class=\"col-sm-6\">\n";
+                print "      <div class=\"form-group\"> \n";
+                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Walk Location</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\" value='e.g. Dublin 4' id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print "                    <div class=\"col-sm-6\">\n";
+                print "     <div class=\"form-group\"> \n";
+                print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Walk Date</label> \n";
+                print"      <div class=\"col-10\">\n";
+                print"      <input class=\"form-control\" type=\"date\" value=$birthday > \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print "                    <div class=\"row\">\n";
+                print "                    <div class=\"col-sm-6\">\n";
+                print "      <div class=\"form-group\"> \n";
+                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">From</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\"  id=\"example-text-input\"> \n";
+                print" </div> \n";
+                
+                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo1\">Schedule Regular Walks</button>\n";
+                
+                print"      </div> \n";
+                print"      </div> \n";
+                print "                    <div class=\"col-sm-6\">\n";
+                print "     <div class=\"form-group\"> \n";
+                print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Until</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\"  id=\"example-text-input\"> \n";
+                print" </div> \n";
+                print" <button type=\"submit\" class=\"btn btn-primary becWalkerBtn\">Find a Walker Now</button> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print "                    <div class=\"row\">\n";
+                print "                    <div class=\"col-sm-11\">\n";
+                print "             <div class=\"collapse\" id=\"demo1\">\n";
+                echo '<br /><div class="weekDays-selector">';
+                echo '<input type="checkbox" id="weekday-mon" class="weekday" />';
+                echo '<label for="weekday-mon">Mon</label>';
+                echo '<input type="checkbox" id="weekday-tue" class="weekday" />';
+                echo '<label for="weekday-tue">Tue</label>';
+                echo '<input type="checkbox" id="weekday-wed" class="weekday" />';
+                echo '<label for="weekday-wed">Wed</label>';
+                echo '<input type="checkbox" id="weekday-thu" class="weekday" />';
+                echo '<label for="weekday-thu">Thur</label>';
+                echo '<input type="checkbox" id="weekday-fri" class="weekday" />';
+                echo '<label for="weekday-fri">Fri</label>';
+                echo '<input type="checkbox" id="weekday-sat" class="weekday" />';
+                echo '<label for="weekday-sat">Sat</label>';
+                echo '<input type="checkbox" id="weekday-sun" class="weekday" />';
+                echo '<label for="weekday-sun">Sun</label>';
+                echo '</div><br />';
+                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn1\">Submit</button> \n";
+                print " </div>\n";
+                print"      </div> \n";
+                print"      </div> \n";
+
+
+                print "                </div>\n";
+                print "            </div>\n";
+                print "        </div>\n";
+                
+                print "        <div class=\"col-xs-0 col-sm-1 col-md-1\">\n";
+                print "        </div>\n";
+                
                 print "             <div class=\"collapse\" id=\"demo\">\n";
                 print "<form id=\"walker_form\" method=\"POST\">";
-                print "  <div class=\"form-group\"> \n";
-                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">First name</label> \n";
+                print "   <div class=\"form-group\"> \n";
+                print"<br /> <label for=\"example-text-input\" class=\"col-2 col-form-label\">First name</label> \n";
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\" value=\"$firstname\" id=\"example-text-input\" name=\"firstname\"> \n";
                 
@@ -326,81 +410,6 @@
                 print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn\">Submit</button> \n";
                 print" </form>";
                 print " </div>\n";
-
-                print "                </div>\n";
-                print "                </div>\n";
-                print "         </div>\n";
-                print "                    <div class=\"col-sm-12 col-md-6\">\n";
-                print "                    <div class=\"row\">\n";
-                print "                    <div class=\"col-sm-6\">\n";
-                print "      <div class=\"form-group\"> \n";
-                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Walk Location</label> \n";
-                print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value='e.g. Dublin 4' id=\"example-text-input\"> \n";
-                print" </div> \n";
-                print"      </div> \n";
-                print"      </div> \n";
-                print "                    <div class=\"col-sm-6\">\n";
-                print "     <div class=\"form-group\"> \n";
-                print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Walk Date</label> \n";
-                print"      <div class=\"col-10\">\n";
-                print"      <input class=\"form-control\" type=\"date\" value=$birthday > \n";
-                print"      </div> \n";
-                print"      </div> \n";
-                print"      </div> \n";
-                print"      </div> \n";
-                print "                    <div class=\"row\">\n";
-                print "                    <div class=\"col-sm-6\">\n";
-                print "      <div class=\"form-group\"> \n";
-                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">From</label> \n";
-                print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\"  id=\"example-text-input\"> \n";
-                print" </div> \n";
-                                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo1\">Schedule Regular Walks</button>\n";
-                print"      </div> \n";
-                print"      </div> \n";
-                print "                    <div class=\"col-sm-6\">\n";
-                print "     <div class=\"form-group\"> \n";
-                print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Until</label> \n";
-                print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\"  id=\"example-text-input\"> \n";
-                print" </div> \n";
-                print" <button type=\"submit\" class=\"btn btn-primary becWalkerBtn\">Find a Walker Now</button> \n";
-                print"      </div> \n";
-                print"      </div> \n";
-                print "                    <div class=\"row\">\n";
-                print "                    <div class=\"col-sm-11\">\n";
-                print "             <div class=\"collapse\" id=\"demo1\">\n";
-                echo '<br /><div class="weekDays-selector">';
-                echo '<input type="checkbox" id="weekday-mon" class="weekday" />';
-                echo '<label for="weekday-mon">Mon</label>';
-                echo '<input type="checkbox" id="weekday-tue" class="weekday" />';
-                echo '<label for="weekday-tue">Tue</label>';
-                echo '<input type="checkbox" id="weekday-wed" class="weekday" />';
-                echo '<label for="weekday-wed">Wed</label>';
-                echo '<input type="checkbox" id="weekday-thu" class="weekday" />';
-                echo '<label for="weekday-thu">Thur</label>';
-                echo '<input type="checkbox" id="weekday-fri" class="weekday" />';
-                echo '<label for="weekday-fri">Fri</label>';
-                echo '<input type="checkbox" id="weekday-sat" class="weekday" />';
-                echo '<label for="weekday-sat">Sat</label>';
-                echo '<input type="checkbox" id="weekday-sun" class="weekday" />';
-                echo '<label for="weekday-sun">Sun</label>';
-                echo '</div><br />';
-                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn1\">Submit</button> \n";
-                print " </div>\n";
-                print"      </div> \n";
-                print"      </div> \n";
-
-
-                print"      </div> \n";
-                print "                    </div>\n";
-                print "                </div>\n";
-                print "            </div>\n";
-                print "        </div>\n";
-                print "        <div class=\"col-xs-0 col-sm-1 col-md-1\">\n";
-                print "        </div>\n";
-                print "    </div>\n";
                 print "</div>\n";
                 print "        </section>";
                 

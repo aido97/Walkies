@@ -24,11 +24,10 @@
     <script>
 
       function initMap() {
-        
-
-  /*global $*/ $.getJSON('https://maps.googleapis.com/maps/api/distancematrix/json?origins=53.341665,-6.229011&destinations=53.341665,-6.229011|53.341865,-6.234095|53.342455,-6.238445&mode=walking&language=en-FR&key=AIzaSyDAriR3Q9YW866bSWTMkqXNlxOzPGsBiHU', function(data) {
-  $('.result').html('<p>' + data.rows + '</p>');
-});
+      
+      /*global $*/ $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?origins=53.341665,-6.229011&destinations=53.341665,-6.229011|53.341865,-6.234095|53.342455,-6.238445&mode=walking&language=en-FR&key=AIzaSyDAriR3Q9YW866bSWTMkqXNlxOzPGsBiHU", function(json) {
+        alert("JSON Data: " + json.distance[1]);
+      });
   
   
   
