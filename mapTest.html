@@ -3,6 +3,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
     <title>Simple markers</title>
     <style>
       /* Always set the map height explicitly to define the size of the div
@@ -24,16 +25,13 @@
 
       function initMap() {
         
-        var jsonResult;
 
-  /*global $*/ $ajax({
-            dataType: "json",
-            url: "https://maps.googleapis.com/maps/api/distancematrix/json?origins=53.341665,-6.229011&destinations=53.341665,-6.229011|53.341865,-6.234095|53.342455,-6.238445&mode=walking&language=en-FR&key=AIzaSyDAriR3Q9YW866bSWTMkqXNlxOzPGsBiHU",
-            data: "distance",
-            success: function(data) {
-            jsonResult = data;
-          }
-      });
+  /*global $*/ var t = JSON.parse('{"destination_addresses"}');
+  
+  
+  
+  
+      console.log(t);
         var markers = [new google.maps.LatLng(53.341665, -6.229011),
                        new google.maps.LatLng(53.341865, -6.238445),
                        new google.maps.LatLng(53.342455, -6.238445)];

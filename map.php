@@ -325,8 +325,8 @@ map{
 							'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>' +
 							'<div class="col-sm-4" >  ' +
 							'<hr><h6><em>Name:</h6><hr>' +
-								    '<h6>Age:</h6><hr>' +
-								    '<h6>Location:</h6><hr>' +
+								 '<h6>Age:</h6><hr>' +
+								 '<h6>Location:</h6><hr>' +
 							'</div>' +
 							'<div class="col-sm-4"> ' + 
 							'<hr><h6><?php echo $row[first_name] ?></h6><hr>' +	
