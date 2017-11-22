@@ -87,30 +87,30 @@ echo "Connected successfully";
 
 $persons = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users;");
 $result = mysqli_query($conn, $persons);
-$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-   
-            
+// $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 
-		 
-		 	foreach($row as $r){
-		 	            $table = '';
-		 	            $line1 =    '<div class="row" id="credentials">' ;
-						$line2 =	'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
-						$line3 =    '<div class="col-sm-4" >  ' ;
-						$line4 =	'<hr><h6><em>Name:</h6><hr>' ;
-						$line5 =    '<h6>Age:</h6><hr>' ;
-						$line6 =	'<h6>Location:</h6><hr>' ;
-						$line7 =	'</div>' ;
-						$line8 =	'<div class="col-sm-4"> ' ;
-						$line9 =	'<hr><h6><?php echo $row[first_name] ?></h6><hr>' ;
-						$line10 =	'<h6><?php echo $row[phone_number] ?></h6><hr>' ;
-						$line11 =   '<h6><?php echo $row[addr2] ?></h6><hr>' ;
-						$line12 =	'</div>' ;
-					    $line13 =   '</div>';
+	 
+// 		 	foreach($result as $row){
+// 		 	            $table = '';
+// 		 	            $line1 =    '<div class="row" id="credentials">' ;
+// 						$line2 =	'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
+// 						$line3 =    '<div class="col-sm-4" >  ' ;
+// 						$line4 =	'<hr><h6><em>Name:</h6><hr>' ;
+// 						$line5 =    '<h6>Phone:</h6><hr>' ;
+// 						$line6 =	'<h6>Location:</h6><hr>' ;
+// 						$line7 =	'</div>' ;
+// 						$line8 =	'<div class="col-sm-4"> ' ;
+// 						$line9 =	'<hr><h6>'. $row[first_name] .'</h6><hr>' ;
+// 						$line10 =	'<h6>'. $row[phone_number] .'</h6><hr>' ;
+// 						$line11 =   '<h6>'. $row[addr2] .'</h6><hr>' ;
+// 						$line12 =	'</div>' ;
+// 					    $line13 =   '</div>';
     
-$table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
+// $table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
+//  echo $table;
+// }
 
-}
+
 ?>
 
 
@@ -294,7 +294,7 @@ map{
        <div class="container-fluid" style="text-align: center" id="main">
      <div class="row" style="text-align: center" id="nav">
         <div class="col-md-2" ></div>
-        <div class="col-md-10">	<button id="add-btn">TEST BUTTON FOR TESTING</button></div>
+        <div class="col-md-10"></div>
       </div>
 	  
 	  
@@ -302,22 +302,34 @@ map{
         <div class="col-md-6" id="content" >
 			<div class="container-fluid">
 			
-					  <div class="row" id="lastElement">
-							<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>  <!-- Profile Image-->
-							<div class="col-sm-4" >  <!--Column TWO -->
-							    <hr><h6><em>Name:<em></h6><hr>
-								        <h6>Phone:</h6><hr>
-								        <h6>Location:</h6><hr>
-							</div>
-							<div class="col-sm-4">   <!-- Column Three -->
-							    <hr><h6><?php echo $row[first_name] ?></h6><hr>	
-										<h6><?php echo $row[phone_number] ?></h6><hr>
-										<h6><?php echo $row[addr2] ?></h6><hr>
-							</div>
-					  </div>		
+
+					  <?php
+            		 	foreach($result as $row){
+		 	            $table = '';
+		 	            $line1 =    '<div class="row" id="credentials">' ;
+						$line2 =	'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
+						$line3 =    '<div class="col-sm-4" >  ' ;
+						$line4 =	'<hr><h6><em>Name:</h6><hr>' ;
+						$line5 =    '<h6>Phone:</h6><hr>' ;
+						$line6 =	'<h6>Location:</h6><hr>' ;
+						$line7 =	'</div>' ;
+						$line8 =	'<div class="col-sm-4"> ' ;
+						$line9 =	'<hr><h6>'. $row[first_name] .'</h6><hr>' ;
+						$line10 =	'<h6>'. $row[phone_number] .'</h6><hr>' ;
+						$line11 =   '<h6>'. $row[addr2] .'</h6><hr>' ;
+						$line12 =	'</div>' ;
+					    $line13 =   '</div>';
+    
+                        $table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
+                         echo $table;
+                        }
+                                    ?>
+					  
+					  
 				</div>	
 				
-				<?php echo $table ?>
+				<!--<?php echo $table ?>-->
+		
 				
 		</div>
 		
@@ -326,10 +338,11 @@ map{
 </div>  
        
          <script>
-    
+         
+         
 		function addTable(){          <!-- Function to create virtual DOM objects as required -->
 			var table = '';
-
+            
 			table +=  '<div class="row" id="credentials">' +
 							'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>' +
 							'<div class="col-sm-4" >  ' +
