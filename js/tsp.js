@@ -6,7 +6,7 @@ var record = 99999999;
 var sum = 0;
 var totalDogs;
 var population = [];
-var populationDensity = 99999;
+var populationDensity = 500;
 var fitness = [];
 
 
@@ -19,10 +19,11 @@ function getShortestRoute(dogs){
     temp();
    
   //Algorithm functions
+  for(var i = 0; i < populationDensity; i++){
    getFitness();
    normalizeFitness();
    nextGeneration(); 
-   
+  }
 
    return(bestOrder);
    console.log(bestOrder);
@@ -31,7 +32,7 @@ function getShortestRoute(dogs){
 function temp (){
     var order = [];
     
-    for(var i = 0; i < dogDist.length; i++){
+    for(var i = 0; i < totalDogs; i++){
         order[i] = i;
     }
    //createDogs();
