@@ -356,6 +356,7 @@
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\"  id=\"example-text-input\"> \n";
                 print" </div> \n";
+                                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo1\">Schedule Regular Walks</button>\n";
                 print"      </div> \n";
                 print"      </div> \n";
                 print "                    <div class=\"col-sm-6\">\n";
@@ -364,12 +365,11 @@
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\"  id=\"example-text-input\"> \n";
                 print" </div> \n";
-                print" <br /> <br /><button type=\"submit\" class=\"btn btn-primary\">Find a Walker</button> \n";
+                print" <button type=\"submit\" class=\"btn btn-primary becWalkerBtn\">Find a Walker Now</button> \n";
                 print"      </div> \n";
                 print"      </div> \n";
                 print "                    <div class=\"row\">\n";
                 print "                    <div class=\"col-sm-11\">\n";
-                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo1\">Schedule Regular Walks</button>\n";
                 print "             <div class=\"collapse\" id=\"demo1\">\n";
                 echo '<br /><div class="weekDays-selector">';
                 echo '<input type="checkbox" id="weekday-mon" class="weekday" />';
@@ -388,7 +388,6 @@
                 echo '<label for="weekday-sun">Sun</label>';
                 echo '</div><br />';
                 print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn1\">Submit</button> \n";
-                print" </form>";
                 print " </div>\n";
                 print"      </div> \n";
                 print"      </div> \n";

@@ -26,12 +26,13 @@
       function initMap() {
         
 
-  /*global $*/ var t = JSON.parse('{"destination_addresses"}');
+  /*global $*/ $.getJSON('https://maps.googleapis.com/maps/api/distancematrix/json?origins=53.341665,-6.229011&destinations=53.341665,-6.229011|53.341865,-6.234095|53.342455,-6.238445&mode=walking&language=en-FR&key=AIzaSyDAriR3Q9YW866bSWTMkqXNlxOzPGsBiHU', function(data) {
+  $('.result').html('<p>' + data.rows + '</p>');
+});
   
   
   
-  
-      console.log(t);
+      
         var markers = [new google.maps.LatLng(53.341665, -6.229011),
                        new google.maps.LatLng(53.341865, -6.238445),
                        new google.maps.LatLng(53.342455, -6.238445)];
