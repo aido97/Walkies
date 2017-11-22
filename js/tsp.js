@@ -46,7 +46,7 @@ function temp (){
 function createDogs(){
     //Temporary loop just to get the distance between each   
     for(var i = 0; i < dogLocations.length; i++){
-       dogDist[i] = []        
+       dogDist[i] = [];        
         for(var j = 0; j < dogLocations.length; j++){
             dogDist[i][j] = latDist(dogLocations[i][0], dogLocations[i][1], dogLocations[j][0], dogLocations[j][1])
         }

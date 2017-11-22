@@ -81,7 +81,7 @@
         
         
    
-    $result = mysqli_query($conn, "SELECT gender, addr1, addr2, zip, phone_number FROM walkies_web.users WHERE user_email = '$email'");
+    $result = mysqli_query($conn, "SELECT gender, addr1, addr2, zip, phone_number, walker FROM walkies_web.users WHERE user_email = '$email'");
     $row = mysqli_fetch_assoc($result);
    
    
@@ -95,6 +95,9 @@
    $zip = $_SESSION['zip'];
    $_SESSION['phone_number'] = $row['phone_number'];
    $phone = $_SESSION['phone_number'];
+   $_SESSION['walker'] = $row['walker'];
+   $walker = $_SESSION['walker'];
+   $_SESSION['email'] = $email;
    
   
         
@@ -265,11 +268,13 @@
                 print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo\">Complete Your Profile</button>\n";
                 }
                 else {
+                echo '<h4><b>Toggle Walker Status</b></h4>';
                 echo '<div class="onoffswitch">';
-                echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" unchecked>';
+                echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onclick=toggle_walker() />';
                 echo '<label class="onoffswitch-label" for="myonoffswitch"></label>';
                 echo '</div>';
                 }
+ 
                 
                 print "                </div>\n";
                 print "                </div>\n";
@@ -426,31 +431,15 @@
 					$_SESSION['zip'] = $_POST['zip'];
 					$_SESSION['gender'] = $_POST['gender'];
 				
-                    $sql = "INSERT INTO walkies_web.users (user_email, first_name, last_name, gender, date_of_birth, addr1, addr2, zip, phone_number)
-                    VALUES ('{$_SESSION['email']}', '{$_SESSION['fname']}', '{$_SESSION['lname']}', '{$_SESSION['gender']}','{$_SESSION['dob']}', '{$_SESSION['addr1']}','{$_SESSION['addr2']}', '{$_SESSION['zip']}','{$_SESSION['phone']}' )";
+                    $sql = "INSERT INTO walkies_web.users (user_email, first_name, last_name, gender, date_of_birth, addr1, addr2, zip, phone_number, walker)
+                    VALUES ('{$_SESSION['email']}', '{$_SESSION['fname']}', '{$_SESSION['lname']}', '{$_SESSION['gender']}','{$_SESSION['dob']}', '{$_SESSION['addr1']}','{$_SESSION['addr2']}', '{$_SESSION['zip']}','{$_SESSION['phone']}', 'N' )";
                     
                     if ($conn->query($sql) === TRUE) {
                        
                     } else {
                         echo "Error: Technical Difficulties!! " . $sql . "<br>" . $conn->error;
                     }
-                    
-                    $fk = mysqli_query($conn, "SELECT user_id FROM walkies_web.users WHERE user_email = '$email'");
-					$fk2 = mysqli_fetch_assoc($fk);
-					$fk3 = $fk2['user_id'];
-					
-					$sql1 = "INSERT INTO walkies_web.walkers (user_id, user_email, first_name, last_name, gender, date_of_birth, addr1, addr2, zip, phone_number)
-                    VALUES ('$fk3', '{$_SESSION['email']}', '{$_SESSION['fname']}', '{$_SESSION['lname']}', '{$_SESSION['gender']}','{$_SESSION['dob']}', '{$_SESSION['addr1']}','{$_SESSION['addr2']}', '{$_SESSION['zip']}','{$_SESSION['phone']}' )";
-                    
-                   
-                   if ($conn->query($sql1) === TRUE) {
-                       
-                    } else {
-                        echo "Error: Technical Difficulties!! " . $sql1 . "<br>" . $conn->error;
-                    }
-
-                   
-                   
+            
 					
 					
                    }

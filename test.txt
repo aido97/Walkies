@@ -4,3 +4,22 @@ test again
 test graempll
 test aidan
 test james123
+
+
+$("#action1").change(function () {
+    var value = $(this).val();
+    $.ajax({
+        type: "POST",
+        url: "set_home_vid.php",
+        async: true,
+        data: {
+            action1: value // as you are getting in php $_POST['action1'] 
+        },
+        success: function (msg) {
+            alert('Success');
+            if (msg != 'success') {
+                alert('Fail');
+            }
+        }
+    });
+});

@@ -24,12 +24,33 @@
     <script>
 
       function initMap() {
+        
+        var distanceOne;
+        var distanceTwo;
+        var distanceThree;
+        var distanceArray = [];
       
       /*global $*/ $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?origins=53.341665,-6.229011&destinations=53.341665,-6.229011|53.341865,-6.234095|53.342455,-6.238445&mode=walking&language=en-FR&key=AIzaSyDAriR3Q9YW866bSWTMkqXNlxOzPGsBiHU", function(json) {
-        alert("JSON Data: " + json.distance[1]);
+
+        distanceOne = json.rows[0].elements[0].distance.text;
+        distanceTwo = json.rows[0].elements[1].distance.text;
+        distanceThree = json.rows[0].elements[2].distance.text;
+         console.log(distanceOne);
       });
   
-  
+       
+      
+        
+        for (var i = 0; i < distanceArray.length; i++){
+          distanceArray[i] =([distanceOne, distanceTwo, distanceThree]);
+        }
+
+      
+      for (var i = 0; i < distanceArray.length; i++) {
+        for (var j = 0; j < distanceArray.length; j++) {
+          console.log(distanceArray[i][j]); 
+        }
+      }
   
       
         var markers = [new google.maps.LatLng(53.341665, -6.229011),

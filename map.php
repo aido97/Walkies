@@ -89,12 +89,11 @@ $persons = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users;");
 $result = mysqli_query($conn, $persons);
 $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
    
-            $table = '';
-		 $line1 ='<h1>hello<h1>';
-		 $line2 = '<h1>There</h1>';
+            
+
 		 
-		 	
-		 	
+		 	foreach($row as $r){
+		 	            $table = '';
 		 	            $line1 =    '<div class="row" id="credentials">' ;
 						$line2 =	'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
 						$line3 =    '<div class="col-sm-4" >  ' ;
@@ -110,6 +109,8 @@ $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 					    $line13 =   '</div>';
     
 $table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
+
+}
 ?>
 
 
