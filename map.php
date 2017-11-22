@@ -10,6 +10,7 @@
     * define the constants client id,secret and redirect url
     * start the session
     */
+    require_once('data_config.php');
     require_once __DIR__.'/gplus-lib/vendor/autoload.php';
     const CLIENT_ID = '816147898187-gkupsk1p28hk8346tkglf3d5qqohkp0o.apps.googleusercontent.com';
     const CLIENT_SECRET = 'adMd4PX4D6NMMLeZlGTmK-x-';
@@ -81,22 +82,29 @@
 ?>
                         <!-- Connect To Database  -->
 <?php
-        $dbhost = 'localhost:3036';
-        $dbuser = 'root';
-        $dbpass = '';
-   
-        $conn = mysql_connect($dbhost, $dbuser, $dbpass);
-   
-   if(! $conn ) {
-      die('Could not connect: ' . mysql_error());
-   }
+  
 echo "Connected successfully";
 
-$walkerName = mysql_query('SELECT first_name FROM walkies_web.users');
-$walkerAge = mysql_query("SELECT age FROM walkies_web.users");
-$location = mysql_query("SELECT location FROM walkies_web.users");
-$people = mysql_query("SELECT first_name, age, location FROM walkies_web.users");
-$test_variable = "Billy The Kid";
+$persons = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users;");
+$result = mysqli_query($conn, $persons);
+$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+    foreach($row as $r){
+            $table = '';
+			$table +=  '<div class="row" id="credentials">' +
+							'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>' +
+							'<div class="col-sm-4" >  ' +
+							'<hr><h6><em>Name:</h6><hr>' +
+								    '<h6>Age:</h6><hr>' +
+								    '<h6>Location:</h6><hr>' +
+							'</div>' +
+							'<div class="col-sm-4"> ' + 
+							'<hr><h6><?php echo $row[first_name] ?></h6><hr>' +	
+								    '<h6><?php echo $row[phone_number] ?></h6><hr>' +
+								    '<h6><?php echo $row[addr2] ?></h6><hr>' +
+							'</div>' +
+					  '</div>';
+    }
+
 ?>
 
 
@@ -292,13 +300,13 @@ map{
 							<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>  <!-- Profile Image-->
 							<div class="col-sm-4" >  <!--Column TWO -->
 							    <hr><h6><em>Name:<em></h6><hr>
-								        <h6>Age:</h6><hr>
+								        <h6>Phone:</h6><hr>
 								        <h6>Location:</h6><hr>
 							</div>
 							<div class="col-sm-4">   <!-- Column Three -->
-							    <hr><h6 name="walkerName"><?php echo $test_variable; ?></h6><hr>	
-										<h6 name="walkerAge"><?php echo $walkerName; ?></h6><hr>
-										<h6 name="walkerLocation">Insert Location</h6><hr>
+							    <hr><h6><?php echo $row[first_name] ?></h6><hr>	
+										<h6><?php echo $row[phone_number] ?></h6><hr>
+										<h6><?php echo $row[addr2] ?></h6><hr>
 							</div>
 					  </div>		
 				</div>		
@@ -321,9 +329,9 @@ map{
 								    '<h6>Location:</h6><hr>' +
 							'</div>' +
 							'<div class="col-sm-4"> ' + 
-							'<hr><h6> ####</h6><hr>' +	
-								    '<h6>####</h6><hr>' +
-								    '<h6>####</h6><hr>' +
+							'<hr><h6><?php echo $row[first_name] ?></h6><hr>' +	
+								    '<h6><?php echo $row[phone_number] ?></h6><hr>' +
+								    '<h6><?php echo $row[addr2] ?></h6><hr>' +
 							'</div>' +
 					  '</div>';
 

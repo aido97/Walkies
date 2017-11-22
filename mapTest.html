@@ -21,17 +21,23 @@
   <body>
     <div id="map"></div>
     <script>
-     
-      
+
       function initMap() {
         
+        var jsonResult;
+
+  /*global $*/ $ajax({
+            dataType: "json",
+            url: "https://maps.googleapis.com/maps/api/distancematrix/json?origins=53.341665,-6.229011&destinations=53.341665,-6.229011|53.341865,-6.234095|53.342455,-6.238445&mode=walking&language=en-FR&key=AIzaSyDAriR3Q9YW866bSWTMkqXNlxOzPGsBiHU",
+            data: "distance",
+            success: function(data) {
+            jsonResult = data;
+          }
+      });
         var markers = [new google.maps.LatLng(53.341665, -6.229011),
                        new google.maps.LatLng(53.341865, -6.238445),
                        new google.maps.LatLng(53.342455, -6.238445)];
                        
-        /*var mark1 = new google.maps.LatLng(53.341665, -6.229011);
-        var mark2 = new google.maps.LatLng(53.341865, -6.238445);
-        var mark3 = new google.maps.LatLng(53.342455, -6.238445);*/
       
         //https://maps.googleapis.com/maps/api/distancematrix/json?origins=53.341665,-6.229011&destinations=53.341665,-6.229011|53.341865,-6.234095|53.342455,-6.238445&mode=walking&language=en-FR&key=AIzaSyDAriR3Q9YW866bSWTMkqXNlxOzPGsBiHU
         document.getElementById("demo").innerHTML = 1;
@@ -60,6 +66,9 @@
           title: 'Hello World!'
         });
       }
+      
+     
+      
       
     </script>
     

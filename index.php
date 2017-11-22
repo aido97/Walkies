@@ -96,7 +96,7 @@
    $_SESSION['phone_number'] = $row['phone_number'];
    $phone = $_SESSION['phone_number'];
    
-   mysqli_close($conn);
+  
         
        
     } else {
@@ -267,21 +267,21 @@
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">First name</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"$firstname\" id=\"example-text-input\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$firstname\" id=\"example-text-input\" name=\"firstname\"> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Last name</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"$lastname\" id=\"example-text-input\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$lastname\" id=\"example-text-input\" name=\"lastname\"> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-email-input\" class=\"col-2 col-form-label\">Email</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"$email\" id=\"example-text-input\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$email\" id=\"example-text-input\" name=\"email\"> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
@@ -313,12 +313,12 @@
                 print "     <div class=\"form-group\"> \n";
                 print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Date of Birth</label> \n";
                 print"      <div class=\"col-10\">\n";
-                print"      <input class=\"form-control\" type=\"date\" value=\"$birthday\" id=\"example-date-input\"> \n";
+                print"      <input class=\"form-control\" type=\"date\" value=\"$birthday\" id=\"example-date-input\" name=\"birthday\"> \n";
                 print"      </div> \n";
                 print"      </div> \n";
                 print"    <div class=\"form-group\"> \n";
                 print"     <label for=\"exampleSelect1\">Gender</label> \n";
-                print"     <select class=\"form-control\" id=\"exampleSelect1\" name=\"gender\" value=\"$gender\"> \n";
+                print"     <select class=\"form-control\" id=\"exampleSelect1\" name=\"gender\" value=\"$gender\" name=\"gender\"> \n";
                 print"      <option>M</option> \n";
                 print"    <option>F</option> \n";
                 print"      </select> \n";
@@ -405,17 +405,16 @@
                
                                if(isset($_POST['submit_Btn']))
                   {
-                	$_SESSION['fname'] = $firstname;
-                    $_SESSION['lname'] = $lastname;
-                    $_SESSION['email'] = $email;
+                	$_SESSION['fname'] = $_POST['firstname'];
+                    $_SESSION['lname'] = $_POST['lastname'];
+                    $_SESSION['email'] = $_POST['email'];
                     $_SESSION['phone'] = $_POST['phone_no'];
-                    $_SESSION['dob'] = $birthday;
+                    $_SESSION['dob'] = $_POST['birthday'];
 					$_SESSION['addr1'] = $_POST['addr1'];
 					$_SESSION['addr2'] = $_POST['addr2'];
 					$_SESSION['zip'] = $_POST['zip'];
 					$_SESSION['gender'] = $_POST['gender'];
 				
-                   
                     $sql = "INSERT INTO walkies_web.users (user_email, first_name, last_name, gender, date_of_birth, addr1, addr2, zip, phone_number)
                     VALUES ('{$_SESSION['email']}', '{$_SESSION['fname']}', '{$_SESSION['lname']}', '{$_SESSION['gender']}','{$_SESSION['dob']}', '{$_SESSION['addr1']}','{$_SESSION['addr2']}', '{$_SESSION['zip']}','{$_SESSION['phone']}' )";
                     
@@ -424,10 +423,23 @@
                     } else {
                         echo "Error: Technical Difficulties!! " . $sql . "<br>" . $conn->error;
                     }
+                    
+                    $fk = mysqli_query($conn, "SELECT user_id FROM walkies_web.users WHERE user_email = '$email'");
+					$fk2 = mysqli_fetch_assoc($fk);
+					$fk3 = $fk2['user_id'];
+					
+					$sql1 = "INSERT INTO walkies_web.walkers (user_id, user_email, first_name, last_name, gender, date_of_birth, addr1, addr2, zip, phone_number)
+                    VALUES ('$fk3', '{$_SESSION['email']}', '{$_SESSION['fname']}', '{$_SESSION['lname']}', '{$_SESSION['gender']}','{$_SESSION['dob']}', '{$_SESSION['addr1']}','{$_SESSION['addr2']}', '{$_SESSION['zip']}','{$_SESSION['phone']}' )";
+                    
                    
+                   if ($conn->query($sql1) === TRUE) {
+                       
+                    } else {
+                        echo "Error: Technical Difficulties!! " . $sql1 . "<br>" . $conn->error;
+                    }
 
                    
-                   mysqli_close($conn);
+                   
 					
 					
                    }
