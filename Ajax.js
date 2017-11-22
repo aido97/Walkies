@@ -1,8 +1,8 @@
 <script type = "text/javascript">
-function send_data() {
+function toggle_walker() {
 /* global $ */$.ajax( { type : 'POST',
           data : { },
-          url  : 'data_connect.php',              // <=== CALL THE PHP FUNCTION HERE (data_connect.php)
+          url  : 'db/toggle_walker.php',              // <=== CALL THE PHP FUNCTION HERE (data_connect.php)
           success: function ( data ) {
                            
           },
