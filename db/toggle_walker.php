@@ -12,7 +12,7 @@ require_once('../data_config.php');
     
     echo $toggle;
     
-    if ($toggle == 'Y'){
+    if ($toggle === 'Y'){
         
         $sql = "UPDATE walkies_web.users SET walker='N' WHERE user_email = '$email' ";
 
