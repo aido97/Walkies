@@ -1,5 +1,5 @@
 var dogDist = [];
-var dogLocations = [[53.341665, -6.229011],[53.341865, -6.234095],[53.342455, -6.238445],[53.342769, -6.241259],[53.343419, -6.245457],[53.343975, -6.248218],[53.344692, -6.251832],[53.345019, -6.253731],[53.345332, -6.255222]];
+var dogLocations = [];
 var distance = [];
 var bestOrder = [];
 var record = Number.MAX_SAFE_INTEGER;
@@ -8,21 +8,23 @@ var totalDogs;
 var population = [];
 var populationDensity = 500;
 var desirability = [];
-
-
+var chartBestRecords = [];
 
 function getShortestRoute(dogs){
     //Sets the dogDist array to the passed in value and the total number of dogs / collection points
-    dogDist = dogs;
+    //dogDist = dogs;
+    
+    //Run the create dogs function if you are calculating as the crow flies distance from long/lat to generate
+    //the required 2d array of distances  
+     dogLocations = dogs;
+     createDogs(dogs);
     totalDogs = dogDist[0].length;
     
-    //These were put into a temporary function and called here, rather than just being here 
-    //themselves for debugging purposes. Will be removed before final release
-    temp();
+    initialSetup();
    
-  //Produces the desired number of generations. For now having it equal the population 
+    //Produces the desired number of generations. For now having it equal the population 
   //density seems to work well. May be changed at a later date to a more optimal solution
-  for(var i = 0; i < totalDogs; i++){
+  for(var i = 0; i < (totalDogs * 6); i++){
    getDesirability();
    normalizeDesirability();
    nextGeneration(); 
@@ -31,27 +33,43 @@ function getShortestRoute(dogs){
    console.log(i);
    console.log(record);
    console.log(bestOrder);
+   chartBestRecords[i] = [];
+   chartBestRecords[i][0] = ("Generation " + i);
+   chartBestRecords[i][1] = record * -1;
   }
+  chartBestRecords.splice(0, 0, ["Generation", "Record in Meters"]);
   //Return the best found order when all the generations have completed
    return(bestOrder);
 }
 
-
-function temp (){
+function initialSetup (){
     //Creates a default initial linear order - 0, 1, 2, 3..
     var order = [];
     for(var i = 0; i < totalDogs; i++){
         order[i] = i;
     }
-    //Run the create dogs function if you are calculating as the crow flies distance from long/lat to generate
-    //the required 2d array of distances
-   //createDogs();
+   
    //Shuffles the linear order into the required amount of random arrays to initially fill our population with
    for (var i = 0; i < populationDensity; i++){
        population[i] = order.slice();
        sufflePop(population[i], 100);
    }
 }
+
+//Draws chart showing performance of algorithm by generation
+function drawChart() {
+    var data = google.visualization.arrayToDataTable(chartBestRecords);
+
+    var options = {
+      title: 'Algorithm Performance',
+      curveType: 'function',
+      legend: { position: 'bottom' }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+    chart.draw(data, options);
+  }
 
 //Function to create a 2d array, each array element representing a dog's location using Lat/Long (as the crow flies)
 //and this distance between itself and every dog in the order, inclusively.
@@ -64,11 +82,10 @@ function createDogs(){
     }
 }
 
-
 //Finds the total distance of a given order
 function findTotalDistance(dogs, order){
-    var totalDistance = 0;
     //Steps through the array of dogs and adds the distance between each point based on the order supplied
+    var totalDistance = 0;
     for (var i = 0; i < totalDogs - 1; i++){
         var dogIndexA = order[i];
         var dogIndexB = order[i+1];
@@ -99,8 +116,8 @@ function deg2rad(deg) {
 }
 
 //Simple shuffle function to mix around the population
-function sufflePop(pop, num) {
-  for (var i = 0; i < num; i++) {
+function sufflePop(pop, numTimes) {
+  for (var i = 0; i < numTimes; i++) {
     var indexA = Math.floor(Math.random() * pop.length);
     var indexB = Math.floor(Math.random() * pop.length);
     swap(pop, indexA, indexB);
