@@ -99,6 +99,7 @@
    $walker = $_SESSION['walker'];
    $_SESSION['email'] = $email;
    
+   
   
         
        
@@ -118,7 +119,9 @@
     <meta name="author" content="">
 
     <title>Walkies</title>
-
+    
+    <!-- AJAX Scripts -->
+	<script src="js/Ajax.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	
@@ -148,7 +151,9 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <![endif]-->
-
+        <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    
 
 </head>
 
@@ -268,13 +273,22 @@
                 print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo\">Complete Your Profile</button>\n";
                 }
                 else {
+                if ($walker == "Y"){
                 echo '<h4><b>Toggle Walker Status</b></h4>';
                 echo '<div class="onoffswitch">';
-                echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onclick=toggle_walker() />';
+                echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onchange="doalert(this)" checked="checked"/>';
                 echo '<label class="onoffswitch-label" for="myonoffswitch"></label>';
                 echo '</div>';
                 }
- 
+                else if ($walker == "N") {
+                echo '<h4><b>Toggle Walker Status</b></h4>';
+                echo '<div class="onoffswitch">';
+                echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onchange="doalert(this)" />';
+                echo '<label class="onoffswitch-label" for="myonoffswitch"></label>';
+                echo '</div>';
+                }
+                }
+                
                 
                 print "                </div>\n";
                 print "                </div>\n";
@@ -352,7 +366,7 @@
                 print "        </div>\n";
                 
                 print "             <div class=\"collapse\" id=\"demo\">\n";
-                print "<form id=\"walker_form\" method=\"POST\">";
+                print "<form id=\"walker_form\" method=\"POST\" action=\"http://walkies-shaner125.c9users.io/index.php\">";
                 print "   <div class=\"form-group\"> \n";
                 print"<br /> <label for=\"example-text-input\" class=\"col-2 col-form-label\">First name</label> \n";
                 print" <div class=\"col-10\">\n";
@@ -458,8 +472,7 @@
     </div>
   </footer>
 
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -471,8 +484,7 @@
 
     <!-- Theme JavaScript -->
     <script src="js/creative.min.js"></script>
-	<!-- AJAX Scripts -->
-	<script src="Ajax.js"></script>
+
 
 </body>
 

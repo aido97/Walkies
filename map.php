@@ -87,31 +87,15 @@ echo "Connected successfully";
 
 $persons = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users;");
 $result = mysqli_query($conn, $persons);
-// $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-
-	 
-// 		 	foreach($result as $row){
-// 		 	            $table = '';
-// 		 	            $line1 =    '<div class="row" id="credentials">' ;
-// 						$line2 =	'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
-// 						$line3 =    '<div class="col-sm-4" >  ' ;
-// 						$line4 =	'<hr><h6><em>Name:</h6><hr>' ;
-// 						$line5 =    '<h6>Phone:</h6><hr>' ;
-// 						$line6 =	'<h6>Location:</h6><hr>' ;
-// 						$line7 =	'</div>' ;
-// 						$line8 =	'<div class="col-sm-4"> ' ;
-// 						$line9 =	'<hr><h6>'. $row[first_name] .'</h6><hr>' ;
-// 						$line10 =	'<h6>'. $row[phone_number] .'</h6><hr>' ;
-// 						$line11 =   '<h6>'. $row[addr2] .'</h6><hr>' ;
-// 						$line12 =	'</div>' ;
-// 					    $line13 =   '</div>';
-    
-// $table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
-//  echo $table;
-// }
-
-
+$mapData = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users for JSON AUTO;")
 ?>
+
+
+<?php  $location = $addr1. '' .$addr2. '' .$zip; ?>     <script type="text/javascript">var addr2 = "<?= $addr2 ?>";</script>
+
+
+
+
 
 
 
@@ -130,7 +114,7 @@ $result = mysqli_query($conn, $persons);
 	
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-      <script type="text/javascript" src="js/map.js"></script>
+      <script type="text/javascript" src="js/map.js"></script> 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -198,6 +182,7 @@ body {
 #credentials{
 	overflow: hidden;
 	border: 1px solid white;
+	margin:0;
 }
 @media (max-width: 40em) {
 #content , #nav{
@@ -299,11 +284,12 @@ map{
 	  
 	  
 	 <div class="row" style="text-align: center" id="mainrow">
-        <div class="col-md-6" id="content" >
+        <div class="col-md-6" id="content" style="height:600px"; >
 			<div class="container-fluid">
-			
+			    
+			<h1>Walkers</h1> <!-- Start of new Profile Container -->
 
-					  <?php
+					 <?php
             		 	foreach($result as $row){
 		 	            $table = '';
 		 	            $line1 =    '<div class="row" id="credentials">' ;
@@ -323,46 +309,42 @@ map{
                         $table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
                          echo $table;
                         }
-                                    ?>
-					  
-					  
-				</div>	
+                         ?> 
+                         
+
+                         
+ </div> <!-- end of container -->
+ 
+ <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="../img/generic.png" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h3 style="padding:3%">Graeme Doherty</h3>
+                        <h6>0872133639</h6>
+                        <h3>Dublin</h3>
+                        <button>Accept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 				
-				<!--<?php echo $table ?>-->
 		
 				
 		</div>
 		
-        <div class="col-md-6" id="map" style="height:500px;"></div>    <!-- The Map Div -->
+        <div class="col-md-6" id="map" style="height:600px;"></div>    <!-- The Map Div -->
       </div>                                                                                                 <!-- End Of Main Row -->
-</div>  
+   </div>  
        
-         <script>
-         
-         
-		function addTable(){          <!-- Function to create virtual DOM objects as required -->
-			var table = '';
-            
-			table +=  '<div class="row" id="credentials">' +
-							'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>' +
-							'<div class="col-sm-4" >  ' +
-							'<hr><h6><em>Name:</h6><hr>' +
-								 '<h6>Age:</h6><hr>' +
-								 '<h6>Location:</h6><hr>' +
-							'</div>' +
-							'<div class="col-sm-4"> ' + 
-							'<hr><h6><?php echo $row[first_name] ?></h6><hr>' +	
-								    '<h6><?php echo $row[phone_number] ?></h6><hr>' +
-								    '<h6><?php echo $row[addr2] ?></h6><hr>' +
-							'</div>' +
-					  '</div>';
 
-			$('#lastElement').append(table);
-		}
-		$('#add-btn').on('click', function(e){
-			addTable();
-		})
-	</script>
  
     <!--   //  Insert map here      Insert map here      Insert map here      Insert map here -->
        
