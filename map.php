@@ -1,5 +1,7 @@
 <?php
 
+
+
     /* DEGBUG PURPOSES ONLY REMOVE BEFORE DEPLOY!!! */
     ini_set('display_errors', 1);
 
@@ -82,16 +84,17 @@
 ?>
                         <!-- Connect To Database  -->
 <?php
-  
-echo "Connected successfully";
 
-$persons = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users;");
+$address = ("SELECT first_name, addr1, addr2, zip FROM walkies_web.users;");
+$addResult = mysqli_query($conn, $address);
+
+$persons = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users WHERE walker = 'Y';");
 $result = mysqli_query($conn, $persons);
-$mapData = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users for JSON AUTO;")
+
 ?>
 
 
-<?php  $location = $addr1. '' .$addr2. '' .$zip; ?>     <script type="text/javascript">var addr2 = "<?= $addr2 ?>";</script>
+
 
 
 
@@ -115,6 +118,7 @@ $mapData = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users for J
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
       <script type="text/javascript" src="js/map.js"></script> 
+
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -126,7 +130,7 @@ $mapData = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users for J
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-  <link href="css/creative.min.css" rel="stylesheet">
+    <link href="css/creative.min.css" rel="stylesheet">
 	<link rel="icon" href="../img/dogmarker.png" type="image/x-icon" />
 
 	  <!-- Custom CSS -->
@@ -135,12 +139,14 @@ $mapData = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users for J
       <!-- Map Shit Below-->
       
   <meta name="viewport" content="width=device-width, initial-scale=1">
- <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-       
-        
 
+
+
+<script type="text/javascript" src="map.js">
+    var addResult = JSON.parse( '<?php echo json_encode($addResult) ?>' );
+    alert( addResult[0][1])
+</script>
       
       <!-- Map Shit Above-->
 
@@ -200,12 +206,7 @@ padding-top: 150%;
 #mainrow{
 	border-top: solid 1px grey;
 }
-#add-btn{
-	margin-top: 50px;
-}
-#lastElement{
-	border-bottom: solid 1px grey;
-}
+
 h6{
 	display:block;	
 	font-weight: bold;
@@ -297,51 +298,32 @@ map{
 						$line3 =    '<div class="col-sm-4" >  ' ;
 						$line4 =	'<hr><h6><em>Name:</h6><hr>' ;
 						$line5 =    '<h6>Phone:</h6><hr>' ;
-						$line6 =	'<h6>Location:</h6><hr>' ;
+						$line6 =	'<h6>Location:</h6>' ;
 						$line7 =	'</div>' ;
 						$line8 =	'<div class="col-sm-4"> ' ;
 						$line9 =	'<hr><h6>'. $row[first_name] .'</h6><hr>' ;
 						$line10 =	'<h6>'. $row[phone_number] .'</h6><hr>' ;
-						$line11 =   '<h6>'. $row[addr2] .'</h6><hr>' ;
+						$line11 =   '<h6>'. $row[addr2] .'</h6>' ;
 						$line12 =	'</div>' ;
 					    $line13 =   '</div>';
-    
+                        
                         $table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
                          echo $table;
                         }
                          ?> 
                          
-
+                         <script type="text/javascript" src="">
+                             var addResult = "<?php echo json_encode($addResult, JSON_PRETTY_PRINT) ?>";
+                             var myAddResult = JSON.stringify(addResult);
+                         </script>
                          
- </div> <!-- end of container -->
- 
- <div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="well well-sm">
-                <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <img src="../img/generic.png" alt="" class="img-rounded img-responsive" />
-                    </div>
-                    <div class="col-sm-6 col-md-8">
-                        <h3 style="padding:3%">Graeme Doherty</h3>
-                        <h6>0872133639</h6>
-                        <h3>Dublin</h3>
-                        <button>Accept</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-				
-		
-				
+                   
+            </div> <!-- end of container -->
 		</div>
 		
         <div class="col-md-6" id="map" style="height:600px;"></div>    <!-- The Map Div -->
-      </div>                                                                                                 <!-- End Of Main Row -->
+        
+      </div><!-- End Of Main Row -->
    </div>  
        
 
@@ -363,16 +345,7 @@ map{
     <script>
         
     
-    $(document).ready(function(){
-        var people = $people;
-        for (var person in people){
-            for (var key in person){
-                if (person.hasOwnProperty(key)) {
-                     alert("Key is " + key + ", value is" + person[key]);
-                }
-            }
-        }
-    });
+
     </script>
 
     <!-- Bootstrap Core JavaScript -->

@@ -25,6 +25,7 @@
     		}
     
     		function showResult(result) {
+    			alert(coordinates);
         		var lat = result.geometry.location.lat();
         		var lng = result.geometry.location.lng();
         		console.log("lattitude: " + lat);
@@ -42,6 +43,16 @@
                     // The latitude and longitude to center the map 
                     center: new google.maps.LatLng(53.349363, -6.244872), // IFSC
                     zoom: 12
+                    
+
+
+                // Get the HTML DOM element that will contain your map 
+                // We are using a div with id="map" seen below in the <body>
+               /* var mapElement = document.getElementById('map');
+
+                // Create the Google Map using our element and options defined above
+                var map = new google.maps.Map(mapElement, mapOptions);*/
+                
 
                     //  style the map. 																																																																																																																																																																																																																							                                 		// Main color															
                       // styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#1ee7e4"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#595fdc"}]},{"featureType":"landscape","elementType":"labels.text.fill","stylers":[{"color":"#fbf6f6"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#084a69"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}]
@@ -53,6 +64,7 @@
 
                 // Create the Google Map using our element and options defined above
                 var map = new google.maps.Map(mapElement, mapOptions);
+                
 
 
                 var marker1 = new google.maps.Marker({
@@ -65,7 +77,7 @@
                 });
 				
 				 var marker2 = new google.maps.Marker({
-                    position: new google.maps.LatLng(53.349103, -6.240992),  // Second Marker
+                    position: new google.maps.LatLng(53.346626, -6.275063),  // Second Marker
                     map: map,
 					title: "end",
 					draggable: true,
@@ -81,17 +93,7 @@
 					animation: google.maps.Animation.BOUNCE,
 					icon: markerIcon
                 });
-                
-                
-                 var dynamicMarker = new google.maps.Marker({
-                    position: new google.maps.LatLng(53.347803, -6.243706),  // Dynamic Marker
-                    map: map,
-					title: "third",
-					draggable: true,
-					animation: google.maps.Animation.BOUNCE,
-					icon: markerIcon
-                });
-				
+
                 
 				
 
@@ -119,25 +121,8 @@
 				  infowindow.open(map, marker1);
 				});
 				
-					// Polyline
-				
-					  var walkies = [
-        new google.maps.LatLng(53.349552, -6.248309),
-        new google.maps.LatLng(53.349103, -6.240992),
-	    new google.maps.LatLng(53.347803, -6.243706)
-		];
-			
-			var walkiesPath = new google.maps.Polyline({
-				path: eiffellouvre,
-				strokeColor: 'blue',
-				strokeOpacity: .8,
-				strokeWeight: 4
-			});
-			
-			walkiesPath.setMap(map);
-
-	  }
-	  
+        
+}	  
 	
 	  
 
