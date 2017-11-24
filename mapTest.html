@@ -33,19 +33,7 @@
       <option value="Apartment 24, Alto Vetro, Grand Canal Quay, Grand Canal Dock, Dublin 2, Ireland"></option>
     </select>
     <div id="map"></div>
-    <?php
-          $address = ("SELECT first_name, addr1, addr2, zip FROM walkies_web.users;");
-          $addResult = mysqli_query($conn, $address);
 
-          $persons = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users WHERE walker = 'Y';");
-          $result = mysqli_query($conn, $persons);
-          print '
-           <script type="text/javascript">
-           var carnr;        
-            carnr = "'.$test1.'"
-            console.log(carnr);
- </script>';
-    ?> 
 <script>
     
     function getLatitudeLongitude(callback, address) {
@@ -157,24 +145,6 @@
         });
         directionsDisplay.setMap(map);
         calculateAndDisplayRoute(directionsService, directionsDisplay);
-
-        /*var marker = new google.maps.Marker({
-          position: markers[0],
-          map: map,
-          title: 'Hello World!'
-        });
-        
-        var marker2 = new google.maps.Marker({
-          position: markers[1],
-          map: map,
-          title: 'Hello World!'
-        });
-        
-        var marker3 = new google.maps.Marker({
-          position: markers[2],
-          map: map,
-          title: 'Hello World!'
-        });*/
     } 
   
       

@@ -311,11 +311,37 @@ map{
                          echo $table;
                         }
                          ?> 
+                         <?php
+                            foreach($addResult as $add)
+                            $addr1 = $add[addr1];
+                            $addr2 = $add[addr2];
+                            $addr3 = $add[zip];
+                            $fullAdd = $addr1. ', ' .$addr2. ', ' .$addr3;
+                            echo $fullAdd;
+                         ?>
+                         <?php
+                         foreach($addResult as $add){
+                            $addr->adr1 = $add[addr1];
+                            $addr->adr2 = $add[addr2];
+                            $addr->adr3 = $add[zip];
+                            
+                            $myJSON = json_encode($addr);
+                            
+                            echo $myJSON;
+                         }
+                            ?>
+                
+                
+                        <script type="text/javascript">
+                        
+                        
+                        var address = JSON.parse('<?php echo $myJSON; ?>');
+                        console.log(address.adr1);
+                        
                          
-                         <script type="text/javascript" src="">
-                             var addResult = "<?php echo json_encode($addResult, JSON_PRETTY_PRINT) ?>";
-                             var myAddResult = JSON.stringify(addResult);
-                         </script>
+                        </script>
+ 
+                         
                          
                    
             </div> <!-- end of container -->
