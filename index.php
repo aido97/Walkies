@@ -81,9 +81,10 @@
         
         
    
-    $result = mysqli_query($conn, "SELECT gender, addr1, addr2, zip, phone_number, walker FROM walkies_web.users WHERE user_email = '$email'");
+    $result = mysqli_query($conn, "SELECT user_id, gender, addr1, addr2, zip, phone_number, walker FROM walkies_web.users WHERE user_email = '$email'");
     $row = mysqli_fetch_assoc($result);
    
+
    
    $_SESSION['gender'] = $row['gender'];
    $gender = $_SESSION['gender'];
@@ -98,6 +99,8 @@
    $_SESSION['walker'] = $row['walker'];
    $walker = $_SESSION['walker'];
    $_SESSION['email'] = $email;
+   $_SESSION['user_id'] = $row['user_id'];
+   $user_id = $_SESSION['user_id'];
    
    
   
@@ -140,7 +143,13 @@
 	
      <!-- Custom CSS  -->
      <link href="css/style.css" rel="stylesheet">
-
+     
+     <!-- timepicker links -->
+    <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
+    <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
+    <script type="text/javascript">
+    $('.clockpicker').clockpicker();
+    </script>
      
 	
 
@@ -188,7 +197,7 @@
                         <a class="page-scroll" href="map.php">Map</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="About.php">About</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
@@ -279,6 +288,8 @@
                 echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onchange="doalert(this)" checked="checked"/>';
                 echo '<label class="onoffswitch-label" for="myonoffswitch"></label>';
                 echo '</div>';
+                print "<button type=\"button\" class=\"btn btn-primary upWalkBtn\" data-toggle=\"collapse\" data-target=\"#demo2\">View upcoming walks</button>\n";
+
                 }
                 else if ($walker == "N") {
                 echo '<h4><b>Toggle Walker Status</b></h4>';
@@ -294,69 +305,206 @@
                 print "                </div>\n";
                 print "         </div>\n";
                 print "                    <div class=\"col-sm-12 col-md-6\">\n";
+                print "<form id=\"walker_form1\" method=\"POST\" >";
                 print "                    <div class=\"row\">\n";
                 print "                    <div class=\"col-sm-6\">\n";
                 print "      <div class=\"form-group\"> \n";
-                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Walk Location</label> \n";
+                print" <label for=\"example-text-input\" class=\"col- col-form-label\">Walk Location</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value='e.g. Dublin 4' id=\"example-text-input\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$addr1\" id=\"example-text-input\" name=\"location\"> \n";
                 print" </div> \n";
+                
                 print"      </div> \n";
                 print"      </div> \n";
-                print "                    <div class=\"col-sm-6\">\n";
-                print "     <div class=\"form-group\"> \n";
-                print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Walk Date</label> \n";
-                print"      <div class=\"col-10\">\n";
-                print"      <input class=\"form-control\" type=\"date\" value=$birthday > \n";
-                print"      </div> \n";
+                print"      <div class=\"col-sm-6\">\n";
+                print "      <div class=\"form-group\"> \n";
+                print" <label for=\"example-text-input\" class=\"col- col-form-label\">Walk Price</label> \n";
+                print" <div class=\"col-10\">\n";
+                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"price\"> \n";
+                print" </div> \n";
+                
                 print"      </div> \n";
                 print"      </div> \n";
                 print"      </div> \n";
                 print "                    <div class=\"row\">\n";
                 print "                    <div class=\"col-sm-6\">\n";
                 print "      <div class=\"form-group\"> \n";
-                print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">From</label> \n";
-                print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\"  id=\"example-text-input\"> \n";
-                print" </div> \n";
+                print" <div class=\"col-10\">\n";   
+                echo "<div class=\"form-group\">\n";
+                echo "  <label for=\"sel1\">Pick-Up:</label>\n";
+                echo "  <select class=\"form-control\" id=\"sel1\" name=\"pickup\">\n";
+                echo "    <option>Please select time</option>\n";
+                echo "    <option>ASAP</option>\n";
+                echo "    <option>00:00</option>\n";
+                echo "    <option>01.00</option>\n";
+                echo "    <option>02.00</option>\n";
+                echo "    <option>03.00</option>\n";
+                echo "    <option>04.00</option>\n";
+                echo "    <option>05.00</option>\n";
+                echo "    <option>06.00</option>\n";
+                echo "    <option>07.00</option>\n";
+                echo "    <option>08.00</option>\n";
+                echo "    <option>09.00</option>\n";
+                echo "    <option>10.00</option>\n";
+                echo "    <option>11.00</option>\n";
+                echo "    <option>12.00</option>\n";
+                echo "    <option>13.00</option>\n";
+                echo "    <option>14.00</option>\n";
+                echo "    <option>15.00</option>\n";
+                echo "    <option>16.00</option>\n";
+                echo "    <option>17.00</option>\n";
+                echo "    <option>18.00</option>\n";
+                echo "    <option>19.00</option>\n";
+                echo "    <option>20.00</option>\n";
+                echo "    <option>21.00</option>\n";
+                echo "    <option>22.00</option>\n";
+                echo "    <option>23.00</option>\n";
+                echo "    <option>24.00</option>\n";
+                echo "  </select>\n";
+                echo "</div>";
                 
-                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo1\">Schedule Regular Walks</button>\n";
-                
-                print"      </div> \n";
-                print"      </div> \n";
-                print "                    <div class=\"col-sm-6\">\n";
-                print "     <div class=\"form-group\"> \n";
-                print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Until</label> \n";
-                print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\"  id=\"example-text-input\"> \n";
-                print" </div> \n";
-                print" <button type=\"submit\" class=\"btn btn-primary becWalkerBtn\">Find a Walker Now</button> \n";
-                print"      </div> \n";
-                print"      </div> \n";
-                print "                    <div class=\"row\">\n";
-                print "                    <div class=\"col-sm-11\">\n";
-                print "             <div class=\"collapse\" id=\"demo1\">\n";
-                echo '<br /><div class="weekDays-selector">';
-                echo '<input type="checkbox" id="weekday-mon" class="weekday" />';
-                echo '<label for="weekday-mon">Mon</label>';
-                echo '<input type="checkbox" id="weekday-tue" class="weekday" />';
-                echo '<label for="weekday-tue">Tue</label>';
-                echo '<input type="checkbox" id="weekday-wed" class="weekday" />';
-                echo '<label for="weekday-wed">Wed</label>';
-                echo '<input type="checkbox" id="weekday-thu" class="weekday" />';
-                echo '<label for="weekday-thu">Thur</label>';
-                echo '<input type="checkbox" id="weekday-fri" class="weekday" />';
-                echo '<label for="weekday-fri">Fri</label>';
-                echo '<input type="checkbox" id="weekday-sat" class="weekday" />';
-                echo '<label for="weekday-sat">Sat</label>';
-                echo '<input type="checkbox" id="weekday-sun" class="weekday" />';
-                echo '<label for="weekday-sun">Sun</label>';
-                echo '</div><br />';
-                print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn1\">Submit</button> \n";
-                print " </div>\n";
-                print"      </div> \n";
-                print"      </div> \n";
+                                print" </div> \n";
+                                
+                                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo1\">Schedule Regular Walks</button>\n";
+                                
+                                print"      </div> \n";
+                                print"      </div> \n";
+                                print "     <div class=\"col-sm-6\">\n";
+                                print "     <div class=\"form-group\"> \n";
+                                print" <div class=\"col-10\">\n";
+                                echo "<div class=\"form-group\">\n";
+                echo "  <label for=\"sel1\">Drop-Off:</label>\n";
+                echo "  <select class=\"form-control\" id=\"sel1\" name=\"dropoff\">\n";
+                echo "    <option>Please select time</option>\n";
+                echo "    <option>00:00</option>\n";
+                echo "    <option>01.00</option>\n";
+                echo "    <option>02.00</option>\n";
+                echo "    <option>03.00</option>\n";
+                echo "    <option>04.00</option>\n";
+                echo "    <option>05.00</option>\n";
+                echo "    <option>06.00</option>\n";
+                echo "    <option>07.00</option>\n";
+                echo "    <option>08.00</option>\n";
+                echo "    <option>09.00</option>\n";
+                echo "    <option>10.00</option>\n";
+                echo "    <option>11.00</option>\n";
+                echo "    <option>12.00</option>\n";
+                echo "    <option>13.00</option>\n";
+                echo "    <option>14.00</option>\n";
+                echo "    <option>15.00</option>\n";
+                echo "    <option>16.00</option>\n";
+                echo "    <option>17.00</option>\n";
+                echo "    <option>18.00</option>\n";
+                echo "    <option>19.00</option>\n";
+                echo "    <option>20.00</option>\n";
+                echo "    <option>21.00</option>\n";
+                echo "    <option>22.00</option>\n";
+                echo "    <option>23.00</option>\n";
+                echo "    <option>24.00</option>\n";
+                echo "  </select>\n";
+                echo "</div>";
 
+                print" </div> \n";
+                print" <button type=\"submit\" class=\"btn btn-primary becWalkerBtn\" name=\"findwalker\">Find a Walker Now!</button> \n";
+                print"      </div> \n";
+                print"      </div> \n";
+                print"      </form> \n";
+                print "                    <div class=\"row\">\n";
+                print "                    <div class=\"col-sm-12\">\n";
+                print "             <div class=\"collapse\" id=\"demo1\">\n";
+                echo '<form method="POST">';
+                echo '<br /><div class="weekDays-selector">';
+                echo '<div class="lowerDashAlign">';
+                echo '<input type="checkbox" id="weekday-mon" class="weekday" name="mon" />';
+                echo '<label for="weekday-mon">Mon</label>';
+                echo '<input type="checkbox" id="weekday-tue" class="weekday" name="tue"/>';
+                echo '<label for="weekday-tue">Tue</label>';
+                echo '<input type="checkbox" id="weekday-wed" class="weekday" name="wed" />';
+                echo '<label for="weekday-wed">Wed</label>';
+                echo '<input type="checkbox" id="weekday-thu" class="weekday" name="thu" />';
+                echo '<label for="weekday-thu">Thur</label>';
+                echo '<input type="checkbox" id="weekday-fri" class="weekday" name="fri" />';
+                echo '<label for="weekday-fri">Fri</label>';
+                echo '<input type="checkbox" id="weekday-sat" class="weekday" name="sat" />';
+                echo '<label for="weekday-sat">Sat</label>';
+                echo '<input type="checkbox" id="weekday-sun" class="weekday" name="sun" />';
+                echo '<label for="weekday-sun">Sun</label>';
+                echo '</div>';
+                echo "<div class=\"form-group\">\n";
+                echo "<div class=\"col-sm-6\">\n";
+                echo "  <label for=\"sel1\">Pick-Up Time:</label>\n";
+                echo "  <select class=\"form-control\" id=\"sel1\" name = \"pickup1\">\n";
+                echo "    <option>Please select time</option>\n";
+                echo "    <option>ASAP</option>\n";
+                echo "    <option>00:00</option>\n";
+                echo "    <option>01.00</option>\n";
+                echo "    <option>02.00</option>\n";
+                echo "    <option>03.00</option>\n";
+                echo "    <option>04.00</option>\n";
+                echo "    <option>05.00</option>\n";
+                echo "    <option>06.00</option>\n";
+                echo "    <option>07.00</option>\n";
+                echo "    <option>08.00</option>\n";
+                echo "    <option>09.00</option>\n";
+                echo "    <option>10.00</option>\n";
+                echo "    <option>11.00</option>\n";
+                echo "    <option>12.00</option>\n";
+                echo "    <option>13.00</option>\n";
+                echo "    <option>14.00</option>\n";
+                echo "    <option>15.00</option>\n";
+                echo "    <option>16.00</option>\n";
+                echo "    <option>17.00</option>\n";
+                echo "    <option>18.00</option>\n";
+                echo "    <option>19.00</option>\n";
+                echo "    <option>20.00</option>\n";
+                echo "    <option>21.00</option>\n";
+                echo "    <option>22.00</option>\n";
+                echo "    <option>23.00</option>\n";
+                echo "    <option>24.00</option>\n";
+                echo "  </select>\n";
+                echo "</div>";
+               
+                echo "<div class=\"col-sm-6\">\n";
+                echo "<div class=\"form-group\">\n";
+                echo "  <label for=\"sel1\">Drop-Off Time:</label>\n";
+                echo "  <select class=\"form-control\" id=\"sel1\" name=\"dropoff1\">\n";
+                echo "    <option>Please select time</option>\n";
+                echo "    <option>00:00</option>\n";
+                echo "    <option>01.00</option>\n";
+                echo "    <option>02.00</option>\n";
+                echo "    <option>03.00</option>\n";
+                echo "    <option>04.00</option>\n";
+                echo "    <option>05.00</option>\n";
+                echo "    <option>06.00</option>\n";
+                echo "    <option>07.00</option>\n";
+                echo "    <option>08.00</option>\n";
+                echo "    <option>09.00</option>\n";
+                echo "    <option>10.00</option>\n";
+                echo "    <option>11.00</option>\n";
+                echo "    <option>12.00</option>\n";
+                echo "    <option>13.00</option>\n";
+                echo "    <option>14.00</option>\n";
+                echo "    <option>15.00</option>\n";
+                echo "    <option>16.00</option>\n";
+                echo "    <option>17.00</option>\n";
+                echo "    <option>18.00</option>\n";
+                echo "    <option>19.00</option>\n";
+                echo "    <option>20.00</option>\n";
+                echo "    <option>21.00</option>\n";
+                echo "    <option>22.00</option>\n";
+                echo "    <option>23.00</option>\n";
+                echo "    <option>24.00</option>\n";
+                echo "  </select>\n";
+                echo "</div>";
+                print " </div>\n";
+                print " <div class=\"row\">\n";
+                print" <button type=\"submit\" class=\"btn btn-primary submitDashAlign\" name=\"submit_Btn1\">Submit</button> \n";
+                print" </div>\n";
+                print " </div>\n";
+               
+                print"      </div> \n";
+                print"      </div> \n";
+                 echo '</form>';
 
                 print "                </div>\n";
                 print "            </div>\n";
@@ -428,8 +576,46 @@
                 print"    </div> \n";
                 print" <button type=\"submit\" class=\"btn btn-primary\" name=\"submit_Btn\">Submit</button> \n";
                 print" </form>";
+                
                 print " </div>\n";
+                
                 print "</div>\n";
+                echo "<div class=\"col-sm-8\">\n";
+                print "         <div class=\"collapse\" id=\"demo2\">\n";
+                
+               $persons6 = ("SELECT user_id, first_name, phone_number, addr2, profile_image_url FROM walkies_web.users WHERE walker = 'Y';");
+               $result6 = mysqli_query($conn, $persons6); 
+                
+                foreach($result6 as $row6){
+		 	            $table = '';
+		 	            $line1 =    '<div class="row" id="credentials">' ;
+						$line2 =	'<div class="col-sm-4" ><img src="'.$row6[profile_image_url] .'" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
+						$line3 =    '<div class="col-sm-4" >  ' ;
+						$line4 =	'<h1>' .  $row6[first_name]   . '</h6>' ;
+						$line5 =    '<h4><span class="glyphicon glyphicon-earphone one" style="width:50px;">' . " " .$row6[phone_number]  .'</h4>' ;
+						$line6 =	'<h4><span class="glyphicon glyphicon-map-marker one" style="width:50px;">'. "  ". $row6[addr2]  .'</h4>' ;
+						$line7 =	'</div>' ;
+						$line8 =	'<div class="col-sm-4"> ' ;
+						$line9 =	'<h6></h6>' ;
+						$line10 =	'<h6></h6>' ;
+						$line11 =  '<h6>
+										  <div class="butt" data-toggle="buttons">
+                                          <label class="btn btn-lg btn-success active" id="butt">
+										  <input type="radio" name="options" id="option1" autocomplete="off" checked>
+										  <i class="fa fa-check" id="butt"></i>Job Taken                                         </label>
+                                          <label class="btn btn-lg btn-danger" id="butt">
+                                          <input type="radio" name="options" id="option2" autocomplete="off">
+                                          <i  id="butt"></i>'. " &nbsp €12 &nbsp  " .'</label></div>  	  									
+										  </h6>' ;
+						$line12 =	  '</div>' ;
+					    $line13 =   '</div>';
+                        
+                        $table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
+                         echo $table;
+							}
+                
+                print "        </div>\n";
+                print "        </div>\n";
                 print "        </section>";
                 
                
@@ -445,8 +631,8 @@
 					$_SESSION['zip'] = $_POST['zip'];
 					$_SESSION['gender'] = $_POST['gender'];
 				
-                    $sql = "INSERT INTO walkies_web.users (user_email, first_name, last_name, gender, date_of_birth, addr1, addr2, zip, phone_number, walker)
-                    VALUES ('{$_SESSION['email']}', '{$_SESSION['fname']}', '{$_SESSION['lname']}', '{$_SESSION['gender']}','{$_SESSION['dob']}', '{$_SESSION['addr1']}','{$_SESSION['addr2']}', '{$_SESSION['zip']}','{$_SESSION['phone']}', 'N' )";
+                    $sql = "INSERT INTO walkies_web.users (user_email, first_name, last_name, gender, date_of_birth, addr1, addr2, zip, phone_number,profile_image_url, walker)
+                    VALUES ('{$_SESSION['email']}', '{$_SESSION['fname']}', '{$_SESSION['lname']}', '{$_SESSION['gender']}','{$_SESSION['dob']}', '{$_SESSION['addr1']}','{$_SESSION['addr2']}', '{$_SESSION['zip']}','{$_SESSION['phone']}','$profile_image_url', 'N' )";
                     
                     if ($conn->query($sql) === TRUE) {
                        
@@ -454,6 +640,86 @@
                         echo "Error: Technical Difficulties!! " . $sql . "<br>" . $conn->error;
                     }
             
+					
+					
+                   }
+                   
+                                if(isset($_POST['findwalker']))
+                  {
+                	$_SESSION['pickup'] = $_POST['pickup'];
+                    $_SESSION['dropoff'] = $_POST['dropoff'];
+					$_SESSION['walklocation'] = $_POST['location'];
+					$_SESSION['price'] = $_POST['price'];
+				
+                    $sql = "INSERT INTO walkies_web.walk_now (user_id, first_name, addr1, pickup, dropoff, price, search_status)
+                    VALUES ($user_id, '$firstname', '{$_SESSION['walklocation']}', '{$_SESSION['pickup']}','{$_SESSION['dropoff']}','{$_SESSION['price']}', 'Y' )";
+                    
+                    if ($conn->query($sql) === TRUE) {
+                       
+                    } else {
+                        echo "Error: Technical Difficulties!! " . $sql . "<br>" . $conn->error;
+                    }
+            
+					
+					
+                   }
+                   
+                   if(isset($_POST['submit_Btn1']))
+                  {
+                      
+                    $_SESSION['pickup1'] = $_POST['pickup1'];
+                    $_SESSION['dropoff1'] = $_POST['dropoff1'];
+				    if (isset($_POST['mon'])){
+				        $mon = 'Y';
+				    }
+				    else{
+				        $mon = 'N';
+				    }
+				    if (isset($_POST['tue'])){
+				        $tue = 'Y';
+				    }
+				    else{
+				        $tue = 'N';
+				    }
+				    if (isset($_POST['wed'])){
+				        $wed = 'Y';
+				    }
+				    else{
+				        $wed = 'N';
+				    }
+				    if (isset($_POST['thu'])){
+				        $thu = 'Y';
+				    }
+				    else{
+				        $thu = 'N';
+				    }
+				    if (isset($_POST['fri'])){
+				        $fri = 'Y';
+				    }
+				    else{
+				        $fri = 'N';
+				    }
+				    if (isset($_POST['sat'])){
+				        $sat = 'Y';
+				    }
+				    else{
+				        $sat = 'N';
+				    }
+				    if (isset($_POST['sun'])){
+				        $sun = 'Y';
+				    }
+				    else{
+				        $sun = 'N';
+				    }
+                    
+                    $sql = "INSERT INTO walkies_web.regular_walks (user_id, first_name, mon, tue, wed, thu, fri, sat, sun,pickup, dropoff, walk_status)
+                    VALUES ($user_id, '$firstname', '$mon', '$tue','$wed', '$thu', '$fri', '$sat', '$sun','{$_SESSION['pickup1']}','{$_SESSION['dropoff1']}','Y' )";
+                    
+                    if ($conn->query($sql) === TRUE) {
+                       
+                    } else {
+                        echo "Error: Technical Difficulties!! " . $sql . "<br>" . $conn->error;
+                    }
 					
 					
                    }

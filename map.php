@@ -85,10 +85,11 @@
                         <!-- Connect To Database  -->
 <?php
 
-$address = ("SELECT first_name, addr1, addr2, zip FROM walkies_web.users;");
+$address = ("SELECT addr1, addr2, zip FROM walkies_web.users;");
 $addResult = mysqli_query($conn, $address);
 
-$persons = ("SELECT first_name, phone_number, addr2 FROM walkies_web.users WHERE walker = 'Y';");
+
+$persons = ("SELECT user_id, first_name, phone_number, addr2, profile_image_url FROM walkies_web.users WHERE walker = 'Y';");
 $result = mysqli_query($conn, $persons);
 
 ?>
@@ -105,15 +106,20 @@ $result = mysqli_query($conn, $persons);
 <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title>Walkies - Map</title>
+    
+   
+    
+
   
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 	
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
@@ -144,8 +150,8 @@ $result = mysqli_query($conn, $persons);
 
 
 <script type="text/javascript" src="map.js">
-    var addResult = JSON.parse( '<?php echo json_encode($addResult) ?>' );
-    alert( addResult[0][1])
+    //var addResult = JSON.parse( '<?php echo json_encode($addResult) ?>' );
+    //alert( addResult[0][1])
 </script>
       
       <!-- Map Shit Above-->
@@ -166,29 +172,36 @@ $result = mysqli_query($conn, $persons);
 * {
     box-sizing: border-box;
 }
+
 body {
     margin: 0;	
-}
-#logo{
-	padding: 20px;
-	border: none;
 }
 #content{
 	overflow: auto;	
 	height:500px;
-	background-color: white;
 	display: inline;
+    background-color: #F0FFF0;
+	
 }
+
+
 #profile{
-	align:center;
-	margin:10%;	
-	padding-top:5%;	
-	border: 1px solid black;
+    float:left;
+	margin-top:10%;	
+	border-radius: 5px;
+	border: solid 1px #00aced;
+	
 }
 #credentials{
 	overflow: hidden;
-	border: 1px solid white;
-	margin:0;
+    margin: 2%;
+	padding : 2%;
+    border: solid 1px #00aced;
+	background-color: #DCDCDC;
+	border-radius: 4px;
+	border-left: 20px solid #00aced;
+	box-shadow: 5px 5px 2px #888888;
+	
 }
 @media (max-width: 40em) {
 #content , #nav{
@@ -204,7 +217,7 @@ padding-top: 150%;
 }
 }
 #mainrow{
-	border-top: solid 1px grey;
+	border-top: solid 1px white;
 }
 
 h6{
@@ -214,8 +227,66 @@ h6{
 map{
 	display: inline;
 }
-</style>
 
+
+h1, h4 {
+text-align: left;
+color: #00aced;
+text-shadow: 1px 1px white;
+white-space: nowrap;
+padding: 2%;
+
+}
+
+.btn.active {                
+	display: none;	
+	 border: solid 1px #00aced;	
+}
+
+.btn span:nth-of-type(1)  {            	
+	display: none;
+}
+.btn span:last-child  {            	
+	display: block;		
+}
+
+.btn.active  span:nth-of-type(1)  {            	
+	display: block;	
+	
+}
+.btn.active span:last-child  {            	
+	display: none;		
+		
+}
+
+
+
+ </style>
+
+           <?php
+           ini_set('error_reporting', E_STRICT);
+           
+                
+                        $data = array();
+                         foreach($addResult as $add){
+                             
+                             $addData = array($addr->adr1 = $add[addr1], $addr->adr2 = $add[addr2], $addr->adr3 = $add[zip]);
+                            
+                            //$addr->adr1 = $add[addr1];
+                            //$addr->adr2 = $add[addr2];
+                            //$addr->adr3 = $add[zip];
+                            $data[] = (array('address' => $addData));
+                            
+                         }
+                         $myJSON =  json_encode($data);
+                       ($myJSON);
+                        ?>
+                        
+                        <script>var address = JSON.parse('<?php echo $myJSON; ?>');
+                            
+                            
+                            </script>
+               
 
 </head>
 
@@ -247,7 +318,10 @@ map{
                             ?>
                 </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="About.php">About</a>
+                    </li>
+                                        <li>
+                        <a class="page-scroll" href="map.php">Map</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
@@ -285,69 +359,51 @@ map{
 	  
 	  
 	 <div class="row" style="text-align: center" id="mainrow">
-        <div class="col-md-6" id="content" style="height:600px"; >
+        <div class="col-md-6" id="content" style="height:100%"; >
 			<div class="container-fluid">
-			    
-			<h1>Walkers</h1> <!-- Start of new Profile Container -->
-
-					 <?php
-            		 	foreach($result as $row){
+			    <div id="imageDIV">
+			<!--    "../img/generic2.png"     -->
+			 <!-- Start of new Profile Container -->
+                    <form method="POST">
+						<?php
+            		foreach($result as $row){
 		 	            $table = '';
 		 	            $line1 =    '<div class="row" id="credentials">' ;
-						$line2 =	'<div class="col-sm-4" ><img src="../img/generic.png" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
+						$line2 =	'<div class="col-sm-4" ><img src="'.$row[profile_image_url] .'" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
 						$line3 =    '<div class="col-sm-4" >  ' ;
-						$line4 =	'<hr><h6><em>Name:</h6><hr>' ;
-						$line5 =    '<h6>Phone:</h6><hr>' ;
-						$line6 =	'<h6>Location:</h6>' ;
+						$line4 =	'<h1>' .  $row[first_name]   . '</h6>' ;
+						$line5 =    '<h4><span class="glyphicon glyphicon-earphone one" style="width:50px;">' . " " .$row[phone_number]  .'</h4>' ;
+						$line6 =	'<h4><span class="glyphicon glyphicon-map-marker one" style="width:50px;">'. "  ". $row[addr2]  .'</h4>' ;
 						$line7 =	'</div>' ;
 						$line8 =	'<div class="col-sm-4"> ' ;
-						$line9 =	'<hr><h6>'. $row[first_name] .'</h6><hr>' ;
-						$line10 =	'<h6>'. $row[phone_number] .'</h6><hr>' ;
-						$line11 =   '<h6>'. $row[addr2] .'</h6>' ;
-						$line12 =	'</div>' ;
+						$line9 =	'<h6></h6>' ;
+						$line10 =	'<h6></h6>' ;
+						$line11 =  '<h6>
+										  <div class="butt" data-toggle="buttons">
+                                          <label class="btn btn-lg btn-success active" id="butt">
+										  <input type="radio" name="options" id="option1" autocomplete="off" checked>
+										  <i class="fa fa-check" id="butt"></i>Job Taken                                         </label>
+                                          <label class="btn btn-lg btn-danger" id="butt">
+                                          <input type="radio" name="options" id="option2" autocomplete="off">
+                                          <i  id="butt"></i>'. " &nbsp €12 &nbsp  " .'</label></div>  	  									
+										  </h6>' ;
+						$line12 =	  '</div>' ;
 					    $line13 =   '</div>';
                         
                         $table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
                          echo $table;
-                        }
+							}
                          ?> 
-                         <?php
-                            foreach($addResult as $add)
-                            $addr1 = $add[addr1];
-                            $addr2 = $add[addr2];
-                            $addr3 = $add[zip];
-                            $fullAdd = $addr1. ', ' .$addr2. ', ' .$addr3;
-                            echo $fullAdd;
-                         ?>
-                         <?php
-                         foreach($addResult as $add){
-                            $addr->adr1 = $add[addr1];
-                            $addr->adr2 = $add[addr2];
-                            $addr->adr3 = $add[zip];
-                            
-                            $myJSON = json_encode($addr);
-                            
-                            echo $myJSON;
-                         }
-                            ?>
-                
-                
-                        <script type="text/javascript">
-                        
-                        
-                        var address = JSON.parse('<?php echo $myJSON; ?>');
-                        console.log(address.adr1);
-                        
+                         </form>
                          
-                        </script>
- 
+
                          
                          
-                   
+                  </div> <!-- End of image div --> 
             </div> <!-- end of container -->
 		</div>
 		
-        <div class="col-md-6" id="map" style="height:600px;"></div>    <!-- The Map Div -->
+        <div class="col-md-6" id="map" style="height:100%;"></div>    <!-- The Map Div -->
         
       </div><!-- End Of Main Row -->
    </div>  
@@ -360,11 +416,11 @@ map{
    
 	
 	<!-- Footer -->
-    <footer class="footer">
-    <div class="container">
-      <span class="text-muted">RecApp Team 2017</span>
-    </div>
-  </footer>
+    <!--<footer class="footer">-->
+    <!--<div class="container">-->
+    <!--  <span class="text-muted">RecApp Team 2017</span>-->
+    <!--</div>-->
+    <!--</footer>-->
   
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>

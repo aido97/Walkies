@@ -198,17 +198,13 @@
 
 		<div class="row omb_row-sm-offset-3 omb_loginOr">
 			<div class="col-xs-12 col-sm-6">
-				<hr class="omb_hrOr">
-				<span class="omb_spanOr">or</span>
+			
 			</div>
 		</div>
 
 		<div class="row omb_row-sm-offset-3 omb_socialButtons">
 			<div class="col-xs-12 col-sm-6">	
-			      <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
-			        <i class="fa fa-facebook visible-xs"></i>
-			        <span class="hidden-xs">Facebook</span>
-		        </a>
+			     
 			</div>
     	</div>
                 </div>
