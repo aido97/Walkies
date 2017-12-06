@@ -24,6 +24,29 @@
     </style>
   </head>
   <body>
+    
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+}
+</script>
     <select id="start">
       
     </select>
@@ -119,7 +142,28 @@
         var addressOne, addressTwo, addressThree;
         var totalPoints = 3;
         
-        /*global $*/ $.getJSON("https://cors.io/?https://maps.googleapis.com/maps/api/distancematrix/json?origins=53.341665,-6.229011|53.341865,-6.234095|53.342455,-6.238445&destinations=53.341665,-6.229011|53.341865,-6.234095|53.342455,-6.238445&mode=walking&language=en-FR&key=AIzaSyDAriR3Q9YW866bSWTMkqXNlxOzPGsBiHU", function(json) {
+        /*var long_Origin;
+        var lat_Origin;
+        var long_Dest;
+        var lat_Dest;
+        var queryString;
+        
+        for(var i=0; i < array.length;i++){
+          
+          long_Origin = array[i][0];
+          lat_Origin;????
+          long_Dest;???
+          lat_Dest;
+          queryString = "https://cors.io/?https://maps.googleapis.com/maps/api/distancematrix/json?origins="+lat_Origin+","+lon_Origin+&destinations="+lat_Dest+","+long_Dest+"&mode=walking&language=en-FR&key=AIzaSyDAriR3Q9YW866bSWTMkqXNlxOzPGsBiHU";
+          
+          //invoke the test and store the result.....
+          
+        }*/
+        
+        
+        
+//        var queryString = "https://cors.io/?https://maps.googleapis.com/maps/api/distancematrix/json?origins="+lat_Origin+","+lon_Origin+&destinations="+lat_Dest+","+long_Dest+"&mode=walking&language=en-FR&key=AIzaSyDAriR3Q9YW866bSWTMkqXNlxOzPGsBiHU";
+        /*global $*/ $.getJSON("http://cors-proxy.htmldriven.com/?url=https://maps.googleapis.com/maps/api/distancematrix/json?origins=53.341665,-6.229011|53.341865,-6.234095|53.342455,-6.238445&destinations=53.341665,-6.229011|53.341865,-6.234095|53.342455,-6.238445&mode=walking&language=en-FR&key=AIzaSyDAriR3Q9YW866bSWTMkqXNlxOzPGsBiHU", function(json) {
             
             dataType: 'jsonp'
             

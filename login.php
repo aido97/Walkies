@@ -219,7 +219,7 @@
 	<!-- Footer -->
 	<footer class="footer">
     <div class="container">
-      <span class="text-muted">RecApp Team 2017</span>
+      <span class="text-muted">Team Melon 2017</span>
     </div>
   </footer>
 

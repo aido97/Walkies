@@ -106,7 +106,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-ZP4p890L8n7KAYavEwylBzyQIBVDLzw&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-ZP4p890L8n7KAYavEwylBzyQIBVDLzw&callback=initToday's Route">
     </script>
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
@@ -118,7 +118,7 @@
 	  <!-- Custom CSS -->
   <link href="css/style.css" rel="stylesheet">
       
-      <!-- Map Shit Below-->
+      <!-- Today's Route Shit Below-->
       
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -184,7 +184,7 @@
                         <a class="page-scroll" href="#about">About</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="map.php">Map</a>
+                        <a class="page-scroll" href="map.php">Today's Route</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
@@ -242,11 +242,11 @@
    
 	
 	<!-- Footer -->
-    <!--<footer class="footer">-->
-    <!--<div class="container">-->
-    <!--  <span class="text-muted">RecApp Team 2017</span>-->
-    <!--</div>-->
-    <!--</footer>-->
+    <footer class="footer">
+    <div class="container">
+      <span class="text-muted">Team Melon 2017</span>
+    </div>
+    </footer>
   
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>

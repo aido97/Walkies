@@ -18,3 +18,4 @@ function doalert(checkboxElem) {
     toggle_status();
   }
 }
+

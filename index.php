@@ -144,12 +144,7 @@
      <!-- Custom CSS  -->
      <link href="css/style.css" rel="stylesheet">
      
-     <!-- timepicker links -->
-    <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
-    <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
-    <script type="text/javascript">
-    $('.clockpicker').clockpicker();
-    </script>
+    
      
 	
 
@@ -166,7 +161,18 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload = "toggleCheckbox();">
+    
+    <script>function toggleCheckbox() {
+  var check = document.getElementById("myonoffswitch").checked;
+  if (check) {
+    document.getElementById("findDogsToWalk").style.display = "block";
+  } else {
+    document.getElementById("findDogsToWalk").style.display = "none";
+  }
+  
+}
+</script>
 
     <!-- Navbar -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-notMain">
@@ -193,8 +199,11 @@
                             }
                             ?>
                 </li>
+                <li>
+                        <a class="page-scroll" href="completedwalks.php">Walk History</a>
+                    </li>
                    <li>
-                        <a class="page-scroll" href="map.php">Map</a>
+                        <a class="page-scroll" href="map.php">Today's Route</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="About.php">About</a>
@@ -221,8 +230,8 @@
         <!-- /.container-fluid -->
     </nav>
 
-     <!-- Header -->
     <?php
+        // Logged out main page
             if (isset($authUrl)) {
                 print "<section>\n";                
                 print "<header id = \"front\">\n";
@@ -238,7 +247,7 @@
                 print "    </header>";    
                 print "        </section>";
                 
-
+            // Dashboard for logged in users
             } else {
                 
                 print "<section>\n";
@@ -285,10 +294,11 @@
                 if ($walker == "Y"){
                 echo '<h4><b>Toggle Walker Status</b></h4>';
                 echo '<div class="onoffswitch">';
-                echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onchange="doalert(this)" checked="checked"/>';
+                echo '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onchange="doalert(this)" checked="checked" onclick="toggleCheckbox();"/>';
                 echo '<label class="onoffswitch-label" for="myonoffswitch"></label>';
                 echo '</div>';
-                print "<button type=\"button\" class=\"btn btn-primary upWalkBtn\" data-toggle=\"collapse\" data-target=\"#demo2\">View upcoming walks</button>\n";
+                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo2\">View upcoming walks</button>";
+                print "<button type=\"button\" class=\"btn btn-primary today-route-btn\">Today's Route</button>\n";
 
                 }
                 else if ($walker == "N") {
@@ -304,8 +314,19 @@
                 print "                </div>\n";
                 print "                </div>\n";
                 print "         </div>\n";
+                
+                
                 print "                    <div class=\"col-sm-12 col-md-6\">\n";
                 print "<form id=\"walker_form1\" method=\"POST\" >";
+                 print "                    <div class=\"row\" id = \"findDogsToWalk\">\n";
+                                 print " <h3 id = \"dogs-to-walk\">Find Dogs To Walk</h3>";
+                                  print "<a href = \"map.php\"> <img  src =\"img/dog-walk.png\"></a>";
+                  print "                    </div>\n";
+                
+                 print "                    <div class=\"row\">\n";
+                                 print " <h3>Schedule Walks</h3>";
+
+                  print "                    </div>\n";
                 print "                    <div class=\"row\">\n";
                 print "                    <div class=\"col-sm-6\">\n";
                 print "      <div class=\"form-group\"> \n";
@@ -317,7 +338,7 @@
                 print"      </div> \n";
                 print"      </div> \n";
                 print"      <div class=\"col-sm-6\">\n";
-                print "      <div class=\"form-group\"> \n";
+                print "      <div class=\"form-group\"> \n\n\n";
                 print" <label for=\"example-text-input\" class=\"col- col-form-label\">Walk Price</label> \n";
                 print" <div class=\"col-10\">\n";
                 print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"price\"> \n";
@@ -363,16 +384,16 @@
                 echo "  </select>\n";
                 echo "</div>";
                 
-                                print" </div> \n";
-                                
-                                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo1\">Schedule Regular Walks</button>\n";
-                                
-                                print"      </div> \n";
-                                print"      </div> \n";
-                                print "     <div class=\"col-sm-6\">\n";
-                                print "     <div class=\"form-group\"> \n";
-                                print" <div class=\"col-10\">\n";
-                                echo "<div class=\"form-group\">\n";
+                print" </div> \n";
+                
+                print "<button type=\"button\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo1\">Schedule Regular Walks</button>\n";
+                
+                print"      </div> \n";
+                print"      </div> \n";
+                print "     <div class=\"col-sm-6\">\n";
+                print "     <div class=\"form-group\"> \n";
+                print" <div class=\"col-10\">\n";
+                echo "<div class=\"form-group\">\n";
                 echo "  <label for=\"sel1\">Drop-Off:</label>\n";
                 echo "  <select class=\"form-control\" id=\"sel1\" name=\"dropoff\">\n";
                 echo "    <option>Please select time</option>\n";
@@ -505,6 +526,7 @@
                 print"      </div> \n";
                 print"      </div> \n";
                  echo '</form>';
+                  
 
                 print "                </div>\n";
                 print "            </div>\n";
@@ -512,6 +534,8 @@
                 
                 print "        <div class=\"col-xs-0 col-sm-1 col-md-1\">\n";
                 print "        </div>\n";
+                
+                
                 
                 print "             <div class=\"collapse\" id=\"demo\">\n";
                 print "<form id=\"walker_form\" method=\"POST\" action=\"http://walkies-shaner125.c9users.io/index.php\">";
@@ -580,43 +604,95 @@
                 print " </div>\n";
                 
                 print "</div>\n";
+                  
+                
                 echo "<div class=\"col-sm-8\">\n";
+                
+                
+             
                 print "         <div class=\"collapse\" id=\"demo2\">\n";
-                
-               $persons6 = ("SELECT user_id, first_name, phone_number, addr2, profile_image_url FROM walkies_web.users WHERE walker = 'Y';");
-               $result6 = mysqli_query($conn, $persons6); 
-                
+               
+               
+               
+                $persons6 = ("SELECT user_id, first_name, phone_number, addr1,addr2,zip, profile_image_url, price, pickup, dropoff FROM walkies_web.walk_now WHERE walker_id = $user_id;");
+                $result6 = mysqli_query($conn, $persons6); 
+                $iterator = 0;
+            
+                echo "<form method=\"POST\">\n";
                 foreach($result6 as $row6){
+            	    	
+            	    	
+            	    	
 		 	            $table = '';
 		 	            $line1 =    '<div class="row" id="credentials">' ;
 						$line2 =	'<div class="col-sm-4" ><img src="'.$row6[profile_image_url] .'" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
 						$line3 =    '<div class="col-sm-4" >  ' ;
 						$line4 =	'<h1>' .  $row6[first_name]   . '</h6>' ;
-						$line5 =    '<h4><span class="glyphicon glyphicon-earphone one" style="width:50px;">' . " " .$row6[phone_number]  .'</h4>' ;
-						$line6 =	'<h4><span class="glyphicon glyphicon-map-marker one" style="width:50px;">'. "  ". $row6[addr2]  .'</h4>' ;
+						$line5 =    '<h4><span class="glyphicon glyphicon-earphone" style="width:50px;">' . " " .$row6[phone_number]  .'</h4>' ;
+						$line6 =	'<h4><span class="glyphicon glyphicon-map-marker" >'. "  ". $row6[addr1]  .'</h4>' ;
 						$line7 =	'</div>' ;
 						$line8 =	'<div class="col-sm-4"> ' ;
-						$line9 =	'<h6></h6>' ;
-						$line10 =	'<h6></h6>' ;
-						$line11 =  '<h6>
-										  <div class="butt" data-toggle="buttons">
-                                          <label class="btn btn-lg btn-success active" id="butt">
-										  <input type="radio" name="options" id="option1" autocomplete="off" checked>
-										  <i class="fa fa-check" id="butt"></i>Job Taken                                         </label>
-                                          <label class="btn btn-lg btn-danger" id="butt">
-                                          <input type="radio" name="options" id="option2" autocomplete="off">
-                                          <i  id="butt"></i>'. " &nbsp €12 &nbsp  " .'</label></div>  	  									
+						$line9 =	'<h6>
+										<h4><b>Toggle Walk Complete:</b></h4>
+                                        <div class="onoffswitch">
+                                        <input type="checkbox" name="'.$iterator.'" class="onoffswitch-checkbox" id="myonoffswitch'.$iterator.'" value = "yes" unchecked="unchecked"/>
+                                        <label class="onoffswitch-label" for="myonoffswitch'.$iterator.'"></label>
+                                        </div>  	  									
 										  </h6>' ;
+						$line10 =	'<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Pickup: " .$row6[pickup]  .'</h4>' ;
+						$line11 =   '<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Dropoff: " .$row6[dropoff]  .'</h4>' ;
 						$line12 =	  '</div>' ;
 					    $line13 =   '</div>';
-                        
+                        $iterator++;
                         $table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
-                         echo $table;
+                           
+                            echo $table;
+
+                            
 							}
+							
+							if ($table != ""){
+							    print" <button type=\"submit\" class=\"btn btn-primary submitDashAlign\" name=\"complete_walks\">MARK WALKS COMPLETE</button> \n";
+							}
+							else{
+							    echo    '<img src="http://huggedandkissed.org/wp-content/uploads/2016/01/nojob-nomoney.jpg" alt="" width="500" height="377">';
+							}
+                            echo    "</form>\n";
                 
                 print "        </div>\n";
                 print "        </div>\n";
                 print "        </section>";
+                
+                if(isset($_POST['complete_walks']))
+                  {
+                      
+                    $myDate = date('Y-m-d');
+                    $i = 0;
+                    foreach($result6 as $row1){
+                        echo $myDate;
+                        echo $row1[first_name];
+
+                    if($_POST[$i] == "yes"){
+                           $sql = "INSERT INTO walkies_web.walks_completed (user_id, first_name, addr1, pickup, dropoff, price, phone_number,profile_image_url,date_completed, walker_id)
+                            VALUES ('$row1[user_id]', '$row1[first_name]', '$row1[addr1]', '$row1[pickup]','$row1[dropoff]','$row1[price]','$row1[phone_number]', '$row1[profile_image_url]',$myDate, $user_id)";
+                	        $sql1 ="DELETE FROM walkies_web.walk_now where user_id = '$row1[user_id]'";
+
+                        if ($conn->query($sql) === TRUE) {
+
+                        } else {
+                            echo "Error updating record: " . $conn->error;
+                        }
+                        if ($conn->query($sql1) === TRUE) {
+                            echo "Records updated successfully";
+                        } else {
+                            echo "Error updating record: " . $conn->error;
+                        }
+                        
+                    }
+                    $i++;
+                    }
+                         echo "<meta http-equiv='refresh' content='0'>";  
+                    }
                 
                
                                if(isset($_POST['submit_Btn']))
@@ -641,7 +717,7 @@
                     }
             
 					
-					
+					echo "<meta http-equiv='refresh' content='0'>";
                    }
                    
                                 if(isset($_POST['findwalker']))
@@ -651,11 +727,11 @@
 					$_SESSION['walklocation'] = $_POST['location'];
 					$_SESSION['price'] = $_POST['price'];
 				
-                    $sql = "INSERT INTO walkies_web.walk_now (user_id, first_name, addr1, pickup, dropoff, price, search_status)
-                    VALUES ($user_id, '$firstname', '{$_SESSION['walklocation']}', '{$_SESSION['pickup']}','{$_SESSION['dropoff']}','{$_SESSION['price']}', 'Y' )";
+                    $sql = "INSERT INTO walkies_web.walk_now (user_id, first_name, addr1,addr2,zip, pickup, dropoff, price, phone_number,profile_image_url, search_status)
+                    VALUES ($user_id, '$firstname', '{$_SESSION['walklocation']}','{$_SESSION['addr2']}','{$_SESSION['zip']}', '{$_SESSION['pickup']}','{$_SESSION['dropoff']}','{$_SESSION['price']}','$phone', '$profile_image_url', 'Y')";
                     
                     if ($conn->query($sql) === TRUE) {
-                       
+
                     } else {
                         echo "Error: Technical Difficulties!! " . $sql . "<br>" . $conn->error;
                     }
@@ -734,7 +810,7 @@
 	<!-- Footer -->
 	<footer class="footer">
     <div class="container">
-      <span class="text-muted">RecApp Team 2017</span>
+      <span class="text-muted">Team Melon 2017</span>
     </div>
   </footer>
 

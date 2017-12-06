@@ -1,12 +1,4 @@
-			<script src="js/tsp.js"></script>
-    		<script src="js/algorithm.js"></script>
-    		    		<script src="js/geoLocate.js"></script>
-
-    		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 <?php
-
-
 
     /* DEGBUG PURPOSES ONLY REMOVE BEFORE DEPLOY!!! */
     ini_set('display_errors', 1);
@@ -18,7 +10,9 @@
     * define the constants client id,secret and redirect url
     * start the session
     */
-    require_once('data_config.php');
+    
+     
+     require_once('data_config.php'); 
     require_once __DIR__.'/gplus-lib/vendor/autoload.php';
     const CLIENT_ID = '816147898187-gkupsk1p28hk8346tkglf3d5qqohkp0o.apps.googleusercontent.com';
     const CLIENT_SECRET = 'adMd4PX4D6NMMLeZlGTmK-x-';
@@ -84,79 +78,42 @@
         $cover_image_url = $me['cover']['coverPhoto']['url'];
         $profile_url = $me['url'];
         
+        $user_id = $_SESSION['user_id'];
     } else {
         // get the login url   
         $authUrl = $client->createAuthUrl();
     }
-?>
-                      
-<?php
-
-$address = ("SELECT addr1, addr2, zip FROM walkies_web.walk_now where search_status = 'Y';");
-$addResult = mysqli_query($conn, $address);
-
-
-$persons = ("SELECT user_id, first_name, phone_number, addr1, profile_image_url, price, pickup, dropoff FROM walkies_web.walk_now WHERE search_status = 'Y';");
-$result = mysqli_query($conn, $persons);
-
-$user_id = $_SESSION['user_id'];
-
-
 ?>
 
 
 <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edg">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Walkies - Today's Route</title>
-    
-   
-    
+    <title>Walkies - Login / Register</title>
 
-  
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 	
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-      <script type="text/javascript" src="js/map.js"></script> 
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-ZP4p890L8n7KAYavEwylBzyQIBVDLzw&callback=initToday's Route">
-    </script>
+
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Theme CSS -->
     <link href="css/creative.min.css" rel="stylesheet">
-	<link rel="icon" href="../img/dogmarker.png" type="image/x-icon" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 
 	  <!-- Custom CSS -->
-  <link href="css/style.css" rel="stylesheet">
-      
-      <!-- Today's Route Shit Below-->
-      
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-
-<script type="text/javascript" src="map.js">
-    //var addResult = JSON.parse( '<?php echo json_encode($addResult) ?>' );
-    //alert( addResult[0][1])
-</script>
-      
-      <!-- Today's Route Shit Above-->
+      <link href="css/style.css" rel="stylesheet">
 
 	
 
@@ -166,67 +123,8 @@ $user_id = $_SESSION['user_id'];
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
-    
-
-<!-- More Styling -->
-<style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;	
-}
-
-
-@media (max-width: 40em) {
-#content , #nav{
-display: none;
-}
-}
-@media (max-width: 40em) {
-#map{
-width:100%;
-height: 100%;
-margin: 0;
-padding-top: 150%;
-}
-}
-
-
-
-
- </style>
- 
-           <!-- Below is transforming a PHP Object to JSON  -->
-           <?php
-           ini_set('error_reporting', E_STRICT);
-                
-                        $data = array();
-                         foreach($addResult as $add){
-                             
-                             $addData = array($addr->adr1 = $add[addr1], $addr->adr2 = $add[addr2], $addr->adr3 = $add[zip]);
-                            
-                            //$addr->adr1 = $add[addr1];
-                            //$addr->adr2 = $add[addr2];
-                            //$addr->adr3 = $add[zip];
-                            $data[] = (array('address' => $addData));
-                            
-                         }
-                         $myJSON =  json_encode($data);
-                       ($myJSON);
-                        ?>
-                        
-                        <script>var address = JSON.parse('<?php echo $myJSON; ?>');
-                            
-                            
-                            </script>
-               
 
 </head>
-<script src="js/tsp.js"></script>
-    <script src="js/algorithm.js"></script>
 
 <body id="page-top">
 
@@ -251,15 +149,13 @@ padding-top: 150%;
                                 echo "<a class='login' href='".$authUrl."'>Login/Register</a>";
                             } else {
                                 print "<a class='page-scroll' href='index.php'>Welcome: {$name}</a>";
-                                
+                                 $persons6 = ("SELECT user_id, first_name, phone_number, addr1,addr2,zip, profile_image_url, price, pickup, dropoff FROM walkies_web.walk_now WHERE walker_id = $user_id;");
+                                $result6 = mysqli_query($conn, $persons6); 
                             }
                             ?>
                 </li>
                     <li>
-                        <a class="page-scroll" href="About.php">About</a>
-                    </li>
-                                        <li>
-                        <a class="page-scroll" href="map.php">Today's Route</a>
+                        <a class="page-scroll" href="#about">About</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
@@ -282,69 +178,41 @@ padding-top: 150%;
         </div>
         <!-- /.container-fluid -->
     </nav>
-
-
-
-   <section>
+    <div class = "row">
+        
+       <div class = "col-sm-0 col-md-2">
+           
+           
+       </div> 
        
-  
-
-
-
-<script>
-var x = document.getElementById("locationErrorSpace");
-
-getLocation();
-showPosition();
-var userDistances = getLocationArray();
-</script>
-       
-       <!--  Insert map here      Insert map here      Insert map here      Insert map here -->
-       
-       <div class="container-fluid" style="text-align: center" id="main">
-     <div class="row" style="text-align: center" id="nav">
-        <div class="col-md-2" ></div>
-        <div class="col-md-10"></div>
-      </div>
-	  
-	  
-	 <div class="row" style="text-align: center" id="mainrow">
-
-        <div class="col-md-6" id="content" style="height:100%"; >
-            	     <p id="locationErrorSpace"></p>
-
-			<div class="container-fluid">
-			    <div id="imageDIV">
-			<!--    "../img/generic2.png"     -->
-			 <!-- Start of new Profile Container -->
-			 
-                    <!--PHP Function below that uses the $person / $result query
-                        and dynamically creates and populates the user information 
-                        on the left section. This includes a form which schedules 
-                        walks  -->
-                        
-						<?php
-						$iterator = 0;
-						echo "<form method=\"POST\">\n";
-            	    	foreach($result as $row){
+        <div class = "col-sm-12 col-md-8">
+           
+           <?php
+    $persons6 = ("SELECT user_id, first_name, addr1,pickup, dropoff, price, phone_number, profile_image_url, date_completed FROM walkies_web.walks_completed WHERE walker_id = $user_id;");
+                $result6 = mysqli_query($conn, $persons6); 
+               
+                foreach($result6 as $row6){
+            	    	
+            	    	
+            	    	
 		 	            $table = '';
 		 	            $line1 =    '<div class="row" id="credentials">' ;
-						$line2 =	'<div class="col-sm-4" ><img src="'.$row[profile_image_url] .'" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
+						$line2 =	'<div class="col-sm-4" ><img src="'.$row6[profile_image_url] .'" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
 						$line3 =    '<div class="col-sm-4" >  ' ;
-						$line4 =	'<h1>' .  $row[first_name]   . '</h6>' ;
-						$line5 =    '<h4><span class="glyphicon glyphicon-earphone one" style="width:50px;">' . " " .$row[phone_number]  .'</h4>' ;
-						$line6 =	'<h4><span class="glyphicon glyphicon-map-marker one" style="width:50px;">'. "  ". $row[addr1]  .'</h4>' ;
+						$line4 =	'<h1>' .  $row6[first_name]   . '</h6>' ;
+						$line5 =    '<h4><span class="glyphicon glyphicon-earphone" style="width:50px;">' . " " .$row6[phone_number]  .'</h4>' ;
+						$line6 =	'<h4><span class="glyphicon glyphicon-map-marker" >'. "  ". $row6[addr1]  .'</h4>' ;
 						$line7 =	'</div>' ;
 						$line8 =	'<div class="col-sm-4"> ' ;
 						$line9 =	'<h6>
-										<h4><b>Price €'.$row[price].'</b></h4>
+										<h4><b>Toggle Walk Complete:</b></h4>
                                         <div class="onoffswitch">
                                         <input type="checkbox" name="'.$iterator.'" class="onoffswitch-checkbox" id="myonoffswitch'.$iterator.'" value = "yes" unchecked="unchecked"/>
                                         <label class="onoffswitch-label" for="myonoffswitch'.$iterator.'"></label>
                                         </div>  	  									
 										  </h6>' ;
-						$line10 =	'<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Pickup: " .$row[pickup]  .'</h4>' ;
-						$line11 =   '<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Dropoff: " .$row[dropoff]  .'</h4>' ;
+						$line10 =	'<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Pickup: " .$row6[pickup]  .'</h4>' ;
+						$line11 =   '<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Dropoff: " .$row6[dropoff]  .'</h4>' ;
 						$line12 =	  '</div>' ;
 					    $line13 =   '</div>';
                         $iterator++;
@@ -354,76 +222,32 @@ var userDistances = getLocationArray();
 
                             
 							}
-							print" <button type=\"submit\" class=\"btn btn-primary submitDashAlign\" name=\"submit_Btn1\">ACCEPT WALKS</button> \n";
-                            echo    "</form>\n";
-                            
-                            
-                                           if(isset($_POST['submit_Btn1']))
-                  {
-                    $i = 0;
-                    foreach($result as $row1){
-                        echo $i;
-
-                    if($_POST[$i] == "yes"){
-                            $sql = "UPDATE walkies_web.walk_now SET walk_now.search_status='N' WHERE user_id = '$row1[user_id]'";
-                	        $sql1 ="UPDATE walkies_web.walk_now SET walk_now.walker_id = '$user_id' where user_id = '$row1[user_id]'";
-
-                        if ($conn->query($sql) === TRUE) {
-                            echo "Records updated successfully";
-                        } else {
-                            echo "Error updating record: " . $conn->error;
-                        }
-                        if ($conn->query($sql1) === TRUE) {
-                            echo "Records updated successfully";
-                        } else {
-                            echo "Error updating record: " . $conn->error;
-                        }
-                        
-                    }
-                    else{
-                        echo "fail!";
-                    }
-                    $i++;
-                    }
-                           
-}
-                	    
-                  
-							
-                         ?> 
-                         
-                         
-                  </div> <!-- End of image div --> 
-            </div> <!-- end of container -->
-		</div>
-		<!-- User section above, Map section below -->
-        <div class="col-md-6" id="map" style="height:100%;"></div>    <!-- The Today's Route Div -->
+    
+    
+    ?> 
+           
+       </div>
+       
+        <div class = "col-sm-0 col-md-2">
+           
+           
+       </div>
         
-      </div><!-- End Of Main Row -->
-   </div>  
-   
-       
-
- 
-    <!--   //  Insert map here      Insert map here      Insert map here      Insert map here -->
-       
-   </section>
-   
+        
+    </div>
+                       
+                
 	
+
 	<!-- Footer -->
-    <footer class="footer">
+	<footer class="footer">
     <div class="container">
       <span class="text-muted">Team Melon 2017</span>
     </div>
-    </footer>
-  
+  </footer>
+
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
-    <script>
-        
-    
-
-    </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -435,7 +259,7 @@ var userDistances = getLocationArray();
 
     <!-- Theme JavaScript -->
     <script src="js/creative.min.js"></script>
-    
+
 </body>
 
 </html>

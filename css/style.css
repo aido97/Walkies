@@ -10,6 +10,9 @@
      margin-bottom: 10px !important;
 
 }
+.today-route-btn {
+    margin-left: 15px !important;
+}
 
 .lowerDashAlign{
      margin: 10px !important;
@@ -104,7 +107,9 @@ display: block;
 line-height: 1.428571429;
 color: #999;
 }
-
+#dogs-to-walk{
+    margin-top: 0px !important;
+}
 #dashboard{
 	margin-top: 70px;
 }
@@ -160,4 +165,73 @@ color: #999;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label:before {
     right: 0px; 
+}
+#credentials{
+	overflow: hidden !important;
+    margin: 2% !important;
+	padding : 1% !important;
+    border: solid 1px #00aced !important;
+	background-color: #DCDCDC !important;
+	border-radius: 4px !important;
+	border-left: 20px solid #00aced !important;
+	box-shadow: 5px 5px 2px #888888 !important;
+}
+
+map{
+	display: inline !important;
+}
+#mainrow{
+	border-top: solid 1px white !important;
+}
+
+h6{
+	display:block !important;	
+	font-weight: bold !important;
+}
+
+
+h1, h4 {
+text-align: left !important;
+color: #00aced !important;
+text-shadow: 1px 1px white !important;
+padding: 2% !important;
+
+}
+
+.btn.active {                
+	display: none !important;	
+	 border: solid 1px #00aced !important;	
+}
+
+.btn span:nth-of-type(1)  {            	
+	display: none !important;
+}
+.btn span:last-child  {            	
+	display: block !important;		
+}
+
+.btn.active  span:nth-of-type(1)  {            	
+	display: block !important;	
+	
+}
+.btn.active span:last-child  {            	
+	display: none !important;		
+		
+}
+
+#content{
+	overflow: auto;	
+	height:500px;
+	display: inline;
+    background-color: #F0FFF0;
+	
+}
+
+
+#profile{
+    float:left;
+	margin-top:10%;	
+	border-radius: 5px;
+	border: solid 1px #00aced;
+	
 }

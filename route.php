@@ -105,6 +105,14 @@ $user_id = $_SESSION['user_id'];
 ?>
 
 
+
+
+
+
+
+
+
+
 <head>
 
     <meta charset="utf-8">
@@ -198,10 +206,10 @@ padding-top: 150%;
 
 
  </style>
- 
-           <!-- Below is transforming a PHP Object to JSON  -->
+
            <?php
            ini_set('error_reporting', E_STRICT);
+           
                 
                         $data = array();
                          foreach($addResult as $add){
@@ -310,97 +318,13 @@ var userDistances = getLocationArray();
 	  
 	 <div class="row" style="text-align: center" id="mainrow">
 
-        <div class="col-md-6" id="content" style="height:100%"; >
-            	     <p id="locationErrorSpace"></p>
 
-			<div class="container-fluid">
-			    <div id="imageDIV">
-			<!--    "../img/generic2.png"     -->
-			 <!-- Start of new Profile Container -->
-			 
-                    <!--PHP Function below that uses the $person / $result query
-                        and dynamically creates and populates the user information 
-                        on the left section. This includes a form which schedules 
-                        walks  -->
-                        
-						<?php
-						$iterator = 0;
-						echo "<form method=\"POST\">\n";
-            	    	foreach($result as $row){
-		 	            $table = '';
-		 	            $line1 =    '<div class="row" id="credentials">' ;
-						$line2 =	'<div class="col-sm-4" ><img src="'.$row[profile_image_url] .'" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
-						$line3 =    '<div class="col-sm-4" >  ' ;
-						$line4 =	'<h1>' .  $row[first_name]   . '</h6>' ;
-						$line5 =    '<h4><span class="glyphicon glyphicon-earphone one" style="width:50px;">' . " " .$row[phone_number]  .'</h4>' ;
-						$line6 =	'<h4><span class="glyphicon glyphicon-map-marker one" style="width:50px;">'. "  ". $row[addr1]  .'</h4>' ;
-						$line7 =	'</div>' ;
-						$line8 =	'<div class="col-sm-4"> ' ;
-						$line9 =	'<h6>
-										<h4><b>Price €'.$row[price].'</b></h4>
-                                        <div class="onoffswitch">
-                                        <input type="checkbox" name="'.$iterator.'" class="onoffswitch-checkbox" id="myonoffswitch'.$iterator.'" value = "yes" unchecked="unchecked"/>
-                                        <label class="onoffswitch-label" for="myonoffswitch'.$iterator.'"></label>
-                                        </div>  	  									
-										  </h6>' ;
-						$line10 =	'<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Pickup: " .$row[pickup]  .'</h4>' ;
-						$line11 =   '<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Dropoff: " .$row[dropoff]  .'</h4>' ;
-						$line12 =	  '</div>' ;
-					    $line13 =   '</div>';
-                        $iterator++;
-                        $table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
-                           
-                            echo $table;
+		 <p id="locationErrorSpace"></p>
 
-                            
-							}
-							print" <button type=\"submit\" class=\"btn btn-primary submitDashAlign\" name=\"submit_Btn1\">ACCEPT WALKS</button> \n";
-                            echo    "</form>\n";
-                            
-                            
-                                           if(isset($_POST['submit_Btn1']))
-                  {
-                    $i = 0;
-                    foreach($result as $row1){
-                        echo $i;
-
-                    if($_POST[$i] == "yes"){
-                            $sql = "UPDATE walkies_web.walk_now SET walk_now.search_status='N' WHERE user_id = '$row1[user_id]'";
-                	        $sql1 ="UPDATE walkies_web.walk_now SET walk_now.walker_id = '$user_id' where user_id = '$row1[user_id]'";
-
-                        if ($conn->query($sql) === TRUE) {
-                            echo "Records updated successfully";
-                        } else {
-                            echo "Error updating record: " . $conn->error;
-                        }
-                        if ($conn->query($sql1) === TRUE) {
-                            echo "Records updated successfully";
-                        } else {
-                            echo "Error updating record: " . $conn->error;
-                        }
-                        
-                    }
-                    else{
-                        echo "fail!";
-                    }
-                    $i++;
-                    }
-                           
-}
-                	    
-                  
-							
-                         ?> 
-                         
-                         
-                  </div> <!-- End of image div --> 
-            </div> <!-- end of container -->
-		</div>
-		<!-- User section above, Map section below -->
-        <div class="col-md-6" id="map" style="height:100%;"></div>    <!-- The Today's Route Div -->
+        <div class="col-md-12" id="map" style="height:100%;"></div>    <!-- The Today's Route Div -->
         
       </div><!-- End Of Main Row -->
-   </div>  
+
    
        
 

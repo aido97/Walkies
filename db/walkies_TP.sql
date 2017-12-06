@@ -36,9 +36,32 @@ CREATE TABLE users (
     pickup VARCHAR(40),
     dropoff VARCHAR(40),
     price VARCHAR(40),
+    phone_number VARCHAR(20),
+    profile_image_url VARCHAR(300),
     search_status ENUM ('N','Y'),
+    walker_id INT(20),
     
     FOREIGN KEY (user_id) REFERENCES users (user_id),
+    FOREIGN KEY (walker_id) REFERENCES users (user_id),
+    PRIMARY KEY (walkID)
+    );
+    
+    CREATE TABLE walks_completed (
+    
+    walkID INT NOT NULL auto_increment,
+    user_id INT NOT NULL,
+    first_name VARCHAR(40),
+    addr1 VARCHAR(40),
+    pickup VARCHAR(40),
+    dropoff VARCHAR(40),
+    price VARCHAR(40),
+    phone_number VARCHAR(20),
+    profile_image_url VARCHAR(300),
+    date_completed DATE,
+    walker_id INT(20),
+    
+    FOREIGN KEY (user_id) REFERENCES users (user_id),
+    FOREIGN KEY (walker_id) REFERENCES users (user_id),
     PRIMARY KEY (walkID)
     );
     
@@ -60,8 +83,10 @@ CREATE TABLE users (
     pickup VARCHAR(40),
     dropoff VARCHAR(40),
     walk_status ENUM ('N','Y'),
+    walker_id INT(20),
     
     FOREIGN KEY (user_id)  REFERENCES users (user_id),
+    FOREIGN KEY (walker_id) REFERENCES users (user_id),
     PRIMARY KEY (requestID)
     
     
