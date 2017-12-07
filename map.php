@@ -92,14 +92,15 @@
                       
 <?php
 
-$address = ("SELECT addr1, addr2, zip FROM walkies_web.walk_now where search_status = 'Y';");
+$user_id = $_SESSION['user_id'];
+$address = ("SELECT addr1, addr2, zip FROM walkies_web.walk_now where search_status = 'Y' and user_id != '$user_id';");
 $addResult = mysqli_query($conn, $address);
 
 
-$persons = ("SELECT user_id, first_name, phone_number, addr1, profile_image_url, price, pickup, dropoff FROM walkies_web.walk_now WHERE search_status = 'Y';");
+$persons = ("SELECT user_id, first_name, phone_number, addr1, profile_image_url, price, pickup, dropoff FROM walkies_web.walk_now WHERE search_status = 'Y' AND user_id != '$user_id';");
 $result = mysqli_query($conn, $persons);
 
-$user_id = $_SESSION['user_id'];
+
 
 
 ?>
@@ -113,7 +114,7 @@ $user_id = $_SESSION['user_id'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Walkies - Today's Route</title>
+    <title>Walkies - Calculate Route</title>
     
    
     
@@ -132,7 +133,7 @@ $user_id = $_SESSION['user_id'];
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-ZP4p890L8n7KAYavEwylBzyQIBVDLzw&callback=initToday's Route">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-ZP4p890L8n7KAYavEwylBzyQIBVDLzw&callback=initCalculate Route">
     </script>
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
@@ -144,7 +145,7 @@ $user_id = $_SESSION['user_id'];
 	  <!-- Custom CSS -->
   <link href="css/style.css" rel="stylesheet">
       
-      <!-- Today's Route Shit Below-->
+      <!-- Calculate Route Shit Below-->
       
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -156,7 +157,7 @@ $user_id = $_SESSION['user_id'];
     //alert( addResult[0][1])
 </script>
       
-      <!-- Today's Route Shit Above-->
+      <!-- Calculate Route Shit Above-->
 
 	
 
@@ -248,18 +249,21 @@ padding-top: 150%;
                 <!-- If the user is logged in, display welcome message. If not, display login/register button link -->
                 <?php
                             if (isset($authUrl)) {
-                                echo "<a class='login' href='".$authUrl."'>Login/Register</a>";
+                                echo "<a class='login' href='login.php'>Login/Register</a>";
                             } else {
-                                print "<a class='page-scroll' href='index.php'>Welcome: {$name}</a>";
+                                print "<a class='page-scroll' href='index.php'>Welcome: {$firstname}</a>";
                                 
                             }
                             ?>
                 </li>
+                <li>
+                        <a class="page-scroll" href="completedwalks.php">Walk History</a>
+                    </li>
+                   <li>
+                        <a class="page-scroll" href="map.php">Calculate Route</a>
+                    </li>
                     <li>
                         <a class="page-scroll" href="About.php">About</a>
-                    </li>
-                                        <li>
-                        <a class="page-scroll" href="map.php">Today's Route</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
@@ -352,10 +356,16 @@ var userDistances = getLocationArray();
                            
                             echo $table;
 
-                            
+                            // 
 							}
-							print" <button type=\"submit\" class=\"btn btn-primary submitDashAlign\" name=\"submit_Btn1\">ACCEPT WALKS</button> \n";
+							if ($table != ""){
+							print" <button type=\"submit\" class=\"btn btn-primary submitDashAlign\" name=\"submit_Btn1\">Accept Walks</button> \n";
+							}
+							else{
+							    echo    '<img src="https://www.niletechs.com/wp-content/uploads/2016/07/No-event-scheduled.jpg?quality=100.3015072922391" alt="" width="500" height="377">';
+							}
                             echo    "</form>\n";
+                            echo'<a class="btn" href="https://walkies-shaner125.c9users.io/route.php">Calculate Route</a>';
                             
                             
                                            if(isset($_POST['submit_Btn1']))
@@ -385,8 +395,8 @@ var userDistances = getLocationArray();
                     }
                     $i++;
                     }
-                           
-}
+                     echo "<meta http-equiv='refresh' content='0'>";      
+                    }
                 	    
                   
 							
@@ -397,7 +407,7 @@ var userDistances = getLocationArray();
             </div> <!-- end of container -->
 		</div>
 		<!-- User section above, Map section below -->
-        <div class="col-md-6" id="map" style="height:100%;"></div>    <!-- The Today's Route Div -->
+        <div class="col-md-6" id="map" style="height:100%;"></div>    <!-- The Calculate Route Div -->
         
       </div><!-- End Of Main Row -->
    </div>  

@@ -141,15 +141,21 @@
                 <!-- If the user is logged in, display welcome message. If not, display login/register button link -->
                 <?php
                             if (isset($authUrl)) {
-                                echo "<a class='login' href='".$authUrl."'>Login/Register</a>";
+                                echo "<a class='login' href='login.php'>Login/Register</a>";
                             } else {
-                                print "<a class='page-scroll' href='index.php'>Welcome: {$name}</a>";
+                                print "<a class='page-scroll' href='index.php'>Welcome: {$firstname}</a>";
                                 
                             }
                             ?>
                 </li>
+                <li>
+                        <a class="page-scroll" href="completedwalks.php">Walk History</a>
+                    </li>
+                   <li>
+                        <a class="page-scroll" href="map.php">Calculate Route</a>
+                    </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="About.php">About</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>

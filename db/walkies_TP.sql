@@ -82,6 +82,12 @@ CREATE TABLE users (
     sun ENUM ('N','Y'),
     pickup VARCHAR(40),
     dropoff VARCHAR(40),
+    addr1 VARCHAR(40),
+    addr2 VARCHAR(40),
+    zip VARCHAR(40),
+    phone_number VARCHAR(40),
+    price VARCHAR(40),
+    profile_image_url VARCHAR(400),
     walk_status ENUM ('N','Y'),
     walker_id INT(20),
     

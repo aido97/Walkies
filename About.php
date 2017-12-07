@@ -84,6 +84,11 @@
 ?>
 
 <head>
+    
+    
+
+
+
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edg">
@@ -96,7 +101,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-	
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
       <script type="text/javascript" src="js/map.js"></script> 
@@ -147,13 +152,21 @@
             font-size:300%;
             font-family: 'Ranchers', cursive;
         }
+        
+
 
     </style>
      <link href="https://fonts.googleapis.com/css?family=Ranchers" rel="stylesheet">          
-
+ 
+    
 </head>
 
 <body id="page-top">
+    
+    <div id="loading"></div>
+
+
+
 
     <!-- Navbar -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-notMain">
@@ -173,18 +186,21 @@
                 <!-- If the user is logged in, display welcome message. If not, display login/register button link -->
                 <?php
                             if (isset($authUrl)) {
-                                echo "<a class='login' href='".$authUrl."'>Login/Register</a>";
+                                echo "<a class='login' href='login.php'>Login/Register</a>";
                             } else {
-                                print "<a class='page-scroll' href='index.php'>Welcome: {$name}</a>";
+                                print "<a class='page-scroll' href='index.php'>Welcome: {$firstname}</a>";
                                 
                             }
                             ?>
                 </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
+                <li>
+                        <a class="page-scroll" href="completedwalks.php">Walk History</a>
+                    </li>
+                   <li>
+                        <a class="page-scroll" href="map.php">Calculate Route</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="map.php">Today's Route</a>
+                        <a class="page-scroll" href="About.php">About</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
@@ -264,9 +280,13 @@
     <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
     <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
+
     <!-- Theme JavaScript -->
     <script src="js/creative.min.js"></script>
     
+  
+    
 </body>
+
 
 </html>

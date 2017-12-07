@@ -94,7 +94,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Walkies - Login / Register</title>
+    <title>Walk History</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -146,16 +146,21 @@
                 <!-- If the user is logged in, display welcome message. If not, display login/register button link -->
                 <?php
                             if (isset($authUrl)) {
-                                echo "<a class='login' href='".$authUrl."'>Login/Register</a>";
+                                echo "<a class='login' href='login.php'>Login/Register</a>";
                             } else {
-                                print "<a class='page-scroll' href='index.php'>Welcome: {$name}</a>";
-                                 $persons6 = ("SELECT user_id, first_name, phone_number, addr1,addr2,zip, profile_image_url, price, pickup, dropoff FROM walkies_web.walk_now WHERE walker_id = $user_id;");
-                                $result6 = mysqli_query($conn, $persons6); 
+                                print "<a class='page-scroll' href='index.php'>Welcome: {$firstname}</a>";
+                                
                             }
                             ?>
                 </li>
+                <li>
+                        <a class="page-scroll" href="completedwalks.php">Walk History</a>
+                    </li>
+                   <li>
+                        <a class="page-scroll" href="map.php">Find Jobs</a>
+                    </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="About.php">About</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
@@ -188,7 +193,7 @@
         <div class = "col-sm-12 col-md-8">
            
            <?php
-    $persons6 = ("SELECT user_id, first_name, addr1,pickup, dropoff, price, phone_number, profile_image_url, date_completed FROM walkies_web.walks_completed WHERE walker_id = $user_id;");
+                $persons6 = ("SELECT user_id, first_name, addr1,pickup, dropoff, price, phone_number, profile_image_url, date_completed FROM walkies_web.walks_completed WHERE walker_id = $user_id;");
                 $result6 = mysqli_query($conn, $persons6); 
                
                 foreach($result6 as $row6){
@@ -204,13 +209,7 @@
 						$line6 =	'<h4><span class="glyphicon glyphicon-map-marker" >'. "  ". $row6[addr1]  .'</h4>' ;
 						$line7 =	'</div>' ;
 						$line8 =	'<div class="col-sm-4"> ' ;
-						$line9 =	'<h6>
-										<h4><b>Toggle Walk Complete:</b></h4>
-                                        <div class="onoffswitch">
-                                        <input type="checkbox" name="'.$iterator.'" class="onoffswitch-checkbox" id="myonoffswitch'.$iterator.'" value = "yes" unchecked="unchecked"/>
-                                        <label class="onoffswitch-label" for="myonoffswitch'.$iterator.'"></label>
-                                        </div>  	  									
-										  </h6>' ;
+						$line9 =	'<h4><span class="glyphicon glyphicon-euro" >'. "  ". $row6[price]  .'</h4>' ;
 						$line10 =	'<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Pickup: " .$row6[pickup]  .'</h4>' ;
 						$line11 =   '<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Dropoff: " .$row6[dropoff]  .'</h4>' ;
 						$line12 =	  '</div>' ;

@@ -83,6 +83,7 @@
         $profile_image_url = $me['image']['url'];
         $cover_image_url = $me['cover']['coverPhoto']['url'];
         $profile_url = $me['url'];
+        $user_id = $_SESSION['user_id'];
         
     } else {
         // get the login url   
@@ -92,7 +93,7 @@
                       
 <?php
 
-$address = ("SELECT addr1, addr2, zip FROM walkies_web.walk_now where search_status = 'Y';");
+$address = ("SELECT addr1, addr2, zip FROM walkies_web.walk_now where walker_id = '$user_id';");
 $addResult = mysqli_query($conn, $address);
 
 
@@ -256,18 +257,21 @@ padding-top: 150%;
                 <!-- If the user is logged in, display welcome message. If not, display login/register button link -->
                 <?php
                             if (isset($authUrl)) {
-                                echo "<a class='login' href='".$authUrl."'>Login/Register</a>";
+                                echo "<a class='login' href='login.php'>Login/Register</a>";
                             } else {
-                                print "<a class='page-scroll' href='index.php'>Welcome: {$name}</a>";
+                                print "<a class='page-scroll' href='index.php'>Welcome: {$firstname}</a>";
                                 
                             }
                             ?>
                 </li>
+                <li>
+                        <a class="page-scroll" href="completedwalks.php">Walk History</a>
+                    </li>
+                   <li>
+                        <a class="page-scroll" href="map.php">Calculate Route</a>
+                    </li>
                     <li>
                         <a class="page-scroll" href="About.php">About</a>
-                    </li>
-                                        <li>
-                        <a class="page-scroll" href="map.php">Today's Route</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
