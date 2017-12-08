@@ -188,7 +188,7 @@
                             if (isset($authUrl)) {
                                 echo "<a class='login' href='login.php'>Login/Register</a>";
                             } else {
-                                print "<a class='page-scroll' href='index.php'>Welcome: {$firstname}</a>";
+                                print "<a class='page-scroll' href='index.php'>Welcome: {$name}</a>";
                                 
                             }
                             ?>
@@ -202,12 +202,7 @@
                     <li>
                         <a class="page-scroll" href="About.php">About</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
+
                     <li>
                         <!-- If the user is logged in, display logout link -->
                          <?php

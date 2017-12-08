@@ -1,6 +1,6 @@
 			<script src="js/tsp.js"></script>
     		<script src="js/algorithm.js"></script>
-    		    		<script src="js/geoLocate.js"></script>
+    		 <script src="js/geoLocate.js"></script>
 
     		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
@@ -259,7 +259,7 @@ padding-top: 150%;
                             if (isset($authUrl)) {
                                 echo "<a class='login' href='login.php'>Login/Register</a>";
                             } else {
-                                print "<a class='page-scroll' href='index.php'>Welcome: {$firstname}</a>";
+                                print "<a class='page-scroll' href='index.php'>Welcome: {$name}</a>";
                                 
                             }
                             ?>
@@ -268,7 +268,7 @@ padding-top: 150%;
                         <a class="page-scroll" href="completedwalks.php">Walk History</a>
                     </li>
                    <li>
-                        <a class="page-scroll" href="map.php">Calculate Route</a>
+                        <a class="page-scroll" href="map.php">Find Jobs</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="About.php">About</a>

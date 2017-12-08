@@ -1,5 +1,9 @@
 			<script src="js/tsp.js"></script>
     		<script src="js/algorithm.js"></script>
+    		    		<script src="js/geoLocate.js"></script>
+
+    		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 <?php
 
 
@@ -79,20 +83,25 @@
         $profile_image_url = $me['image']['url'];
         $cover_image_url = $me['cover']['coverPhoto']['url'];
         $profile_url = $me['url'];
+        $user_id = $_SESSION['user_id'];
+        
     } else {
         // get the login url   
         $authUrl = $client->createAuthUrl();
     }
 ?>
-                        <!-- Connect To Database  -->
+                      
 <?php
 
-$address = ("SELECT addr1, addr2, zip FROM walkies_web.users;");
+$address = ("SELECT addr1, addr2, zip FROM walkies_web.walk_now where walker_id = '$user_id';");
 $addResult = mysqli_query($conn, $address);
 
 
-$persons = ("SELECT user_id, first_name, phone_number, addr2, profile_image_url FROM walkies_web.users WHERE walker = 'Y';");
+$persons = ("SELECT user_id, first_name, phone_number, addr1, profile_image_url, price, pickup, dropoff FROM walkies_web.walk_now WHERE search_status = 'Y';");
 $result = mysqli_query($conn, $persons);
+
+$user_id = $_SESSION['user_id'];
+
 
 ?>
 
@@ -178,33 +187,8 @@ $result = mysqli_query($conn, $persons);
 body {
     margin: 0;	
 }
-#content{
-	overflow: auto;	
-	height:500px;
-	display: inline;
-    background-color: #F0FFF0;
-	
-}
 
 
-#profile{
-    float:left;
-	margin-top:10%;	
-	border-radius: 5px;
-	border: solid 1px #00aced;
-	
-}
-#credentials{
-	overflow: hidden;
-    margin: 2%;
-	padding : 1%;
-    border: solid 1px #00aced;
-	background-color: #DCDCDC;
-	border-radius: 4px;
-	border-left: 20px solid #00aced;
-	box-shadow: 5px 5px 2px #888888;
-	
-}
 @media (max-width: 40em) {
 #content , #nav{
 display: none;
@@ -218,48 +202,7 @@ margin: 0;
 padding-top: 150%;
 }
 }
-#mainrow{
-	border-top: solid 1px white;
-}
 
-h6{
-	display:block;	
-	font-weight: bold;
-}
-map{
-	display: inline;
-}
-
-
-h1, h4 {
-text-align: left;
-color: #00aced;
-text-shadow: 1px 1px white;
-white-space: nowrap;
-padding: 2%;
-
-}
-
-.btn.active {                
-	display: none;	
-	 border: solid 1px #00aced;	
-}
-
-.btn span:nth-of-type(1)  {            	
-	display: none;
-}
-.btn span:last-child  {            	
-	display: block;		
-}
-
-.btn.active  span:nth-of-type(1)  {            	
-	display: block;	
-	
-}
-.btn.active span:last-child  {            	
-	display: none;		
-		
-}
 
 
 
@@ -314,18 +257,21 @@ padding: 2%;
                 <!-- If the user is logged in, display welcome message. If not, display login/register button link -->
                 <?php
                             if (isset($authUrl)) {
-                                echo "<a class='login' href='".$authUrl."'>Login/Register</a>";
+                                echo "<a class='login' href='login.php'>Login/Register</a>";
                             } else {
-                                print "<a class='page-scroll' href='index.php'>Welcome: {$name}</a>";
+                                print "<a class='page-scroll' href='index.php'>Welcome: {$firstname}</a>";
                                 
                             }
                             ?>
                 </li>
+                <li>
+                        <a class="page-scroll" href="completedwalks.php">Walk History</a>
+                    </li>
+                   <li>
+                        <a class="page-scroll" href="map.php">Find Jobs</a>
+                    </li>
                     <li>
                         <a class="page-scroll" href="About.php">About</a>
-                    </li>
-                                        <li>
-                        <a class="page-scroll" href="map.php">Today's Route</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
@@ -353,6 +299,18 @@ padding: 2%;
 
    <section>
        
+  
+
+
+
+<script>
+var x = document.getElementById("locationErrorSpace");
+
+getLocation();
+showPosition();
+var userDistances = getLocationArray();
+</script>
+       
        <!--  Insert map here      Insert map here      Insert map here      Insert map here -->
        
        <div class="container-fluid" style="text-align: center" id="main">
@@ -363,54 +321,14 @@ padding: 2%;
 	  
 	  
 	 <div class="row" style="text-align: center" id="mainrow">
-        <div class="col-md-6" id="content" style="height:100%"; >
-			<div class="container-fluid">
-			    <div id="imageDIV">
-			<!--    "../img/generic2.png"     -->
-			 <!-- Start of new Profile Container -->
-                    <form method="POST">
-						<?php
-            		foreach($result as $row){
-		 	            $table = '';
-		 	            $line1 =    '<div class="row" id="credentials">' ;
-						$line2 =	'<div class="col-sm-4" ><img src="'.$row[profile_image_url] .'" alt="Walkies" style="width:150px;height:150px;" id="profile" ></div>'; 
-						$line3 =    '<div class="col-sm-4" >  ' ;
-						$line4 =	'<h1>' .  $row[first_name]   . '</h6>' ;
-						$line5 =    '<h4><span class="glyphicon glyphicon-earphone one" style="width:50px;">' . " " .$row[phone_number]  .'</h4>' ;
-						$line6 =	'<h4><span class="glyphicon glyphicon-map-marker one" style="width:50px;">'. "  ". $row[addr2]  .'</h4>' ;
-						$line7 =	'</div>' ;
-						$line8 =	'<div class="col-sm-4"> ' ;
-						$line9 =	'<h6></h6>' ;
-						$line10 =	'<h6></h6>' ;
-						$line11 =  '<h6>
-										  <div class="butt" data-toggle="buttons">
-                                          <label class="btn btn-lg btn-success active" id="butt">
-										  <input type="radio" name="options" id="option1" autocomplete="off" checked>
-										  <i class="fa fa-check" id="butt"></i>Job Taken                                         </label>
-                                          <label class="btn btn-lg btn-danger" id="butt">
-                                          <input type="radio" name="options" id="option2" autocomplete="off">
-                                          <i  id="butt"></i>'. " &nbsp €12 &nbsp  " .'</label></div>  	  									
-										  </h6>' ;
-						$line12 =	  '</div>' ;
-					    $line13 =   '</div>';
-                        
-                        $table = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13;
-                         echo $table;
-							}
-                         ?> 
-                         </form>
-                         
 
-                         
-                         
-                  </div> <!-- End of image div --> 
-            </div> <!-- end of container -->
-		</div>
-		
-        <div class="col-md-6" id="map" style="height:100%;"></div>    <!-- The Today's Route Div -->
+
+		 <p id="locationErrorSpace"></p>
+
+        <div class="col-md-12" id="map" style="height:100%;"></div>    <!-- The Today's Route Div -->
         
       </div><!-- End Of Main Row -->
-   </div>  
+
    
        
 
@@ -421,11 +339,11 @@ padding: 2%;
    
 	
 	<!-- Footer -->
-    <!--<footer class="footer">-->
-    <!--<div class="container">-->
-    <!--  <span class="text-muted">RecApp Team 2017</span>-->
-    <!--</div>-->
-    <!--</footer>-->
+    <footer class="footer">
+    <div class="container">
+      <span class="text-muted">Team Melon 2017</span>
+    </div>
+    </footer>
   
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>

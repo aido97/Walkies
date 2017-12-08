@@ -1,0 +1,37 @@
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <script language="javascript" type="text/javascript" src="js/tsp.js"></script> 
+      <script language="javascript" type="text/javascript" src="js/algorithm.js"></script> 
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+  
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
+  
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+       
+      </script>
+      
+      <style>
+        
+div#curve_chart {
+    margin-left: -80px;
+}
+      </style>
+      <title>Graph Documenting TSP Algorithm</title>
+    </head>
+    
+    <body>
+        
+        <h1>List of lat/long vaalues to determine best route from:</h1>
+        <h3>[[53.342769, -6.241259],[53.341865, -6.234095],[53.342455, -6.238445],[53.341665, -6.229011],[53.343419, -6.245457],[53.345332, -6.255222],[53.345019, -6.253731], [53.344692, -6.251832],[53.343975, -6.248218], [53.345691, -6.257357], [53.345569, -6.258741], [53.345566, -6.259851], [53.345486, -6.261398], [53.345632, -6.261177], [53.345643, -6.262220], [53.345631, -6.262873], [53.345608, -6.263289], [53.345550, -6.263997], [53.345454, -6.264673], [53.345288, -6.265531]]</h3>
+        <h1>Best Found Solution:</h1>
+        <h3 id="demo"></h3>
+        <div id="curve_chart" style="width: 1600px; height: 500px"></div>
+        <script language="javascript" type="text/javascript" >  document.getElementById("demo").innerHTML =  getShortestRoute([[53.342769, -6.241259],[53.341865, -6.234095],[53.342455, -6.238445],[53.341665, -6.229011],[53.343419, -6.245457],[53.345332, -6.255222],[53.345019, -6.253731], [53.344692, -6.251832],[53.343975, -6.248218], [53.345691, -6.257357], [53.345569, -6.258741], [53.345566, -6.259851], [53.345486, -6.261398], [53.345632, -6.261177], [53.345643, -6.262220], [53.345631, -6.262873], [53.345608, -6.263289], [53.345550, -6.263997], [53.345454, -6.264673], [53.345288, -6.265531]]);          </script>         
+        
+    </body>
+    </html>
+    

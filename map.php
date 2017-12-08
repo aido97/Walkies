@@ -97,7 +97,7 @@ $address = ("SELECT addr1, addr2, zip FROM walkies_web.walk_now where search_sta
 $addResult = mysqli_query($conn, $address);
 
 
-$persons = ("SELECT user_id, first_name, phone_number, addr1, profile_image_url, price, pickup, dropoff FROM walkies_web.walk_now WHERE search_status = 'Y' AND user_id != '$user_id';");
+$persons = ("SELECT walkid, user_id, first_name, phone_number, addr1, profile_image_url, price, pickup, dropoff FROM walkies_web.walk_now WHERE search_status = 'Y' AND user_id != '$user_id';");
 $result = mysqli_query($conn, $persons);
 
 
@@ -231,7 +231,7 @@ padding-top: 150%;
 
 <body id="page-top">
 
-    <!-- Navbar -->
+     <!-- Navbar -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-notMain">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -251,26 +251,21 @@ padding-top: 150%;
                             if (isset($authUrl)) {
                                 echo "<a class='login' href='login.php'>Login/Register</a>";
                             } else {
-                                print "<a class='page-scroll' href='index.php'>Welcome: {$firstname}</a>";
+                                print "<a class='page-scroll' href='index.php'>Welcome: {$name}</a>";
                                 
                             }
                             ?>
                 </li>
-                <li>
+                   <li>
                         <a class="page-scroll" href="completedwalks.php">Walk History</a>
                     </li>
                    <li>
-                        <a class="page-scroll" href="map.php">Calculate Route</a>
+                        <a class="page-scroll" href="map.php">Find Jobs</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="About.php">About</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
+
                     <li>
                         <!-- If the user is logged in, display logout link -->
                          <?php
@@ -365,7 +360,7 @@ var userDistances = getLocationArray();
 							    echo    '<img src="https://www.niletechs.com/wp-content/uploads/2016/07/No-event-scheduled.jpg?quality=100.3015072922391" alt="" width="500" height="377">';
 							}
                             echo    "</form>\n";
-                            echo'<a class="btn" href="https://walkies-shaner125.c9users.io/route.php">Calculate Route</a>';
+                            echo'<a class="btn" href="https://walkies-shaner125.c9users.io/route.php">Go to Route</a>';
                             
                             
                                            if(isset($_POST['submit_Btn1']))
@@ -375,8 +370,8 @@ var userDistances = getLocationArray();
                         echo $i;
 
                     if($_POST[$i] == "yes"){
-                            $sql = "UPDATE walkies_web.walk_now SET walk_now.search_status='N' WHERE user_id = '$row1[user_id]'";
-                	        $sql1 ="UPDATE walkies_web.walk_now SET walk_now.walker_id = '$user_id' where user_id = '$row1[user_id]'";
+                            $sql = "UPDATE walkies_web.walk_now SET walk_now.search_status='N' WHERE walkid = '$row1[walkid]'";
+                	        $sql1 ="UPDATE walkies_web.walk_now SET walk_now.walker_id = '$user_id' where walkid = '$row1[walkid]'";
 
                         if ($conn->query($sql) === TRUE) {
                             echo "Records updated successfully";

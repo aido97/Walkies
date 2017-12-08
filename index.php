@@ -114,6 +114,8 @@
 
 
 <head>
+    <!-- Google Fonts below-->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -199,21 +201,16 @@
                             }
                             ?>
                 </li>
-                <li>
+                   <li>
                         <a class="page-scroll" href="completedwalks.php">Walk History</a>
                     </li>
                    <li>
-                        <a class="page-scroll" href="map.php">Calculate Route</a>
+                        <a class="page-scroll" href="map.php">Find Jobs</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="About.php">About</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
+
                     <li>
                         <!-- If the user is logged in, display logout link -->
                          <?php
@@ -237,12 +234,12 @@
                 print "<header id = \"front\">\n";
                 print "        <div class=\"header-content\">\n";
                 print "            <div class=\"header-content-inner\">\n";
-                print "                <h1 id=\"homeHeading\">Walkies - Our Walkers Walk The Wildest</h1>\n";
+                print "                <h1 id=\"homeHeading\">Walkies - The UBER of the dog walking world</h1>\n";
                 print "                <hr>\n";
-                print "                <a href=\"#services\" class=\"btn btn-primary btn-xl page-scroll\">Find Out More</a>\n";
+                print "                <a href=\"About.php\" class=\"btn btn-primary btn-xl page-scroll\">Find Out More</a>\n";
                 print "            </div>\n";
                 print "			<br><br>\n";
-                print "			<p style = \"color:white; font-size: 5vmin; font-weight: bold;\">50 DAYS WITHOUT A MAULING :)</p>\n";
+                print "			<p style = \"color:black; font-size: 5vmin; font-weight: bold;\"></p>\n";
                 print "        </div>\n";
                 print "    </header>";    
                 print "        </section>";
@@ -253,9 +250,7 @@
                 print "<section>\n";
                 print "<div class=\"container\" id = \"dashboard\">\n";
                 print "    <div class=\"row\">\n";
-                print "    <div class=\"col-xs-0 col-sm-1 col-md-1\">\n";
-                print "        </div>\n";
-                print "      <div class=\"col-xs-12 col-sm-10 col-md-10\">\n";
+                print "      <div class=\"col-xs-12 col-sm-12 col-md-12\">\n";
                 print "            <div class=\"well well-sm\">\n";
                 print "                <div class=\"row\">\n";
                 print "                    <div class=\"col-sm-12 col-md-6\">\n";
@@ -304,9 +299,11 @@
                 print "                </div>\n";
                 print "                </div>\n";
                 
+                
                 print "         <div class=\"collapse\" id=\"demo2\">\n";
+                print "                    <div class=\"col-sm-11\">\n";
                
-               
+               print " <h3>My upcoming jobs</h3>";
                
                 $persons6 = ("SELECT user_id, first_name, phone_number, addr1,addr2,zip, profile_image_url, price, pickup, dropoff FROM walkies_web.walk_now WHERE walker_id = $user_id;");
                 $result6 = mysqli_query($conn, $persons6); 
@@ -345,197 +342,261 @@
                             
 							}
 							
+							
+							
 							if ($table != ""){
 							    print" <button type=\"submit\" class=\"btn btn-primary submitDashAlign\" name=\"complete_walks\">MARK WALKS COMPLETE</button> \n";
 							}
 							else{
-							    echo    '<img src="http://huggedandkissed.org/wp-content/uploads/2016/01/nojob-nomoney.jpg" alt="" width="500" height="377">';
+							    echo    '<img src="https://www.niletechs.com/wp-content/uploads/2016/07/No-event-scheduled.jpg?quality=100.3015072922391" alt="" width="400" height="300">';
 							}
                             echo    "</form>\n";
-                                print "<button type=\"button\" class=\"btn btn-primary today-route-btn\">Calculate Route</button>\n";
+                            
+                        print "         </div>\n";
+                        print "         <div class=\"col-sm-11\">\n";
+                
+                print " <h3>Regular walk posting</h3>";
+                $persons7 = ("SELECT user_id, first_name, mon, tue,wed,thu, fri, sat, sun,pickup, dropoff, addr1, addr2, zip, phone_number, price, profile_image_url, walker_id FROM walkies_web.regular_walks WHERE user_id = $user_id;");
+                $result7 = mysqli_query($conn, $persons7); 
+                $iteratorr = 0;
+            
+                echo "<form method=\"POST\">\n";
+                foreach($result7 as $row7){
+            	    	
+            	    	
+            	    	
+                        $weekdays = '';
+            	    	if ($row7[mon] == 'Y') {$weekdays .= "Mon, ";}
+            	    	if ($row7[tue] == 'Y') {$weekdays .= "Tue, ";}
+            	    	if ($row7[wed] == 'Y') {$weekdays .= "Wed, ";}
+            	    	if ($row7[thu] == 'Y') {$weekdays .= "Thu, ";}
+            	    	if ($row7[fri] == 'Y') {$weekdays .= "Fri, ";}
+            	    	if ($row7[sat] == 'Y') {$weekdays .= "Sat, ";}
+            	    	if ($row7[sun] == 'Y') {$weekdays .= "Sun.";} 
+            	    	
+            	    	$table1 = '';
+		 	            $line1 =    '<div class="row" id="credentials" >' ;
+						$line2 =	'<div class="col-sm-3" ><img src="'.$row7[profile_image_url] .'" alt="Walkies" style="width:75px;height:75px;" id="profile" ></div>'; 
+						$line3 =    '<div class="col-sm-5" >  ' ;
+						$line4 =	'<h1>' .  $row7[first_name]   . '</h6>' ;
+						$line5 =    '<h4><span class="glyphicon glyphicon-earphone" style="width:50px;">' . " " .$row7[phone_number]  .'</h4>' ;
+						$line6 =	'<h4><span class="glyphicon glyphicon-map-marker" >'. "  ". $row7[addr1]  .'</h4>' ;
+						$line7 =	'</div>' ;
+						$line8 =	'<div class="col-sm-4"> ' ;
+						$line9 =	'<h4><span class="glyphicon glyphicon-euro" >'. "  ". $row7[price]  .'</h4>' ;
+						$line10 =	'<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Pickup: " .$row7[pickup]  .'</h4>' ;
+						$line11 =   '<h4><span class="glyphicon glyphicon glyphicon-time one" style="width:50px;">' . "Dropoff: " .$row7[dropoff]  .'</h4>' ;
+						$line12 =   '<h4>Weekdays Selected: '.$weekdays.'</h4>';
+						$line13 =	  '</div>' ;
+					    $line14 =   '</div>';
+                        $iterator++;
+                        $table1 = $line1. '' .$line2. '' .$line3. '' .$line4. '' .$line5. '' .$line6. '' .$line7. '' .$line8. '' .$line9. '' .$line10. '' .$line11. '' .$line12. '' .$line13.''.$line14;
+                           
+                            echo $table1;
+
+                            
+							}
+                
+               
 
                 print "        </div>\n";
+                
+                
+                print "        </div>\n";
+               
                 print "         </div>\n";
                 
-                
+                if ($user_id != ""){
                 print "                    <div class=\"col-sm-12 col-md-6\">\n";
-                print "<form id=\"walker_form1\" method=\"POST\" >";
                  print "                    <div class=\"row\" id = \"findDogsToWalk\">\n";
+                                 print "                    <div class=\"col-sm-12 col-md-6 awkward-image border-image\">\n";
                                  print " <h3 id = \"dogs-to-walk\">Find Dogs To Walk</h3>";
-                                  print "<a href = \"map.php\"> <img  src =\"img/dog-walk.png\"></a>";
+                                print " <hr class = \"test-hr\">";
+                                 print "<a href = \"map.php\"> <img src =\"img/dog-walk.png\"></a>";
                   print "                    </div>\n";
-                
+                print "                    <div class=\"col-sm-0 col-md-1\">\n";
+                print "                    </div>\n";
+                   print "                    <div class=\"col-sm-12 col-md-5 border-image\">\n";
+                                 print " <h3 id = \"dogs-to-walk\">Walk Dogs Regularly</h3>";
+                                print " <hr class = \"test-hr\">";
+                                 print "<a href = \"regWalks.php\"> <img  src =\"img/regular-walks.png\"></a>";
+                  print "                    </div>\n";
+                print "                    </div>\n";
                  print "                    <div class=\"row\">\n";
                                  print " <h3>Schedule Walks</h3>";
 
                   print "                    </div>\n";
+                
+                  
                 print "                    <div class=\"row\">\n";
-                print "                    <div class=\"col-sm-6\">\n";
-                print "      <div class=\"form-group\"> \n";
-                print" <label for=\"example-text-input\" class=\"col- col-form-label\">Walk Location</label> \n";
-                print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"$addr1\" id=\"example-text-input\" name=\"location\"> \n";
-                print" </div> \n";
-                
-                print"      </div> \n";
-                print"      </div> \n";
-                print"      <div class=\"col-sm-6\">\n";
-                print "      <div class=\"form-group\"> \n\n\n";
-                print" <label for=\"example-text-input\" class=\"col- col-form-label\">Walk Price</label> \n";
-                print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"price\"> \n";
-                print" </div> \n";
-                
-                print"      </div> \n";
-                print"      </div> \n";
-                print"      </div> \n";
-                print "                    <div class=\"row\">\n";
-                print "                    <div class=\"col-sm-6\">\n";
-                print "      <div class=\"form-group\"> \n";
-                print" <div class=\"col-10\">\n";   
-                echo "<div class=\"form-group\">\n";
-                echo "  <label for=\"sel1\">Pick-Up:</label>\n";
-                echo "  <select class=\"form-control\" id=\"sel1\" name=\"pickup\">\n";
-                echo "    <option>Please select time</option>\n";
-                echo "    <option>ASAP</option>\n";
-                echo "    <option>00:00</option>\n";
-                echo "    <option>01.00</option>\n";
-                echo "    <option>02.00</option>\n";
-                echo "    <option>03.00</option>\n";
-                echo "    <option>04.00</option>\n";
-                echo "    <option>05.00</option>\n";
-                echo "    <option>06.00</option>\n";
-                echo "    <option>07.00</option>\n";
-                echo "    <option>08.00</option>\n";
-                echo "    <option>09.00</option>\n";
-                echo "    <option>10.00</option>\n";
-                echo "    <option>11.00</option>\n";
-                echo "    <option>12.00</option>\n";
-                echo "    <option>13.00</option>\n";
-                echo "    <option>14.00</option>\n";
-                echo "    <option>15.00</option>\n";
-                echo "    <option>16.00</option>\n";
-                echo "    <option>17.00</option>\n";
-                echo "    <option>18.00</option>\n";
-                echo "    <option>19.00</option>\n";
-                echo "    <option>20.00</option>\n";
-                echo "    <option>21.00</option>\n";
-                echo "    <option>22.00</option>\n";
-                echo "    <option>23.00</option>\n";
-                echo "    <option>24.00</option>\n";
-                echo "  </select>\n";
-                echo "</div>";
-                
-                print" </div> \n";
-                
-                print "<button type=\"button\" id = \"myBtn\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo1\">Schedule Regular Walks</button>\n";
-                
-                print"      </div> \n";
-                print"      </div> \n";
-                print "     <div class=\"col-sm-6\">\n";
-                print "     <div class=\"form-group\"> \n";
-                print" <div class=\"col-10\">\n";
-                echo "<div class=\"form-group\">\n";
-                echo "  <label for=\"sel1\">Drop-Off:</label>\n";
-                echo "  <select class=\"form-control\" id=\"sel1\" name=\"dropoff\">\n";
-                echo "    <option>Please select time</option>\n";
-                echo "    <option>00:00</option>\n";
-                echo "    <option>01.00</option>\n";
-                echo "    <option>02.00</option>\n";
-                echo "    <option>03.00</option>\n";
-                echo "    <option>04.00</option>\n";
-                echo "    <option>05.00</option>\n";
-                echo "    <option>06.00</option>\n";
-                echo "    <option>07.00</option>\n";
-                echo "    <option>08.00</option>\n";
-                echo "    <option>09.00</option>\n";
-                echo "    <option>10.00</option>\n";
-                echo "    <option>11.00</option>\n";
-                echo "    <option>12.00</option>\n";
-                echo "    <option>13.00</option>\n";
-                echo "    <option>14.00</option>\n";
-                echo "    <option>15.00</option>\n";
-                echo "    <option>16.00</option>\n";
-                echo "    <option>17.00</option>\n";
-                echo "    <option>18.00</option>\n";
-                echo "    <option>19.00</option>\n";
-                echo "    <option>20.00</option>\n";
-                echo "    <option>21.00</option>\n";
-                echo "    <option>22.00</option>\n";
-                echo "    <option>23.00</option>\n";
-                echo "    <option>24.00</option>\n";
-                echo "  </select>\n";
-                echo "</div>";
+       print "<form id=\"walker_form1\" method=\"POST\" >";
+        print "                    <div class=\"col-sm-6\">\n";
+        print "      <div class=\"form-group\"> \n";
+        print" <label for=\"example-text-input\" class=\"col- col-form-label\">Walk Location</label> \n";
+        print" <div class=\"col-10\">\n";
+        print" <input class=\"form-control\" type=\"text\" value=\"$addr1\" id=\"example-text-input\" name=\"location\" required> \n";
+        print" </div> \n";
+        
+        print"      </div> \n";
+        print"      </div> \n";
+        print"      <div class=\"col-sm-6\">\n";
+        print "      <div class=\"form-group\"> \n\n\n";
+        print" <label for=\"example-text-input\" class=\"col- col-form-label\">Walk Price</label> \n";
+        print" <div class=\"col-10\">\n";
+        print" <input class=\"form-control\" type=\"text\" value=\"\" id=\"example-text-input\" name=\"price\" required> \n";
+        print" </div> \n";
+        
+        print"      </div> \n";
+        print"      </div> \n";
+        print"      </div> \n";
+        print "                    <div class=\"row\">\n";
+        print "                    <div class=\"col-sm-6\">\n";
+        print "      <div class=\"form-group\"> \n";
+        print" <div class=\"col-10\">\n";   
+        echo "<div class=\"form-group\">\n";
+        echo "  <label for=\"sel1\">Pick-Up:</label>\n";
+        echo "  <select class=\"form-control\" id=\"sel1\" name=\"pickup\" required>\n";
+        echo "    <option>Please select time</option>\n";
+        echo "    <option>ASAP</option>\n";
+        echo "    <option>00:00</option>\n";
+        echo "    <option>01.00</option>\n";
+        echo "    <option>02.00</option>\n";
+        echo "    <option>03.00</option>\n";
+        echo "    <option>04.00</option>\n";
+        echo "    <option>05.00</option>\n";
+        echo "    <option>06.00</option>\n";
+        echo "    <option>07.00</option>\n";
+        echo "    <option>08.00</option>\n";
+        echo "    <option>09.00</option>\n";
+        echo "    <option>10.00</option>\n";
+        echo "    <option>11.00</option>\n";
+        echo "    <option>12.00</option>\n";
+        echo "    <option>13.00</option>\n";
+        echo "    <option>14.00</option>\n";
+        echo "    <option>15.00</option>\n";
+        echo "    <option>16.00</option>\n";
+        echo "    <option>17.00</option>\n";
+        echo "    <option>18.00</option>\n";
+        echo "    <option>19.00</option>\n";
+        echo "    <option>20.00</option>\n";
+        echo "    <option>21.00</option>\n";
+        echo "    <option>22.00</option>\n";
+        echo "    <option>23.00</option>\n";
+        echo "    <option>24.00</option>\n";
+        echo "  </select>\n";
+        echo "</div>";
+        
+        print" </div> \n";
+        
+        print "<button type=\"button\" id = \"myBtn\" class=\"btn btn-primary becWalkerBtn\" data-toggle=\"collapse\" data-target=\"#demo1\">Schedule Regular Walks</button>\n";
+        
+        print"      </div> \n";
+        print"      </div> \n";
+        print "     <div class=\"col-sm-6\">\n";
+        print "     <div class=\"form-group\"> \n";
+        print" <div class=\"col-10\">\n";
+        echo "<div class=\"form-group\">\n";
+        echo "  <label for=\"sel1\">Drop-Off:</label>\n";
+        echo "  <select class=\"form-control\" id=\"sel1\" name=\"dropoff\" required>\n";
+        echo "    <option>Please select time</option>\n";
+        echo "    <option>00:00</option>\n";
+        echo "    <option>01.00</option>\n";
+        echo "    <option>02.00</option>\n";
+        echo "    <option>03.00</option>\n";
+        echo "    <option>04.00</option>\n";
+        echo "    <option>05.00</option>\n";
+        echo "    <option>06.00</option>\n";
+        echo "    <option>07.00</option>\n";
+        echo "    <option>08.00</option>\n";
+        echo "    <option>09.00</option>\n";
+        echo "    <option>10.00</option>\n";
+        echo "    <option>11.00</option>\n";
+        echo "    <option>12.00</option>\n";
+        echo "    <option>13.00</option>\n";
+        echo "    <option>14.00</option>\n";
+        echo "    <option>15.00</option>\n";
+        echo "    <option>16.00</option>\n";
+        echo "    <option>17.00</option>\n";
+        echo "    <option>18.00</option>\n";
+        echo "    <option>19.00</option>\n";
+        echo "    <option>20.00</option>\n";
+        echo "    <option>21.00</option>\n";
+        echo "    <option>22.00</option>\n";
+        echo "    <option>23.00</option>\n";
+        echo "    <option>24.00</option>\n";
+        echo "  </select>\n";
+        echo "</div>";
 
-                print" </div> \n";
-                print" <button type=\"submit\" class=\"btn btn-primary becWalkerBtn\" name=\"findwalker\">Find a Walker Now!</button> \n";
-                print"      </div> \n";
-                print"      </div> \n";
-                print"      </form> \n";
-                
+        print" </div> \n";
+        print" <button type=\"submit\" class=\"btn btn-primary becWalkerBtn\" name=\"findwalker\">Find a Walker Now!</button> \n";
+        print"      </div> \n";
+        print"      </div> \n";
+        print"      </form> \n";
+                 print "        </div>\n";
+                }
                 
                 print "        <div class=\"col-xs-0 col-sm-1 col-md-1\">\n";
                 print "        </div>\n";
                 
                 
-                
+                print "        <div class=\"col-sm-6\">\n";     
                 print "             <div class=\"collapse\" id=\"demo\">\n";
                 print "<form id=\"walker_form\" method=\"POST\" action=\"http://walkies-shaner125.c9users.io/index.php\">";
                 print "   <div class=\"form-group\"> \n";
                 print"<br /> <label for=\"example-text-input\" class=\"col-2 col-form-label\">First name</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"$firstname\" id=\"example-text-input\" name=\"firstname\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$firstname\" id=\"example-text-input\" name=\"firstname\" required> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Last name</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"$lastname\" id=\"example-text-input\" name=\"lastname\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$lastname\" id=\"example-text-input\" name=\"lastname\" required> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-email-input\" class=\"col-2 col-form-label\">Email</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"$email\" id=\"example-text-input\" name=\"email\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$email\" id=\"example-text-input\" name=\"email\" required> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-tel-input\" class=\"col-2 col-form-label\">Phone Number</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value= \"$phone\" id=\"example-text-input\" name=\"phone_no\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value= \"$phone\" id=\"example-text-input\" name=\"phone_no\" required> \n";
                 
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Address Line 1</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"$addr1\" id=\"example-text-input\" name=\"addr1\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$addr1\" id=\"example-text-input\" name=\"addr1\" required> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Address Line 2</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"$addr2\" id=\"example-text-input\" name=\"addr2\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$addr2\" id=\"example-text-input\" name=\"addr2\" required> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "  <div class=\"form-group\"> \n";
                 print" <label for=\"example-text-input\" class=\"col-2 col-form-label\">Zip Code</label> \n";
                 print" <div class=\"col-10\">\n";
-                print" <input class=\"form-control\" type=\"text\" value=\"$zip\" id=\"example-text-input\" name=\"zip\"> \n";
+                print" <input class=\"form-control\" type=\"text\" value=\"$zip\" id=\"example-text-input\" name=\"zip\" required> \n";
                 print" </div> \n";
                 print" </div> \n";
                 print "     <div class=\"form-group\"> \n";
                 print"      <label for=\"example-date-input\" class=\"col-2 col-form-label\">Date of Birth</label> \n";
                 print"      <div class=\"col-10\">\n";
-                print"      <input class=\"form-control\" type=\"date\" value=\"$birthday\" id=\"example-date-input\" name=\"birthday\"> \n";
+                print"      <input class=\"form-control\" type=\"date\" value=\"$birthday\" id=\"example-date-input\" name=\"birthday\" required> \n";
                 print"      </div> \n";
                 print"      </div> \n";
                 print"    <div class=\"form-group\"> \n";
                 print"     <label for=\"exampleSelect1\">Gender</label> \n";
-                print"     <select class=\"form-control\" id=\"exampleSelect1\" name=\"gender\" value=\"$gender\" name=\"gender\"> \n";
+                print"     <select class=\"form-control\" id=\"exampleSelect1\" name=\"gender\" value=\"$gender\" name=\"gender\" required> \n";
                 print"      <option>M</option> \n";
                 print"    <option>F</option> \n";
                 print"      </select> \n";
@@ -546,7 +607,7 @@
                 print " </div>\n";
                 
                 print "</div>\n";
-                  
+                print "</div>\n";
                 
                 echo "<div class=\"col-sm-8\">\n";
                 
@@ -567,7 +628,7 @@
 
                     if($_POST[$i] == "yes"){
                            $sql = "INSERT INTO walkies_web.walks_completed (user_id, first_name, addr1, pickup, dropoff, price, phone_number,profile_image_url,date_completed, walker_id)
-                            VALUES ('$row1[user_id]', '$row1[first_name]', '$row1[addr1]', '$row1[pickup]','$row1[dropoff]','$row1[price]','$row1[phone_number]', '$row1[profile_image_url]',$myDate, $user_id)";
+                            VALUES ('$row1[user_id]', '$row1[first_name]', '$row1[addr1]', '$row1[pickup]','$row1[dropoff]','$row1[price]','$row1[phone_number]', '$row1[profile_image_url]','$myDate', '$user_id')";
                 	        $sql1 ="DELETE FROM walkies_web.walk_now where user_id = '$row1[user_id]'";
 
                         if ($conn->query($sql) === TRUE) {
@@ -635,7 +696,12 @@
                    
                    if(isset($_POST['submit_Btn1']))
                   {
-                      
+                    
+                    $_SESSION['addr1'] = $_POST['addr1'];
+                    $_SESSION['addr2'] = $_POST['addr2'];
+                    $_SESSION['zip'] = $_POST['zip'];
+                    $_SESSION['phone_number'] = $_POST['phone_no'];
+                    $_SESSION['price'] = $_POST['price'];
                     $_SESSION['pickup1'] = $_POST['pickup1'];
                     $_SESSION['dropoff1'] = $_POST['dropoff1'];
 				    if (isset($_POST['mon'])){
@@ -681,8 +747,8 @@
 				        $sun = 'N';
 				    }
                     
-                    $sql = "INSERT INTO walkies_web.regular_walks (user_id, first_name, mon, tue, wed, thu, fri, sat, sun,pickup, dropoff, walk_status)
-                    VALUES ($user_id, '$firstname', '$mon', '$tue','$wed', '$thu', '$fri', '$sat', '$sun','{$_SESSION['pickup1']}','{$_SESSION['dropoff1']}','Y' )";
+                    $sql = "INSERT INTO walkies_web.regular_walks (user_id, first_name, mon, tue, wed, thu, fri, sat, sun,pickup, dropoff, addr1, addr2, zip, phone_number, price, profile_image_url, walk_status)
+                    VALUES ($user_id, '$firstname', '$mon', '$tue','$wed', '$thu', '$fri', '$sat', '$sun','{$_SESSION['pickup1']}','{$_SESSION['dropoff1']}','{$_SESSION['addr1']}','{$_SESSION['addr2']}','{$_SESSION['zip']}','{$_SESSION['phone_number']}','{$_SESSION['price']}','$profile_image_url','Y')";
                     
                     if ($conn->query($sql) === TRUE) {
                        
@@ -704,10 +770,13 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <div class=\ "collapse\" id=\ "demo1\">
+            <div class= "collapse" id= "demo1">
                 <form method="POST">
                     <br />
                     <div class="row">
+                         <div class = "col-sm-12">
+                            <h2>Schedule A Regular Walk</h2>
+                        </div>
                         <div class="col-sm-12">
                             <div class="weekDays-selector">
                                 <div class="lowerDashAlign">
@@ -731,9 +800,9 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class=\ "form-group\">
-                                <label for=\ "sel1\">Pick-Up Time:</label>
-                                <select class=\ "form-control\" id=\ "sel1\" name=\ "pickup1\" required>
+                            <div class= "form-group">
+                                <label for= "sel1">Pick-Up Time:</label>
+                                <select class= "form-control" id= "sel1" name= "pickup1" required>
                                     <option>Please select time</option>
                                     <option>ASAP</option>
                                     <option>00:00</option>
@@ -766,9 +835,9 @@
                         </div>
 
                         <div class="col-sm-6">
-                            <div class=\ "form-group\">
-                                <label for=\ "sel1\">Drop-Off Time:</label>
-                                <select class=\ "form-control\" id=\ "sel1\" name=\ "dropoff1\" required>
+                            <div class= "form-group">
+                                <label for= "sel1">Drop-Off Time:</label>
+                                <select class= "form-control" id= "sel1" name= "dropoff1" required>
                                     <option>Please select time</option>
                                     <option>00:00</option>
                                     <option>01.00</option>
@@ -802,19 +871,20 @@
                     </div>
 
                     <div class="row">
+
                         <div class="col-sm-6">
-                            <div class=\ "form-group\">
-                                <label for=\ "example-text-input\" class=\ "col-2 col-form-label\">Address Line 1</label>
-                                <div class=\ "col-10\">
-                                    <input class=\ "form-control\" type=\ "text\" value= <?php echo $addr1 ?> id=\ "example-text-input\" name=\ "addr1\" required>
+                            <div class= "form-group">
+                                <label for= "example-text-input" class= "col-2 col-form-label">Address Line 1</label>
+                                <div class= "col-10">
+                                    <input class= "form-control" type= "text" value= "<?php echo $addr1 ?>" id= "example-text-input" name= "addr1" required>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class=\ "form-group\">
-                                <label for=\ "example-text-input\" class=\ "col-2 col-form-label\">Address Line 2</label>
-                                <div class=\ "col-10\">
-                                    <input class=\ "form-control\" type=\ "text\" value=\ "$addr2\" id=\ "example-text-input\" name=\ "addr2\" required>
+                            <div class= "form-group">
+                                <label for= "example-text-input" class= "col-2 col-form-label">Address Line 2</label>
+                                <div class= "col-10">
+                                    <input class= "form-control" type="text" value= "<?php echo $addr2 ?>" id= "example-text-input" name= "addr2" required>
                                 </div>
                             </div>
                         </div>
@@ -822,30 +892,42 @@
 
                     <div class="row">
                             <div class="col-sm-6">
-                                <div class=\ "form-group\">
-                                    <label for=\"example-text-input\" class=\"col-2 col-form-label\">Zip Code</label>
-                                    <div class=\ "col-10\">
-                                            <input class=\"form-control\" type=\"text\" value="<?php echo $zip ?>" id=\"example-text-input\" name=\"zip\" required> 
+                                <div class="form-group">
+                                    <label for="example-text-input" class="col-2 col-form-label">Zip Code</label>
+                                    <div class= "col-10">
+                                            <input class="form-control" type="text" value="<?php echo $zip ?>" id="example-text-input" name="zip" required> 
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class=\ "form-group\">
-                                    <label for=\"example-tel-input\" class=\"col-2 col-form-label\">Phone Number</label>
-                                    <div class=\ "col-10\">
-                                            <input class=\"form-control\" type=\"text\" value= \"$phone\" id=\"example-text-input\" name=\"phone_no\" required> 
+                                <div class= "form-group">
+                                    <label for="example-tel-input" class="col-2 col-form-label">Phone Number</label>
+                                    <div class= "col-10">
+                                            <input class="form-control" type="text" value= "<?php echo $phone ?>" id="example-text-input" name="phone_no" required> 
                                     </div>
                                 </div>
                             </div>
                     </div>
+                    <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="col-2 col-form-label">Price</label>
+                                    <div class= "col-10">
+                                            <input class="form-control" type="text" value="" id="example-text-input" name="price" required> 
+                                    </div>
+                                </div>
+                            </div>
+                            
+                    </div>
 
 
 
-                    <button type=\ "submit\" class=\ "btn btn-primary submitDashAlign\" name=\ "submit_Btn1\">Submit</button>
+                    <button type= "submit" class= "btn btn-primary submitDashAlign" name= "submit_Btn1">Submit</button>
                 </form>
             </div>
 
         </div>
+
         
          <script>
             // Get the modal
@@ -874,8 +956,8 @@
                 }
             }
         </script>
-
-
+        
+  
                             
 	<!-- Footer -->
 	<footer class="footer">

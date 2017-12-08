@@ -121,7 +121,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" background-image: url("/img/backgroundGIF.gif");>
 
     <!-- Navbar -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-notMain">
@@ -157,12 +157,7 @@
                     <li>
                         <a class="page-scroll" href="About.php">About</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
+
                     <li>
                         <!-- If the user is logged in, display logout link -->
                          <?php
@@ -183,43 +178,35 @@
   
     <div class = "row">
                 
-                <div class="col-lg-3 col-md-2 text-center">
+                <div class="col-sm-2 col-md-3 text-center">
                     
                 </div>
-                <div class="col-lg-6 col-md-8 text-center">
+                <div class="col-sm-8 col-md-6 text-center">
                     
-    <div class="omb_login">
-    	<h3 class="omb_authTitle">Login or Sign up</h3>
-    		<div class="row omb_row-sm-offset-3 omb_socialButtons">
-			<div class="col-xs-12 col-sm-6">	
-                <?php
-			      echo "<a href='" . $authUrl ."' class='btn btn-lg btn-block omb_btn-google'>
-			        <i class='fa fa-google-plus visible-xs'></i>
-			        <span class='hidden-xs'>Google+</span>
-                </a>";
-                ?>
-			</div>
-    	</div>
-		
-
-		<div class="row omb_row-sm-offset-3 omb_loginOr">
-			<div class="col-xs-12 col-sm-6">
-			
-			</div>
-		</div>
-
-		<div class="row omb_row-sm-offset-3 omb_socialButtons">
-			<div class="col-xs-12 col-sm-6">	
-			     
-			</div>
-    	</div>
-                </div>
-                <div class="col-lg-3 col-md-2 text-center">
+                    <div class="omb_login">
+                     <img src="/img/MajesticLargeFlicker.gif" height="325" width="325">
+                    	<h3 class="omb_authTitle">Login or Sign up</h3>
+                    		<div class="row omb_row-sm-offset-3 omb_socialButtons">
+                			<div class="col-xs-12 col-sm-6">	
+                                <?php
+                			      echo "<a href='" . $authUrl ."' class='btn btn-lg btn-block omb_btn-google'>
+                			        <i class='fa fa-google-plus visible-xs'></i>
+                			        <span class='hidden-xs'>Google+</span>
+                                </a>";
+                                ?>
+                			</div>
+                    	</div>
+                    </div>
+                    </div>
+                <div class="col-sm-2 col-md-3 text-center">
+                 
                  
                 </div>
             </div>
 
                         </div>
+                        
+
                 
 	
 	<!-- Footer -->
